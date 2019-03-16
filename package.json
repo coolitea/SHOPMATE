@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "SHOPMATE",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,8 @@
     "@types/node": "11.11.3",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
+    "add": "^2.0.6",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -31,11 +33,13 @@
     "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
+    "include-media": "^1.4.9",
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
     "mini-css-extract-plugin": "0.5.0",
+    "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -46,6 +50,9 @@
     "react-app-polyfill": "^0.2.2",
     "react-dev-utils": "^8.0.0",
     "react-dom": "^16.8.4",
+    "react-router-dom": "^4.4.0",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.2",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
@@ -55,12 +62,13 @@
     "webpack": "4.28.3",
     "webpack-dev-server": "3.1.14",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.3"
+    "workbox-webpack-plugin": "3.6.3",
+    "yarn": "^1.13.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "start": "cross-env NODE_PATH=src node scripts/start.js",
+    "build": "cross-env NODE_PATH=src node scripts/build.js",
+    "test": "cross-env NODE_PATH=src node scripts/test.js --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -78,7 +86,8 @@
     ],
     "resolver": "jest-pnp-resolver",
     "setupFiles": [
-      "react-app-polyfill/jsdom"
+      "react-app-polyfill/jsdom",
+      "<rootDir>/test-setup.ts"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
@@ -120,5 +129,18 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.9.0",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/react-addons-test-utils": "^0.14.24",
+    "@types/react-redux": "^7.0.3",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/redux-logger": "^3.0.7",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "react-addons-test-utils": "^15.6.2",
+    "redux-logger": "^3.0.6"
   }
 }
