@@ -9,7 +9,7 @@
 - [React Router](https://www.npmjs.com/package/react-router-dom)
 - [Redux](https://www.npmjs.com/package/redux)
 - [Redux-saga](https://www.npmjs.com/package/redux-saga)
-- Sass
+- Scss
 - [Typescript](https://www.npmjs.com/package/typescript)
 
 ## Feature requirements
