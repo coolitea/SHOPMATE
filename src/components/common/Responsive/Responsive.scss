@@ -1,0 +1,22 @@
+@import '~assets/styles/utils';
+
+.common.responsive {
+  width: $screen-large;
+  margin: 0 auto;
+
+  @include media('<screen-xx') {
+    width: $screen-small;
+  }
+
+  @include media('<screen-x') {
+    width: $tablet-large;
+  }
+
+  @include media('<tablet-xx') {
+    width: $tablet-small;
+  }
+
+  @include media('<mobile-xx') {
+    width: $mobile-large;
+  }
+}
