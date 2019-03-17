@@ -5,6 +5,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { departmentsState, categoriesState } from 'store/models';
 
+import Button from 'components/common/Button';
+
 interface Props {
   departments: departmentsState,
   getDeparments: typeof departmentAction.departmentRequest;
@@ -19,7 +21,7 @@ class Home extends React.Component<Props> {
   render() {
     return (
       <>
-        Home
+        <Button className="small1">asd</Button>
       </>
     );
   }

@@ -1,0 +1,50 @@
+@import '~assets/styles/main';
+
+.button {
+  border: none;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+.big1,
+.big2 {
+  border-radius: 100px;
+  width: 221px;
+  height: 60px;
+}
+
+.medium1,
+.medium2 {
+  border-radius: 24px;
+  width: 163px;
+  height: 48px;
+}
+
+.small1,
+.small2 {
+  border-radius: 24px;
+  width: 91px;
+  height: 35px;
+  font-size: 12px;
+  line-height: 2;
+}
+
+.big1,
+.medium1,
+.small1 {
+  background-color: $red-pink;
+  color: $white-two;
+}
+
+.big2,
+.medium2,
+.small2 {
+  background-color: $white-two;
+  color: $red-pink;
+}
