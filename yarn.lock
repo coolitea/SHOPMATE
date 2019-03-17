@@ -5930,6 +5930,10 @@ nan@^2.10.0, nan@^2.9.2:
   version "2.13.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.13.1.tgz#a15bee3790bde247e8f38f1d446edcdaeb05f2dd"
 
+nanobar@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/nanobar/-/nanobar-0.4.2.tgz#01c512e6c662e38562694f64e4a88a253732f48f"
+
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
