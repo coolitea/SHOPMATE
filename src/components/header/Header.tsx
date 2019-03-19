@@ -3,13 +3,14 @@ import './Header.scss';
 import Responsive from 'components/common/Responsive';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { departments } from 'store/models';
-import { FaOpencart } from "react-icons/fa";
+import { FaOpencart, FaSearch } from "react-icons/fa";
+import { MdReorder } from 'react-icons/md';
+
 interface Props extends RouteComponentProps {
   departments: departments[];
-  isLoading: boolean;
 }
 
-const Header: React.SFC<Props> = ({ departments, history, isLoading }) => {
+const Header: React.SFC<Props> = ({ departments, history }) => {
   return (
     <Responsive>
       <header className="header">
@@ -20,11 +21,21 @@ const Header: React.SFC<Props> = ({ departments, history, isLoading }) => {
           ))}
         </div>
         <div className="search" >
-          search
+          <FaSearch
+            style={{ color: 'white' }}
+            className="search-icon"
+          />
+          <input
+            type="text"
+            placeholder="search"
+          />
         </div>
         <div className="cart" >
-          <FaOpencart style={{color: 'white'}}/>
+          <FaOpencart style={{ color: 'white' }} />
         </div>
+        <MdReorder
+          className="burger"
+        />
       </header>
     </Responsive>
   )

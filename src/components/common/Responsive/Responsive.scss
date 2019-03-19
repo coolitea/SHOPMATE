@@ -9,14 +9,15 @@
   }
 
   @include media('<tablet-xx') {
-    width: $tablet-small;
+    // width: $tablet-small;
+    width: 100%;
   }
 
-  @include media('<mobile-xx') {
-    width: $mobile-large;
-  }
+  // @include media('<mobile-xx') {
+  //   width: $mobile-large;
+  // }
   
-  @include media('<mobile-x') {
-    width: $mobile-small;
-  }
+  // @include media('<mobile-x') {
+  //   width: $mobile-small;
+  // }
 }

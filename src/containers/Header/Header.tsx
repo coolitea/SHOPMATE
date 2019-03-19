@@ -9,7 +9,6 @@ import { Header } from 'components';
 interface Props {
   departments: departments[],
   getDeparments: typeof departmentAction.departmentRequest;
-  isLoading: boolean;
 }
 
 class HeaderContainer extends React.Component<Props> {
@@ -17,12 +16,11 @@ class HeaderContainer extends React.Component<Props> {
     this.props.getDeparments('');
   }
   render() {
-    const { departments, isLoading }= this.props;
+    const { departments }= this.props;
     return (
       <>
         <Header 
           departments={departments}
-          isLoading={isLoading}
         />
       </>
     );
@@ -31,7 +29,6 @@ class HeaderContainer extends React.Component<Props> {
 
 const mapStateToProps = (rootState: rootState) => ({
   departments: rootState.departments.departments,
-  isLoading: rootState.departments.isLoading,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
