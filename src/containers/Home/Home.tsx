@@ -3,32 +3,37 @@ import { departmentAction, categoryAction } from 'store/actions';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { departmentsState, categoriesState } from 'store/models';
-
-import Button from 'components/common/Button';
+import { departments, categories } from 'store/models';
+import { Home } from 'components';
 
 interface Props {
-  departments: departmentsState,
+  departments: departments[],
+  categories: categories[],
   getDeparments: typeof departmentAction.departmentRequest;
   getCategories: typeof categoryAction.categoryRequest;
 }
 
-class Home extends React.Component<Props> {
+class HomeContainer extends React.Component<Props> {
   componentDidMount() {
     this.props.getDeparments('');
     this.props.getCategories('');
   }
   render() {
+    const { departments, categories } = this.props;
     return (
       <>
-        Home container
+        <Home
+          departments={departments}
+          categories={categories}
+        />
       </>
     );
   }
 }
 
 const mapStateToProps = (rootState: rootState) => ({
-  departments: rootState.departments,
+  departments: rootState.departments.departments,
+  categories: rootState.categories.row,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -39,6 +44,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connectModule = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(HomeContainer);
 
 export default connectModule;

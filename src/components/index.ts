@@ -9,3 +9,6 @@ export { default as Footer } from 'components/footer';
 
 // header
 export { default as Header } from 'components/header';
+
+// home
+export { default as Home } from 'components/home';

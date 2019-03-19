@@ -27,7 +27,7 @@ const Header: React.SFC<Props> = ({ departments, history }) => {
           />
           <input
             type="text"
-            placeholder="search"
+            placeholder="search anithing"
           />
         </div>
         <div className="cart" >

@@ -23,4 +23,5 @@ export interface categoriesState {
   count?: number;
   row: categories[];
   err?: string;
+  isLoading: boolean;
 }
