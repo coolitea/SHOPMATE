@@ -21,7 +21,7 @@ class Home extends React.Component<Props> {
   render() {
     return (
       <>
-        <Button className="small1">asd</Button>
+        Home container
       </>
     );
   }

@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { MainTemplate } from 'components';
+import { MainTemplate, Footer } from 'components';
 import { HomeContainer } from 'containers'
-const Home: React.FC = () => (
-  <MainTemplate>
-    <HomeContainer />
-  </MainTemplate>
-);
+const Home: React.FC = () => {
+  // reder comments
+  // first header container
+  // second home main container
+  // third footer components
+  return (
+    <MainTemplate footer={<Footer />}>
+    </MainTemplate>
+  )
+};
 
 export default Home;

@@ -10,6 +10,9 @@
   line-height: 1.5;
   letter-spacing: normal;
   text-align: center;
+  z-index: 0;
+  overflow: hidden;
+  transition: all 0.2s ease;
 }
 
 .big1,
@@ -47,4 +50,20 @@
 .small2 {
   background-color: $white-two;
   color: $red-pink;
+}
+
+.ink {
+  display: block;
+  position: absolute;
+  background:rgba(255, 255, 255, 0.3);
+  border-radius: 100%;
+  transform:scale(0);
+}
+
+.animate {
+  animation:ripple 0.65s linear;
+}
+
+@keyframes ripple {
+  100% {opacity: 0; transform: scale(2.5);}
 }

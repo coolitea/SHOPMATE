@@ -17,4 +17,4 @@ const Responsive: React.SFC<Props> = ({
   </div>
 );
 
-export default Response;
+export default Responsive;
