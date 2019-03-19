@@ -6,3 +6,6 @@ export { MainTemplate } from 'components/templete';
 
 // footer
 export { default as Footer } from 'components/footer';
+
+// header
+export { default as Header } from 'components/header';

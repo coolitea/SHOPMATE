@@ -1,0 +1,51 @@
+@import '~assets/styles/main';
+
+.header {
+  display: flex;
+  height: 72px;
+  background-color: $red-pink;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 31px;
+
+  h1 {
+    flex: none;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: 6px;
+    color: $white-two;
+    cursor: pointer;
+  }
+
+  .header_departments {
+    margin-left: 58px;
+    display: flex;
+    flex-direction: row;
+
+    .department {
+      font-family: Montserrat;
+      font-size: 15px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 2.4;
+      letter-spacing: normal;
+      color: $white-two;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+  }
+  .search {
+    margin-left: auto;
+  }
+
+  .cart {
+    justify-content: flex-end;
+    margin-left: 30px;
+  }
+}

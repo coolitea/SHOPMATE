@@ -15,4 +15,8 @@
   @include media('<mobile-xx') {
     width: $mobile-large;
   }
+  
+  @include media('<mobile-x') {
+    width: $mobile-small;
+  }
 }

@@ -6,6 +6,7 @@ export interface departments {
 }
 
 export interface departmentsState {
+  isLoading: boolean;
   departments: departments[];
   err?: string;
 }
