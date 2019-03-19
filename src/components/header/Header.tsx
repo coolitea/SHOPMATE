@@ -4,13 +4,13 @@ import Responsive from 'components/common/Responsive';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { departments } from 'store/models';
 import { FaOpencart, FaSearch } from "react-icons/fa";
-import { MdReorder } from 'react-icons/md';
 
 interface Props extends RouteComponentProps {
   departments: departments[];
 }
 
 const Header: React.SFC<Props> = ({ departments, history }) => {
+  const [burger, setBurger] = React.useState(false)
   return (
     <Responsive>
       <header className="header">
@@ -33,9 +33,12 @@ const Header: React.SFC<Props> = ({ departments, history }) => {
         <div className="cart" >
           <FaOpencart style={{ color: 'white' }} />
         </div>
-        <MdReorder
-          className="burger"
-        />
+        <div className={burger ? 'burger open' : 'burger'} onClick={() => setBurger(!burger)}>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </header>
     </Responsive>
   )
