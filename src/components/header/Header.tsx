@@ -39,6 +39,11 @@ const Header: React.SFC<Props> = ({ departments, history }) => {
           <span></span>
           <span></span>
         </div>
+        <div className={burger ? 'side open' : 'side'}>
+          {/* {departments && departments.map((data, i) => (
+              <div key={i} className="department">{data.name}</div>
+            ))} */}
+        </div>
       </header>
     </Responsive>
   )
