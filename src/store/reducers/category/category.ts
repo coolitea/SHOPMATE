@@ -4,7 +4,7 @@ import { CategoryActionTypes } from 'store/actions/categories';
 
 const initialState: categoriesState = {
   isLoading: false,
-  row: [],
+  rows: [],
 };
 
 export default function(state = initialState, action: any): categoriesState {
@@ -13,13 +13,15 @@ export default function(state = initialState, action: any): categoriesState {
       return {
         ...initialState,
         isLoading: true,
-        row: state.row,
+        rows: state.rows,
+        count: state.count,
       };
     case GET_CATEGORIES[SUCCESS]:
       return {
         ...initialState,
         isLoading: false,
-        row: action.payload,
+        rows: action.payload.rows,
+        count: action.payload.count,
       };
     case GET_CATEGORIES[FAILURE]:
       return {

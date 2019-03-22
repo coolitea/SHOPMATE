@@ -21,7 +21,7 @@ export interface categories {
 
 export interface categoriesState {
   count?: number;
-  row: categories[];
+  rows: categories[];
   err?: string;
   isLoading: boolean;
 }

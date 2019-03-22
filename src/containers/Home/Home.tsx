@@ -33,7 +33,7 @@ class HomeContainer extends React.Component<Props> {
 
 const mapStateToProps = (rootState: rootState) => ({
   departments: rootState.departments.departments,
-  categories: rootState.categories.row,
+  categories: rootState.categories.rows,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

@@ -16,12 +16,31 @@ const GreatStuff: React.SFC<Props> = ({ departments, categories }) => {
         <div>more than 400 000 items</div>
       </div>
       <div className="stuff">
-        <div className="stuff_categories"></div>
+        <div className="stuff_categories">
+          <p>CATEGORY</p>
+          <ul>
+          {categories && categories.map((data, i) => (
+            <div key={i} className="categories">{data.name}</div>
+          ))}
+          </ul>
+        </div>
         <div className="stuff_departments">
-          <div className="regional"></div>
+          <div className="regional">
+          {departments && departments.slice(0,1).map((data, i) => (
+            <div key={i} >{data.name}</div>
+          ))}
+          </div>
           <div>
-            <div className="seasonal"></div>
-            <div className="natual"></div>
+            <div className="seasonal">
+            {departments && departments.slice(1,2).map((data, i) => (
+            <div key={i} >{data.name}</div>
+          ))}
+            </div>
+            <div className="natual">
+            {departments && departments.slice(2).map((data, i) => (
+            <div key={i} >{data.name}</div>
+          ))}
+            </div>
           </div>
         </div>
       </div>
