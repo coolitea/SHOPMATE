@@ -5,6 +5,7 @@ import Responsive from 'components/common/Responsive';
 
 import HomeJumbotron from './HomeJumbotron';
 import GreatStuff from './GreatStuff';
+import Subscription from './Subscription';
 
 interface Props {
   departments: departments[],
@@ -19,6 +20,7 @@ const Home: React.SFC<Props> = ({ departments, categories }) => {
         departments={departments}
         categories={categories}
       />
+      <Subscription />
     </Responsive>
   )
 }
