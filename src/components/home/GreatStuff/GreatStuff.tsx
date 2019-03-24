@@ -2,6 +2,7 @@ import * as React from 'react';
 import { departments, categories } from 'store/models';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import './GreatStuff.scss'
+import Button from 'components/common/Button';
 
 interface Props extends RouteComponentProps {
   departments: departments[],
@@ -27,18 +28,27 @@ const GreatStuff: React.SFC<Props> = ({ departments, categories }) => {
         <div className="stuff_departments">
           <div className="regional">
           {departments && departments.slice(0,1).map((data, i) => (
+            <>
             <div key={i} >{data.name}</div>
+            <Button className="small1">Shop</Button>
+            </>
           ))}
           </div>
           <div>
-            <div className="seasonal">
+            <div className="natual">
             {departments && departments.slice(1,2).map((data, i) => (
+            <>
             <div key={i} >{data.name}</div>
+            <Button className="small1">Shop</Button>
+            </>
           ))}
             </div>
-            <div className="natual">
+            <div className="seasonal">
             {departments && departments.slice(2).map((data, i) => (
+            <>
             <div key={i} >{data.name}</div>
+            <Button className="small1">Shop</Button>
+            </>
           ))}
             </div>
           </div>

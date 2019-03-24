@@ -5,6 +5,10 @@
   background-color: #efefef;
   padding-top: 43px;
 
+  @include media('<tablet-xx') {
+    height: 350px;
+  }
+
   .subscription_title {
     width: 471px;
     // height: 72px;
@@ -18,6 +22,11 @@
     text-align: center;
     color: $red-pink;
     margin: 0 auto;
+
+    @include media('<tablet-xx') {
+      width: 300px;
+    }
+
   }
 
   .subscription_sub {
@@ -34,6 +43,10 @@
     color: #2e2e2e;
     margin: 0 auto;
     margin-top: 10px;
+
+    @include media('<tablet-xx') {
+      width: 359px;
+    }
   }
 
   .subscription_interaction {
@@ -43,6 +56,11 @@
     display: flex;
     justify-content: center;
     margin-top: 24px;
+    flex-wrap: wrap;
+
+    @include media('<tablet-xx') {
+      width: 188px;
+    }
 
     .mail {
       position: relative;
@@ -79,6 +97,12 @@
   
       ::placeholder {
         color: #bababa;
+      }
+    }
+
+    .small1 {
+      @include media('<tablet-xx') {
+        margin-top: 20px;
       }
     }
   }
