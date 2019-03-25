@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Header.scss';
 import Responsive from 'components/common/Responsive';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 import { departments } from 'store/models';
 import { FaOpencart, FaSearch } from "react-icons/fa";
 
@@ -10,9 +10,13 @@ interface Props extends RouteComponentProps {
 }
 
 const Header: React.SFC<Props> = ({ departments, history }) => {
-  const [burger, setBurger] = React.useState(false)
+  const [burger, setBurger] = React.useState(false);
+  const [auth, setAuth] = React.useState(true);
   return (
     <Responsive>
+      <div className={auth ? 'auth open' : 'auth'}>
+        <p>Hi! <Link to='/signin'>Sing in</Link> or <Link to='/register'>Register</Link></p>
+      </div>
       <header className="header">
         <h1 onClick={() => history.push('/')}>SHOPMATE</h1>
         <div className="header_departments">

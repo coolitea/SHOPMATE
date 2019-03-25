@@ -137,16 +137,15 @@
       .regional {
         height: 300px;
         border: .5px solid #efefef;
-        // background-color: #85bb65;
         margin-bottom: 24px;
-        padding: 69px 148px 0 80px;
+        padding: 0 0 0 110px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
 
         @include media('<tablet-xx') {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
           padding: 0;
+          justify-content: center;
         }
 
         div {

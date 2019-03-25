@@ -1,5 +1,32 @@
 @import '~assets/styles/main';
+.auth.open {
+  height: 48px;
+  background-color: #2e2e2e;
+  padding: 0 31px;
+  align-items: center;
+  display: flex;
 
+  p {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.4;
+    letter-spacing: normal;
+    color: #ffffff;
+
+    a {
+      font-family: Montserrat;
+      font-size: 15px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 2.4;
+      letter-spacing: normal;
+      color: $red-pink;
+    }
+  }
+}
 .header {
   display: flex;
   height: 72px;
