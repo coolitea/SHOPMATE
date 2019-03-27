@@ -28,27 +28,18 @@ const GreatStuff: React.SFC<Props> = ({ departments, categories }) => {
         <div className="stuff_departments">
           <div className="regional">
           {departments && departments.slice(0,1).map((data, i) => (
-            <>
             <div key={i} >{data.name}</div>
-            {/* <Button className="small1">Shop</Button> */}
-            </>
           ))}
           </div>
           <div>
             <div className="natual">
             {departments && departments.slice(1,2).map((data, i) => (
-            <>
             <div key={i} >{data.name}</div>
-            {/* <Button className="small1">Shop</Button> */}
-            </>
           ))}
             </div>
             <div className="seasonal">
             {departments && departments.slice(2).map((data, i) => (
-            <>
             <div key={i} >{data.name}</div>
-            {/* <Button className="small1">Shop</Button> */}
-            </>
           ))}
             </div>
           </div>

@@ -25,3 +25,27 @@ export interface categoriesState {
   err?: string;
   isLoading: boolean;
 }
+
+// CUSTOMER
+export interface customer {
+  customer_id?: number;
+  name: string;
+  email: string;
+  address_1?: string;
+  address_2?: string;
+  city?: string;
+  region?: string;
+  postal_code?: string,
+  country?: string,
+  shipping_region_id?: number;
+  day_phone?: string;
+  eve_phone?: string;
+  mob_phone?: string;
+}
+
+export interface customerState {
+  customer?: customer;
+  accessToken?: string;
+  expires_in?: string;
+  error?: string;
+}

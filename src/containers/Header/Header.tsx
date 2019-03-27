@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { departmentAction } from 'store/actions';
+import { departmentAction, registerAction } from 'store/actions';
+import { register } from 'store/actions/register';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -9,17 +10,29 @@ import { Header } from 'components';
 interface Props {
   departments: departments[],
   getDeparments: typeof departmentAction.departmentRequest;
+  postRegister: (
+    { name, email, password }: register
+  ) => void;
 }
 
-class HeaderContainer extends React.Component<Props> {
+interface HeaderState {
+  registername: string;
+  registerpassword: string;
+  registeremail: string;
+  valCheckMsg: string[];
+  checkAll: boolean;
+  finish: boolean;
+}
+
+class HeaderContainer extends React.Component<Props, HeaderState> {
   componentDidMount() {
     this.props.getDeparments('');
   }
   render() {
-    const { departments }= this.props;
+    const { departments } = this.props;
     return (
       <>
-        <Header 
+        <Header
           departments={departments}
         />
       </>
@@ -33,6 +46,7 @@ const mapStateToProps = (rootState: rootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getDeparments: (id: string | null) => dispatch(departmentAction.departmentRequest(id)),
+  postRegister: ({ name, email, password }: register) => dispatch(registerAction.registerRequest({ name, email, password }))
 });
 
 const connectModule = connect(
