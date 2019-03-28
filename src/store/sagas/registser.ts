@@ -3,6 +3,7 @@ import { Customers } from 'lib/api';
 import { registerAction } from 'store/actions';
 import * as types from 'store/constants';
 import { register } from 'store/actions/register';
+import storage from 'lib/storage';
 
 export function* fetchRegister({ email, name, password }: register) {
   try {
@@ -11,7 +12,9 @@ export function* fetchRegister({ email, name, password }: register) {
       name,
       password,
     });
+    yield storage.set('Authorization', data.accessToken);
     yield put(registerAction.registerSuccess(data));
+    yield (location.href = '/');
   } catch (error) {
     yield put(registerAction.registerFailure(error));
   }

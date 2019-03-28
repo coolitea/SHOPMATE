@@ -13,7 +13,7 @@ export default function(state = initialState, action: any): customerState {
     case POST_REGISTER[SUCCESS]:
       return {
         ...initialState,
-        customer: action.payload,
+        customer: action.payload.customer,
       };
     case POST_REGISTER[FAILURE]:
       return {

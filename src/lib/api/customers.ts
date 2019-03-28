@@ -6,13 +6,14 @@ const postRegister = ({
   name,
   email,
   password,
-}: register): AxiosPromise =>
-  client
+}: register): AxiosPromise =>{
+  return client
     .post(`/customers`, {
       name,
       email,
       password,
     }).then( result => result );
+  }
 
 
 

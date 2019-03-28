@@ -1,50 +1,42 @@
 import * as React from 'react';
 import './Header.scss';
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { departments } from 'store/models';
 import { FaOpencart, FaSearch } from "react-icons/fa";
-import { Input, Button, Responsive } from 'components/common';
+import { Responsive } from 'components/common';
+import storage from 'lib/storage';
+import Auth from './auth';
 
 interface Props extends RouteComponentProps {
   departments: departments[];
+  clickRegister: () => void;
+  changeInput: (num: number, e: { target: HTMLInputElement }) => void;
+  valCheck: (num: number, e: { target: HTMLInputElement }) => void;
+  valCheckMsg: string[];
+  checkAll: boolean;
 }
 
-const Header: React.SFC<Props> = ({ departments, history }) => {
+const Header: React.SFC<Props> = ({ 
+  departments,
+  history,
+  clickRegister,
+  changeInput,
+  valCheck,
+  valCheckMsg,
+  checkAll,
+}) => {
   const [burger, setBurger] = React.useState(false);
-  const [auth, setAuth] = React.useState(true);
-  const [signin, setSignin] = React.useState(false);
-  const [register, setRegister] = React.useState(false);
   return (
     <Responsive>
-      <div className={auth ? 'auth open' : 'auth'}>
-        <p>Hi! <strong onClick={() => setSignin(!signin)}>Sing in</strong> or <strong onClick={() => setRegister(!register)}>Register</strong></p>
-        <p onClick={() => setAuth(false)}>x</p>
-      </div>
-      <div className={signin ? 'signin open' : 'signin'}>
-        <div className="content">
-          <div className="x" onClick={() => setSignin(false)}>
-            <span></span>
-            <span></span>
-          </div>
-          <div className="title">Sign In</div>
-          <Input type="email" placeholder="email" className="email"/>
-          <Input type="password" placeholder="password"/>
-          <Button className="medium1">Sign in</Button>
-        </div>
-      </div>
-      <div className={register ? 'register open' : 'register'}>
-        <div className="content">
-        <div className="x" onClick={() => setRegister(false)}>
-            <span></span>
-            <span></span>
-          </div>
-          <div className="title">Register</div>
-          <Input type="text" placeholder="name" className="name"/>
-          <Input type="email" placeholder="email" className="email"/>
-          <Input type="password" placeholder="password"/>
-          <Button className="medium1">Register</Button>
-        </div>
-      </div>
+      {storage.get('Authorization') ? '': (
+        <Auth
+          clickRegister={clickRegister}
+          changeInput={changeInput}
+          valCheck={valCheck}
+          valCheckMsg={valCheckMsg}
+          checkAll={checkAll}
+        />
+      )}
       <header className="header">
         <h1 onClick={() => history.push('/')}>SHOPMATE</h1>
         <div className="header_departments">

@@ -7,6 +7,9 @@ interface InputProps {
   type: string;
   placeholder: string;
   id?: string;
+  changeInput: (num: number, e: { target: HTMLInputElement }) => void;
+  valCheck: (num: number, e: { target: HTMLInputElement }) => void;
+  num: number;
 }
 
 const Input: React.SFC<InputProps> = ({
@@ -14,6 +17,9 @@ const Input: React.SFC<InputProps> = ({
   type,
   placeholder,
   id,
+  changeInput,
+  valCheck,
+  num,
   ...rest
 }: InputProps) => {
   const processedClass = cn('input', className);
@@ -23,6 +29,8 @@ const Input: React.SFC<InputProps> = ({
       type={type}
       placeholder={placeholder}
       id={id}
+      onChange={e => changeInput(num, e)}
+      onBlur={e => valCheck(num, e)}
       {...rest}
     />
   );
