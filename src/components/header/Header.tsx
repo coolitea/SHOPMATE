@@ -10,6 +10,7 @@ import Auth from './auth';
 interface Props extends RouteComponentProps {
   departments: departments[];
   clickRegister: () => void;
+  clickLogin:() => void;
   changeInput: (num: number, e: { target: HTMLInputElement }) => void;
   valCheck: (num: number, e: { target: HTMLInputElement }) => void;
   valCheckMsg: string[];
@@ -20,6 +21,7 @@ const Header: React.SFC<Props> = ({
   departments,
   history,
   clickRegister,
+  clickLogin,
   changeInput,
   valCheck,
   valCheckMsg,
@@ -31,6 +33,7 @@ const Header: React.SFC<Props> = ({
       {storage.get('Authorization') ? '': (
         <Auth
           clickRegister={clickRegister}
+          clickLogin={clickLogin}
           changeInput={changeInput}
           valCheck={valCheck}
           valCheckMsg={valCheckMsg}

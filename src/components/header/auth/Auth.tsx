@@ -5,6 +5,7 @@ import { Input, Button } from 'components/common';
 
 interface Props {
   clickRegister: () => void;
+  clickLogin: () => void;
   changeInput: (num: number, e: { target: HTMLInputElement }) => void;
   valCheck: (num: number, e: { target: HTMLInputElement }) => void;
   valCheckMsg: string[];
@@ -13,6 +14,7 @@ interface Props {
 
 const Auth: React.SFC<Props> = ({
   clickRegister,
+  clickLogin,
   changeInput,
   valCheck,
   valCheckMsg,
@@ -34,9 +36,24 @@ const Auth: React.SFC<Props> = ({
             <span></span>
           </div>
           <div className="title">Sign In</div>
-          {/* <Input type="email" placeholder="email" className="email"/>
-          <Input type="password" placeholder="password"/> */}
-          {/* <Button className="medium1">Sign in</Button> */}
+          <Input
+            type="email"
+            placeholder="email"
+            className="email"
+            id="email"
+            changeInput={changeInput}
+            valCheck={valCheck}
+            num={1}
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            id="password"
+            changeInput={changeInput}
+            valCheck={valCheck}
+            num={2}
+          />
+          <Button className="medium1" onClick={clickLogin}>Sign in</Button>
         </div>
       </div>
       <div className={register ? 'register open' : 'register'}>

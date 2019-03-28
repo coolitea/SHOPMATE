@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { departmentAction, registerAction } from 'store/actions';
+import { departmentAction, registerAction, loginAction } from 'store/actions';
 import { register } from 'store/actions/register';
+import { login } from 'store/actions/login';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -11,6 +12,7 @@ interface Props {
   departments: departments[],
   getDeparments: typeof departmentAction.departmentRequest;
   postRegister: ({ name, email, password }: register) => void;
+  postLogin: ({ email, password}: login) => void;
 }
 
 interface HeaderState {
@@ -34,6 +36,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
       finish: false,
     }
     this.clickRegister = this.clickRegister.bind(this);
+    this.clickLogin = this.clickLogin.bind(this);
     this.changeInput = this.changeInput.bind(this);
     this.valCheck = this.valCheck.bind(this);
   }
@@ -91,11 +94,11 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
       {
         valCheckMsg: checkMsg,
       },
-      this.beforeRegister
+      this.beforeAuth
     );
   };
 
-  beforeRegister = () => {
+  beforeAuth = () => {
     if (this.state.valCheckMsg.every(msg => msg === '')) {
       this.setState({
         checkAll: true,
@@ -110,6 +113,13 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
     }
   };
 
+  clickLogin = () => {
+    if (this.state.checkAll) {
+      const { password, email } = this.state;
+      this.props.postLogin({ email, password });
+    }
+  };
+
   componentDidMount() {
     this.props.getDeparments('');
   }
@@ -120,6 +130,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
         <Header
           departments={departments}
           clickRegister={this.clickRegister}
+          clickLogin={this.clickLogin}
           changeInput={this.changeInput}
           valCheck={this.valCheck}
           valCheckMsg={this.state.valCheckMsg}
@@ -136,7 +147,8 @@ const mapStateToProps = (rootState: rootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getDeparments: (id: string | null) => dispatch(departmentAction.departmentRequest(id)),
-  postRegister: ({ name, email, password }: register) => dispatch(registerAction.registerRequest({ name, email, password }))
+  postRegister: ({ name, email, password }: register) => dispatch(registerAction.registerRequest({ name, email, password })),
+  postLogin: ({ email, password }: login) => dispatch(loginAction.loginRequest({ email, password })),
 });
 
 const connectModule = connect(

@@ -16,3 +16,4 @@ function createRequestTypes(base: string): createRequestTypes {
 export const GET_DEPARTMENTS = createRequestTypes('GET_DEPARTMENTS');
 export const GET_CATEGORIES = createRequestTypes('GET_CATEGORIES');
 export const POST_REGISTER = createRequestTypes('POST_REGISTER');
+export const POST_LOGIN = createRequestTypes('POST_REGISTER');
