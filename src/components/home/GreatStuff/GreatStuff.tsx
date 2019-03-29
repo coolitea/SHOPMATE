@@ -9,7 +9,7 @@ interface Props extends RouteComponentProps {
   categories: categories[],
 }
 
-const GreatStuff: React.SFC<Props> = ({ departments, categories }) => {
+const GreatStuff: React.SFC<Props> = ({ departments, categories, history }) => {
   return (
     <div className="greatstuff">
       <div className="greatstuff_name">
@@ -21,25 +21,25 @@ const GreatStuff: React.SFC<Props> = ({ departments, categories }) => {
           <p>CATEGORY</p>
           <ul>
           {categories && categories.map((data, i) => (
-            <div key={i} className="categories">{data.name}</div>
+            <div key={i} className="categories" onClick={()=> history.push(`product/category/${data.category_id}`)}>{data.name}</div>
           ))}
           </ul>
         </div>
         <div className="stuff_departments">
           <div className="regional">
           {departments && departments.slice(0,1).map((data, i) => (
-            <div key={i} >{data.name}</div>
+            <div key={i} onClick={()=> history.push(`product/department/${data.department_id}`)}>{data.name}</div>
           ))}
           </div>
           <div>
             <div className="natual">
             {departments && departments.slice(1,2).map((data, i) => (
-            <div key={i} >{data.name}</div>
+            <div key={i} onClick={()=> history.push(`product/department/${data.department_id}`)}>{data.name}</div>
           ))}
             </div>
             <div className="seasonal">
             {departments && departments.slice(2).map((data, i) => (
-            <div key={i} >{data.name}</div>
+            <div key={i} onClick={()=> history.push(`product/department/${data.department_id}`)}>{data.name}</div>
           ))}
             </div>
           </div>

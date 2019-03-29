@@ -87,7 +87,10 @@
         line-height: 1.5;
         letter-spacing: normal;
         color: #2e2e2e;
-
+        cursor: pointer;
+        &:hover {
+          color: $red-pink;
+        }
         -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
         -moz-animation: fadein 1s; /* Firefox < 16 */
          -ms-animation: fadein 1s; /* Internet Explorer */
@@ -122,7 +125,9 @@
               from { opacity: 0; }
               to   { opacity: 1; }
           }
+
       }
+
     }
 
     .stuff_departments {
@@ -158,6 +163,10 @@
           letter-spacing: 2px;
           color: #6c6c6c;
           margin-bottom: 24px;
+          cursor: pointer;
+        }
+        div:hover {
+          color: $red-pink;
         }
       }
 
@@ -208,8 +217,11 @@
             letter-spacing: 2px;
             color: #6c6c6c;
             margin-bottom: 24px;
+            cursor: pointer;
           }
-
+          div:hover {
+            color: $red-pink;
+          }
         }
       }
 

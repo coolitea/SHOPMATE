@@ -10,14 +10,14 @@ import Auth from './auth';
 interface Props extends RouteComponentProps {
   departments: departments[];
   clickRegister: () => void;
-  clickLogin:() => void;
+  clickLogin: () => void;
   changeInput: (num: number, e: { target: HTMLInputElement }) => void;
   valCheck: (num: number, e: { target: HTMLInputElement }) => void;
   valCheckMsg: string[];
   checkAll: boolean;
 }
 
-const Header: React.SFC<Props> = ({ 
+const Header: React.SFC<Props> = ({
   departments,
   history,
   clickRegister,
@@ -30,7 +30,7 @@ const Header: React.SFC<Props> = ({
   const [burger, setBurger] = React.useState(false);
   return (
     <Responsive>
-      {storage.get('Authorization') ? '': (
+      {storage.get('Authorization') ? '' : (
         <Auth
           clickRegister={clickRegister}
           clickLogin={clickLogin}
@@ -44,7 +44,7 @@ const Header: React.SFC<Props> = ({
         <h1 onClick={() => history.push('/')}>SHOPMATE</h1>
         <div className="header_departments">
           {departments && departments.map((data, i) => (
-            <div key={i} className="department">{data.name}</div>
+            <div key={i} className="department" onClick={() => history.push(`/product/department/${data.department_id}`)}>{data.name}</div>
           ))}
         </div>
         <div className="search" >

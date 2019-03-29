@@ -12,7 +12,7 @@ interface Props {
   departments: departments[],
   getDeparments: typeof departmentAction.departmentRequest;
   postRegister: ({ name, email, password }: register) => void;
-  postLogin: ({ email, password}: login) => void;
+  postLogin: ({ email, password }: login) => void;
 }
 
 interface HeaderState {
@@ -47,7 +47,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
       '',
       ...this.state.valCheckMsg.slice(num + 1),
     ];
-    const key = e.target.id as keyof HeaderState;
+    const key = e.target.placeholder as keyof HeaderState;
     const value = e.target.value;
 
     this.setState({
@@ -59,10 +59,10 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
 
   valCheck = (num: number, e: { target: HTMLInputElement }) => {
     const checkMsg = [
-        ...this.state.valCheckMsg.slice(0, num),
-        '',
-        ...this.state.valCheckMsg.slice(num + 1),
-      ],
+      ...this.state.valCheckMsg.slice(0, num),
+      '',
+      ...this.state.valCheckMsg.slice(num + 1),
+    ],
       emailCheck = /^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+/,
       val = e.target.value;
     switch (num) {
