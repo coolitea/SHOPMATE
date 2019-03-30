@@ -12,3 +12,6 @@ export { default as Header } from 'components/header';
 
 // home
 export { default as Home } from 'components/home';
+
+// products
+export { default as Products } from 'components/products';

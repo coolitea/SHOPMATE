@@ -49,3 +49,29 @@ export interface customerState {
   expires_in?: string;
   error?: string;
 }
+
+// PRODUCTS
+export interface products {
+  product_id: number;
+  name: string;
+  description: string;
+  price: string;
+  discounted_price: string;
+  thumbnail?: string;
+}
+
+export interface products_detail extends products {
+  display: number;
+  image: string;
+  image_2: string;
+}
+
+export interface product_lists {
+  count: number;
+  rows: products[];
+}
+
+export interface productState {
+  products?: product_lists;
+  productDetail?: products_detail;
+}
