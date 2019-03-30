@@ -5,10 +5,16 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE } from 'store/constants';
-import { productState, products, product_lists, products_detail } from 'store/models';
+import { productState } from 'store/models';
 import { ProductActionTypes } from 'store/actions/products';
 
-const initialState: productState = {};
+const initialState: productState = {
+  products: {
+    count: 0,
+    rows: [],
+  },
+  productDetail: null,
+};
 
 export default function(state = initialState, action: any): productState {
   switch (action.type) {

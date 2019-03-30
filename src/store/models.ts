@@ -72,6 +72,6 @@ export interface product_lists {
 }
 
 export interface productState {
-  products?: product_lists;
-  productDetail?: products_detail;
+  products: product_lists | null;
+  productDetail: products_detail | null;
 }

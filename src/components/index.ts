@@ -15,3 +15,6 @@ export { default as Home } from 'components/home';
 
 // products
 export { default as Products } from 'components/products';
+
+// products
+export { default as Product } from 'components/product';
