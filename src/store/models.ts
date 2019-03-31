@@ -57,7 +57,7 @@ export interface products {
   description: string;
   price: string;
   discounted_price: string;
-  thumbnail?: string;
+  thumbnail: string;
 }
 
 export interface products_detail extends products {

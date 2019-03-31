@@ -1,4 +1,5 @@
 @import '~assets/styles/main';
+
 .product {
   width: 220px;
   height: 336px;
@@ -27,6 +28,8 @@
     letter-spacing: normal;
     text-align: center;
     color: #2e2e2e;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
   .price {
     font-family: Montserrat;

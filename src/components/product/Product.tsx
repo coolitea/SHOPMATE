@@ -17,7 +17,7 @@ const Product: React.SFC<Props> = ({
       <div className="image"></div>
       <p className="title">{product.name}</p>
       <p className="price">$ {product.price}</p>
-      <Button 
+      <Button
         className="small1"
         onClick={()=>history.push(`/detail/${product.product_id}`)}
       >

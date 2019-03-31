@@ -7,6 +7,7 @@ import { Params } from 'lib/type';
 import { Products } from 'components';
 import { productAction } from 'store/actions';
 import { product_lists } from 'store/models';
+import * as _ from 'underscore';
 
 interface Props extends RouteComponentProps<Params>{
   getProduct: typeof productAction.productRequest;
@@ -36,7 +37,7 @@ class ProductsContainer extends React.Component<Props, ProductsState> {
     super(props);
     this.state = {
       initialPage: 1,
-      pageSize: 10,
+      pageSize: 20,
       pager: {},
     }
     this.setPage = this.setPage.bind(this);
@@ -73,13 +74,57 @@ class ProductsContainer extends React.Component<Props, ProductsState> {
   }
 
   setPage(page: number) {
-    if(page < 1) {
+    let { pageSize, pager } = this.state;
+    let { products } = this.props;
+    if(page < 1 ) {
       return;
     }
+    // get new pager object for specified page
+    // pager = this.getPager(products.count, page, pageSize)
   }
 
-  getPager(totalitems: number, currentPage: number, pagesize: number) {
+  getPager(totalitems: number, currentpage: number, pagesize: number) {
+    // default first page
+    currentpage = currentpage || 1;
+    // default page size is 20
+    pagesize = pagesize || 20;
+    // calculate total pages
+    const totalPages = Math.ceil(totalitems / pagesize);
+    let startPage, endPage;
+    if(totalPages <= 10) {
+      // less than 10 total pages than show all
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // more than 10 total pages than calculate start and end pages
+      if(currentpage <= 6) {
+        startPage = 1;
+        endPage = 10;
+      } else if ( currentpage + 4 >= totalPages) {
+        startPage = totalPages - 9;
+        endPage = totalPages;
+      } else {
+        startPage = currentpage - 5;
+        endPage = currentpage + 4;
+      }
+    }
+    // caculate start and end item indexes
+    const startIndex = (currentpage - 1) * pagesize;
+    const endIndex = Math.min(startIndex + pagesize -1, totalitems -1);
 
+    // create an array of pages
+    const pages = _.range(startPage, endPage + 1);
+    return {
+      totalitems,
+      currentpage,
+      pagesize,
+      totalPages,
+      startPage,
+      endPage,
+      startIndex,
+      endIndex,
+      pages,
+    }
   }
 
   render() {
