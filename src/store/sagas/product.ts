@@ -10,10 +10,10 @@ import {
   REQUEST,
 } from 'store/constants';
 
-export function* fetchProducts({ type, id }: any) {
+export function* fetchProducts({ type, id, page }: any) {
   if(type === GET_PRODUCTS_BY_CATEGORY[REQUEST]) {
     try {
-      var { data } = yield call(Products.getProductByCategory, id);
+      var { data } = yield call(Products.getProductByCategory, id, page);
       yield put(productAction.productByCategorySuccess(data));
     } catch(error) {
       yield put(productAction.productByCategoryFailure(error));
@@ -21,7 +21,7 @@ export function* fetchProducts({ type, id }: any) {
   }
   if(type === GET_PRODUCTS_BY_DEPARTMENT[REQUEST]) {
     try {
-      var { data } = yield call(Products.getProductByDepartment, id);
+      var { data } = yield call(Products.getProductByDepartment, id, page);
       yield put(productAction.productByDepartmentSuccess(data));
     } catch(error) {
       yield put(productAction.productByDepartmentFailure(error));
@@ -29,7 +29,7 @@ export function* fetchProducts({ type, id }: any) {
   }
   if(type === GET_PRODUCTS[REQUEST]) {
     try {
-      var { data } = yield call(Products.getProduct, id);
+      var { data } = yield call(Products.getProduct, id, page);
       yield put(productAction.productSuccess(data));
     } catch(error) {
       yield put(productAction.productFailure(error));

@@ -71,7 +71,22 @@ export interface product_lists {
   rows: products[];
 }
 
+export interface pager {
+  totalItems?: number;
+  currentpage?: number;
+  pageSize?: number;
+  totalPages?: number;
+  startPage?: number;
+  endPage?: number;
+  startIndex?: number;
+  endIndex?: number;
+  pages?: number[];
+}
+
 export interface productState {
-  products: product_lists | null;
+  products: product_lists;
   productDetail: products_detail | null;
+  currentPage: number;
+  pageSize: number;
+  pager: pager;
 }

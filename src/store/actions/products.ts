@@ -2,16 +2,18 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
+  SET_PAGE,
   REQUEST,
   SUCCESS,
   FAILURE,
 } from 'store/constants';
-import { productState, products, products_detail, product_lists } from 'store/models';
+import { productState, products, products_detail, product_lists, pager } from 'store/models';
 
 // GET_PRODUCTS
-const productRequest = (id: string | undefined) => ({
+const productRequest = (id?: string, page?: number) => ({
   type: GET_PRODUCTS[REQUEST],
   id,
+  page,
 });
 
 const productSuccess = (data: product_lists) => ({
@@ -26,7 +28,8 @@ const productFailure = (err: Error) => ({
 
 interface productRequestAction {
   type: typeof GET_PRODUCTS["REQUEST"];
-  id: string | undefined;
+  id?: string;
+  page?: number;
 }
 
 interface productSuccessAction {
@@ -40,9 +43,10 @@ interface productFailureAction {
 }
 
 // GET_PRODUCTS_BY_CATEGORY
-const productByCategoryRequest = (id: string | undefined) => ({
+const productByCategoryRequest = (id?: string, page?: number) => ({
   type: GET_PRODUCTS_BY_CATEGORY[REQUEST],
   id,
+  page,
 });
 
 const productByCategorySuccess = (data: product_lists) => ({
@@ -57,7 +61,8 @@ const productByCategoryFailure = (err: Error) => ({
 
 interface productByCategoryRequestAction {
   type: typeof GET_PRODUCTS_BY_CATEGORY["REQUEST"];
-  id: string | undefined;
+  id?: string;
+  page?: number
 }
 
 interface productByCategorySuccessAction {
@@ -70,9 +75,10 @@ interface productByCategoryFailureAction {
   err: string;
 }
 // GET_PRODUCTS_BY_DEPARTMENT
-const productByDepartmentRequest = (id: string | undefined) => ({
+const productByDepartmentRequest = (id?: string, page?: number) => ({
   type: GET_PRODUCTS_BY_DEPARTMENT[REQUEST],
   id,
+  page,
 });
 
 const productByDepartmentSuccess = (data: product_lists) => ({
@@ -88,6 +94,7 @@ const productByDepartmentFailure = (err: Error) => ({
 interface productByDepartmentRequestAction {
   type: typeof GET_PRODUCTS_BY_DEPARTMENT["REQUEST"];
   id: string | undefined;
+  page?: number;
 }
 
 interface productByDepartmentSuccessAction {
@@ -100,7 +107,17 @@ interface productByDepartmentFailureAction {
   err: string;
 }
 
-export type ProductActionTypes = productRequestAction | productSuccessAction | productFailureAction | productByCategoryRequestAction |productByCategorySuccessAction | productByCategoryFailureAction | productByDepartmentRequestAction | productByDepartmentSuccessAction | productByDepartmentFailureAction;
+export const setPage = (currentpage: number) => ({
+  type: SET_PAGE, 
+  currentpage,
+})
+
+interface setPageAction {
+  type: typeof SET_PAGE;
+  currentpage: number;
+}
+
+export type ProductActionTypes = productRequestAction | productSuccessAction | productFailureAction | productByCategoryRequestAction |productByCategorySuccessAction | productByCategoryFailureAction | productByDepartmentRequestAction | productByDepartmentSuccessAction | productByDepartmentFailureAction | setPageAction;
 
 export default {
   productRequest,
@@ -112,4 +129,5 @@ export default {
   productByDepartmentRequest,
   productByDepartmentSuccess,
   productByDepartmentFailure,
+  setPage,
 }

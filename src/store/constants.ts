@@ -22,3 +22,6 @@ export const GET_PRODUCTS_BY_DEPARTMENT = createRequestTypes('GET_PRODUCTS_BY_DE
 
 export const POST_REGISTER = createRequestTypes('POST_REGISTER');
 export const POST_LOGIN = createRequestTypes('POST_REGISTER');
+
+// without I/O
+export const SET_PAGE = 'SET_PAGE';
