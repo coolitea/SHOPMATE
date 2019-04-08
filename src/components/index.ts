@@ -17,4 +17,4 @@ export { default as Home } from 'components/home';
 export { default as Products } from 'components/products';
 
 // products
-export { default as Product } from 'components/product';
+export { default as Product } from 'components/products/product';

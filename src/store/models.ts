@@ -89,4 +89,23 @@ export interface productState {
   currentPage: number;
   pageSize: number;
   pager: pager;
+  reviews: review[];
+}
+
+export interface review {
+  name: string;
+  review: string;
+  rating: number;
+  created_on: string;
+}
+
+// ATTRIBUTE
+export interface attribute {
+  attribute_name: string;
+  attribute_value_id: number;
+  attribute_value: string;
+}
+
+export interface attributeState {
+  attributes: attribute[];
 }

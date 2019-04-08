@@ -62,8 +62,11 @@ const getProductByDepartment = (id: string | undefined, page = 1, limit = 20, de
   }
 }
 
+const getReviews = (id: string): AxiosPromise => client.get(`/products/${id}/reviews`);
+
 export default {
   getProduct,
   getProductByCategory,
   getProductByDepartment,
+  getReviews,
 }

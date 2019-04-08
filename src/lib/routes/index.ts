@@ -1,4 +1,4 @@
-import { Home, Product } from 'page';
+import { Home, Product, Detail } from 'page';
 
 export const routes = [
   {
@@ -9,6 +9,11 @@ export const routes = [
   {
     path: '/product/:direction(\\d+|category|department)?/:id?',
     page: Product,
+    exact: true,
+  },
+  {
+    path: '/detail/:id',
+    page: Detail,
     exact: true,
   },
 ];

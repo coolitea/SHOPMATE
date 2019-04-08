@@ -7,6 +7,7 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
+  GET_REVIEWS,
   REQUEST,
 } from 'store/constants';
 
@@ -35,6 +36,14 @@ export function* fetchProducts({ type, id, page }: any) {
       yield put(productAction.productFailure(error));
     }
   }
+  if(type === GET_REVIEWS[REQUEST]) {
+    try {
+      var { data } = yield call(Products.getReviews, id);
+      yield put(productAction.reviewSuccess(data));
+    } catch(error) {
+      yield put(productAction.reviewFailure(error));
+    }
+  }
 }
 
 export default function* watchFetchProducts() {
@@ -42,5 +51,6 @@ export default function* watchFetchProducts() {
     types.GET_PRODUCTS[types.REQUEST],
     types.GET_PRODUCTS_BY_CATEGORY[types.REQUEST],
     types.GET_PRODUCTS_BY_DEPARTMENT[types.REQUEST],
+    types.GET_REVIEWS[types.REQUEST],
   ], fetchProducts);
 };

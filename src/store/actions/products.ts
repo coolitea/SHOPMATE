@@ -2,12 +2,44 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
+  GET_REVIEWS,
   SET_PAGE,
   REQUEST,
   SUCCESS,
   FAILURE,
 } from 'store/constants';
-import { productState, products, products_detail, product_lists, pager } from 'store/models';
+import { productState, products, products_detail, product_lists, pager, review } from 'store/models';
+
+// GET_REVIEWS
+const reviewRequest = (id: string) => ({
+  type: GET_REVIEWS[REQUEST],
+  id,
+});
+
+const reviewSuccess = (reviews: review[]) => ({
+  type: GET_REVIEWS[SUCCESS],
+  payload: reviews,
+});
+
+const reviewFailure = (err: Error) => ({
+  type: GET_REVIEWS[FAILURE],
+  err: err.message,
+});
+
+interface reviewRequestAction {
+  type: typeof GET_REVIEWS["REQUEST"];
+  id: string;
+}
+
+interface reviewSuccessAction {
+  type: typeof GET_REVIEWS["SUCCESS"];
+  payload: review[];
+}
+
+interface reviewFailureAction {
+  type: typeof GET_REVIEWS["FAILURE"];
+  err: string;
+}
 
 // GET_PRODUCTS
 const productRequest = (id?: string, page?: number) => ({
@@ -129,5 +161,8 @@ export default {
   productByDepartmentRequest,
   productByDepartmentSuccess,
   productByDepartmentFailure,
+  reviewRequest,
+  reviewSuccess,
+  reviewFailure,
   setPage,
 }
