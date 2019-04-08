@@ -3,7 +3,6 @@
 .product {
   width: 220px;
   height: 336px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
   margin-bottom: 24px;
   display: flex;
@@ -85,3 +84,7 @@
       to   { opacity: 1; }
   }
 }
+
+// .product:nth-last-child(1) {
+//   margin-left: 20px;
+// }

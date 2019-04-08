@@ -12,12 +12,18 @@ const Pagination: React.SFC<Props> = ({
   pager: { pages, currentpage, totalPages },
   setPage,
 }) => {
-  if (!pages || pages.length <= 1) {
+  if (!pages || pages.length <= 1 || !currentpage || !totalPages) {
     return null;
   }
   return (
     <div className="pagination">
       <ul>
+        <li
+          className={currentpage === 1 ? 'pagination_move' : ''}
+          onClick={() => setPage(currentpage -1)}
+        >
+          prev
+        </li>
         {pages.map((page, index) => {
           return (
             <li
@@ -31,6 +37,12 @@ const Pagination: React.SFC<Props> = ({
             </li>
           )
         })}
+        <li
+          className={currentpage === totalPages ? 'pagination_move' : ''}
+          onClick={() => setPage(currentpage +1)}
+        >
+          next
+        </li>
       </ul>
     </div>
   )
