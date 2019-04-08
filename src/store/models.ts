@@ -60,10 +60,14 @@ export interface products {
   thumbnail: string;
 }
 
-export interface products_detail extends products {
-  display: number;
-  image: string;
-  image_2: string;
+export interface products_detail {
+  product_id?: number;
+  name?: string;
+  description?: string;
+  price?: string;
+  discounted_price?: string;
+  image?: string;
+  image_2?: string;
 }
 
 export interface product_lists {
@@ -85,7 +89,7 @@ export interface pager {
 
 export interface productState {
   products: product_lists;
-  productDetail: products_detail | null;
+  productDetail: products_detail;
   currentPage: number;
   pageSize: number;
   pager: pager;

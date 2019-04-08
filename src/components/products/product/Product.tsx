@@ -14,7 +14,7 @@ const Product: React.SFC<Props> = ({
 }) => {
   return (
     <div className="product">
-      <div className="image"></div>
+      <img src={`${process.env.REACT_APP_IMAGE_URL}${product.thumbnail}`}/>
       <p className="title">{product.name}</p>
       <p className="price">$ {product.price}</p>
       <Button

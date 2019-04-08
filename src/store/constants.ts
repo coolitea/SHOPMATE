@@ -20,6 +20,7 @@ export const GET_PRODUCTS = createRequestTypes('GET_PRODUCTS');
 export const GET_PRODUCTS_BY_CATEGORY = createRequestTypes('GET_PRODUCTS_BY_CATEGORY');
 export const GET_PRODUCTS_BY_DEPARTMENT = createRequestTypes('GET_PRODUCTS_BY_DEPARTMENT');
 export const GET_REVIEWS = createRequestTypes('GET_REVIEWS');
+export const GET_PRODUCT_DETAIL = createRequestTypes('GET_PRODUCT_DETAIL');
 
 export const POST_REGISTER = createRequestTypes('POST_REGISTER');
 export const POST_LOGIN = createRequestTypes('POST_REGISTER');

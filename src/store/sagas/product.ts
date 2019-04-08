@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, takeEvery, take, all } from 'redux-saga/effects';
 import { Products } from 'lib/api';
 import { productAction } from 'store/actions';
 import * as types from 'store/constants';
@@ -44,13 +44,22 @@ export function* fetchProducts({ type, id, page }: any) {
       yield put(productAction.reviewFailure(error));
     }
   }
+  if(type === types.GET_PRODUCT_DETAIL[REQUEST]) {
+    try {
+      var { data } = yield call(Products.getProductDetail, id);
+      yield put(productAction.detailSuccess(data));
+    } catch(error) {
+      yield put(productAction.detailFailure(error));
+    }
+  }
 }
 
 export default function* watchFetchProducts() {
-  yield takeLatest([
+  yield takeEvery([
     types.GET_PRODUCTS[types.REQUEST],
     types.GET_PRODUCTS_BY_CATEGORY[types.REQUEST],
     types.GET_PRODUCTS_BY_DEPARTMENT[types.REQUEST],
     types.GET_REVIEWS[types.REQUEST],
+    types.GET_PRODUCT_DETAIL[types.REQUEST],
   ], fetchProducts);
 };

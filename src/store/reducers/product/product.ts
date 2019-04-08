@@ -6,7 +6,8 @@ import {
   REQUEST,
   SUCCESS,
   FAILURE, 
-  GET_REVIEWS} from 'store/constants';
+  GET_REVIEWS,
+  GET_PRODUCT_DETAIL} from 'store/constants';
 import { productState } from 'store/models';
 import { ProductActionTypes } from 'store/actions/products';
 import { pagination } from 'lib/utils';
@@ -16,11 +17,11 @@ const initialState: productState = {
     count: 0,
     rows: [],
   },
-  productDetail: null,
   currentPage: 1,
   pageSize: 20,
   pager: {},
   reviews: [],
+  productDetail: {},
 };
 
 export default function(state = initialState, action: any): productState {
@@ -35,6 +36,10 @@ export default function(state = initialState, action: any): productState {
         ...state,
       };
     case GET_REVIEWS[REQUEST]:
+      return {
+        ...state,
+      };
+    case GET_PRODUCT_DETAIL[REQUEST]:
       return {
         ...state,
       };
@@ -60,6 +65,11 @@ export default function(state = initialState, action: any): productState {
       return {
         ...state,
         reviews: action.payload,
+      }
+    case GET_PRODUCT_DETAIL[SUCCESS]:
+      return {
+        ...state,
+        productDetail: action.payload[0],
       }
     case GET_PRODUCTS[FAILURE]:
       return {

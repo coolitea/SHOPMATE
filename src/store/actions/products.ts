@@ -3,6 +3,7 @@ import {
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
   GET_REVIEWS,
+  GET_PRODUCT_DETAIL,
   SET_PAGE,
   REQUEST,
   SUCCESS,
@@ -10,6 +11,36 @@ import {
 } from 'store/constants';
 import { productState, products, products_detail, product_lists, pager, review } from 'store/models';
 
+// GET_PRODUCT_DETATILS
+const detailRequest = (id: string) => ({
+  type: GET_PRODUCT_DETAIL[REQUEST],
+  id,
+});
+
+const detailSuccess = (details: products_detail) => ({
+  type: GET_PRODUCT_DETAIL[SUCCESS],
+  payload: details,
+});
+
+const detailFailure = (err: Error) => ({
+  type: GET_PRODUCT_DETAIL[FAILURE],
+  err: err.message,
+});
+
+interface detailRequestAction {
+  type: typeof GET_REVIEWS["REQUEST"];
+  id: string;
+}
+
+interface detailSuccessAction {
+  type: typeof GET_REVIEWS["SUCCESS"];
+  payload: products_detail;
+}
+
+interface detailFailureAction {
+  type: typeof GET_REVIEWS["FAILURE"];
+  err: string;
+}
 // GET_REVIEWS
 const reviewRequest = (id: string) => ({
   type: GET_REVIEWS[REQUEST],
@@ -164,5 +195,8 @@ export default {
   reviewRequest,
   reviewSuccess,
   reviewFailure,
+  detailRequest,
+  detailSuccess,
+  detailFailure,
   setPage,
 }

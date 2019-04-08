@@ -3,27 +3,36 @@ import { attributeAction, productAction } from 'store/actions';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { attribute, review } from 'store/models';
+import { attribute, review, products_detail } from 'store/models';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Params } from 'lib/type';
+import Detail from 'components/products/detail';
 
 interface Props extends RouteComponentProps<Params> {
   getAttributes: typeof attributeAction.attributeRequest;
   getReviews: typeof productAction.reviewRequest;
+  getDetails: typeof productAction.detailRequest;
   attributes: attribute[];
   reviews: review[];
+  details: products_detail;
 }
 
 class DetailContainer extends React.Component<Props> {
   componentDidMount() {
     this.props.getAttributes(this.props.match.params.id);
+    this.props.getDetails(this.props.match.params.id);
     this.props.getReviews(this.props.match.params.id);
   }
   render() {
+    const { reviews, attributes, details } = this.props;
     return (
-      <div>
-        DetailContainer
-      </div>
+      <>
+        <Detail
+          reviews={reviews}
+          attributes={attributes}
+          details={details}
+        />
+      </>
     );
   }
 }
@@ -31,11 +40,13 @@ class DetailContainer extends React.Component<Props> {
 const mapStateToProps = (rootState: rootState) => ({
   attributes: rootState.attribute.attributes,
   reviews: rootState.product.reviews,
+  details: rootState.product.productDetail,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getAttributes: (id: string) => dispatch(attributeAction.attributeRequest(id)),
   getReviews: (id: string) => dispatch(productAction.reviewRequest(id)),
+  getDetails: (id: string) => dispatch(productAction.detailRequest(id)),
 });
 
 const connectModule = connect(

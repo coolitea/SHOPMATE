@@ -2,8 +2,8 @@ import { AxiosPromise } from 'axios';
 import client from 'lib/client';
 
 const getProduct = (id: string | undefined, page = 1, limit = 20, description_length = 200): AxiosPromise => {
-  if(id === undefined) {
-    return client.get(`/products`,{
+  if (id === undefined) {
+    return client.get(`/products`, {
       params: {
         page,
         limit,
@@ -11,7 +11,7 @@ const getProduct = (id: string | undefined, page = 1, limit = 20, description_le
       }
     });
   } else {
-    return client.get(`/products/${id}`,{
+    return client.get(`/products/${id}`, {
       params: {
         page,
         limit,
@@ -22,8 +22,8 @@ const getProduct = (id: string | undefined, page = 1, limit = 20, description_le
 }
 
 const getProductByCategory = (id: string | undefined, page = 1, limit = 20, description_length = 200): AxiosPromise => {
-  if(id === undefined) {
-    return client.get(`/products/inCategory`,{
+  if (id === undefined) {
+    return client.get(`/products/inCategory`, {
       params: {
         page,
         limit,
@@ -31,7 +31,7 @@ const getProductByCategory = (id: string | undefined, page = 1, limit = 20, desc
       }
     });
   } else {
-    return client.get(`/products/inCategory/${id}`,{
+    return client.get(`/products/inCategory/${id}`, {
       params: {
         page,
         limit,
@@ -43,8 +43,8 @@ const getProductByCategory = (id: string | undefined, page = 1, limit = 20, desc
 }
 
 const getProductByDepartment = (id: string | undefined, page = 1, limit = 20, description_length = 200): AxiosPromise => {
-  if(id === undefined) {
-    return client.get(`/products/inDepartment`,{
+  if (id === undefined) {
+    return client.get(`/products/inDepartment`, {
       params: {
         page,
         limit,
@@ -52,7 +52,7 @@ const getProductByDepartment = (id: string | undefined, page = 1, limit = 20, de
       }
     });
   } else {
-    return client.get(`/products/inDepartment/${id}`,{
+    return client.get(`/products/inDepartment/${id}`, {
       params: {
         page,
         limit,
@@ -62,11 +62,16 @@ const getProductByDepartment = (id: string | undefined, page = 1, limit = 20, de
   }
 }
 
-const getReviews = (id: string): AxiosPromise => client.get(`/products/${id}/reviews`);
+const getReviews = (id: string): AxiosPromise => {
+  return client.get(`/products/${id}/reviews`);
+}
+
+const getProductDetail = (id: string): AxiosPromise => client.get(`/products/${id}/details`);
 
 export default {
   getProduct,
   getProductByCategory,
   getProductByDepartment,
   getReviews,
+  getProductDetail,
 }
