@@ -1,20 +1,22 @@
 import * as React from 'react';
 import './Detail.scss';
-import { Responsive, StarRating } from 'components/common';
+import { Responsive, StarRating, ColorPicker } from 'components/common';
 import { attribute, review, products_detail } from 'store/models';
 
 interface Props {
-  attributes: attribute[];
   reviews: review[];
   details: products_detail;
   star: number;
+  colors: attribute[];
+  sizes: attribute[];
 }
 
 const Detail: React.SFC<Props> = ({
-  attributes,
   reviews,
   details,
   star,
+  colors,
+  sizes,
 }) => {
   return (
     <Responsive>
@@ -39,6 +41,9 @@ const Detail: React.SFC<Props> = ({
             <div className="price">${details.price}</div>
             <div className="color">
               <div>Color</div>
+              <ColorPicker
+                color={colors}
+              />
             </div>
             <div className="size">
               <div>Size</div>

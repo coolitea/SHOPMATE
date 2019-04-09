@@ -3,7 +3,7 @@ import { attributeAction, productAction } from 'store/actions';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { attribute, review, products_detail } from 'store/models';
+import { review, products_detail, attribute } from 'store/models';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { Params } from 'lib/type';
 import Detail from 'components/products/detail';
@@ -12,10 +12,11 @@ interface Props extends RouteComponentProps<Params> {
   getAttributes: typeof attributeAction.attributeRequest;
   getReviews: typeof productAction.reviewRequest;
   getDetails: typeof productAction.detailRequest;
-  attributes: attribute[];
   reviews: review[];
   details: products_detail;
   star: number;
+  colors: attribute[];
+  sizes: attribute[];
 }
 
 class DetailContainer extends React.Component<Props> {
@@ -25,14 +26,15 @@ class DetailContainer extends React.Component<Props> {
     this.props.getReviews(this.props.match.params.id);
   }
   render() {
-    const { reviews, attributes, details, star } = this.props;
+    const { reviews, details, star, sizes, colors } = this.props;
     return (
       <>
         <Detail
           reviews={reviews}
-          attributes={attributes}
           details={details}
           star={star}
+          sizes={sizes}
+          colors={colors}
         />
       </>
     );
@@ -40,10 +42,11 @@ class DetailContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (rootState: rootState) => ({
-  attributes: rootState.attribute.attributes,
   reviews: rootState.product.reviews,
   details: rootState.product.productDetail,
   star: rootState.product.star,
+  colors: rootState.attribute.colors,
+  sizes: rootState.attribute.sizes,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

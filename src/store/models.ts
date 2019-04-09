@@ -112,5 +112,6 @@ export interface attribute {
 }
 
 export interface attributeState {
-  attributes: attribute[];
+  colors: attribute[];
+  sizes: attribute[];
 }

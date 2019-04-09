@@ -1,0 +1,12 @@
+.color-button {
+  width: 15px;
+  height: 15px;
+  margin: 3px;
+  border: 2.25px solid #fff;
+  border-radius:50%;
+
+  &:nth-child(1) {
+    margin-left: 0;
+  }
+
+}
