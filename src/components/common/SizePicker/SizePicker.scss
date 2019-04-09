@@ -1,5 +1,11 @@
+@import '~assets/styles/main';
+
 .size-picker {
   display: flex;
   flex-direction: row;
   width: 100%;
+
+  @include media('<screen-x') {
+    justify-content: center;
+  }
 }

@@ -13,6 +13,11 @@
     background: white;
     height: 450px;
 
+    @include media('<screen-x') {
+      flex-direction: column;
+      height: 1150px;
+    }
+
     .images,
     .contents {
       display: flex;
@@ -24,8 +29,17 @@
       align-items: center;
       width: 50%;
 
+      @include media('<screen-x') {
+        width: 100%;
+      }
+
       img {
         height: 75%;
+
+        @include media('<screen-x') {
+          width: 500px;
+          height: 550px;
+        }
       }
 
       .cards {
@@ -34,10 +48,14 @@
         width: 30%;
         margin-top: 30px;
         justify-content: space-between;
+        height: 90px;
 
         img {
-          width: 46%;
+          width: 47%;
           height: 75%;
+          @include media('<screen-x') {
+            height: 100%;
+          }
           background-size: contain;
           background-repeat: no-repeat;
         }
@@ -47,9 +65,15 @@
     .contents {
       width: 50%;
 
+      @include media('<screen-x') {
+        width: 100%;
+        align-items: center;
+      }
+
       .title {
         margin-bottom: .75rem;
         font-family: Montserrat;
+        margin-top: 5px;
       }
       .price {
         color: $red-pink;
@@ -60,16 +84,28 @@
       .color,
       .size,
       .quantity {
+        display: flex;
+        flex-direction: column;
         color: #B4B4B4;
         font-weight: bold;
         font-size: 14px;
         letter-spacing: .2px;
         margin-bottom: 10px;
+        width: 100%;
         div:nth-child(1) {
           margin-bottom: 5px;
         }
-      }
 
+        @include media('<screen-x') {
+          align-items: center;
+        }
+      }
+        .size {
+
+          @include media('<screen-x') {
+            width: 70%;
+          }
+        }
       .quantity {
         margin-bottom: 24px;
 
@@ -84,6 +120,7 @@
             background: #EFEFEF;
             border-radius: 50%;
             display: flex;
+            cursor: pointer;
           }
           .minus {
             margin-right: 5px;

@@ -32,7 +32,6 @@ const Detail: React.SFC<Props> = ({
     <Responsive>
       <div className="detail_container">
         <div className="detail">
-
           <div className="images">
             <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`}/>
             <div className="cards">
