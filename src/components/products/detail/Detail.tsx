@@ -1,6 +1,11 @@
 import * as React from 'react';
 import './Detail.scss';
-import { Responsive, StarRating, ColorPicker } from 'components/common';
+import { 
+  Responsive,
+  StarRating,
+  ColorPicker,
+  SizePicker,
+ } from 'components/common';
 import { attribute, review, products_detail } from 'store/models';
 
 interface Props {
@@ -41,12 +46,11 @@ const Detail: React.SFC<Props> = ({
             <div className="price">${details.price}</div>
             <div className="color">
               <div>Color</div>
-              <ColorPicker
-                color={colors}
-              />
+              <ColorPicker color={colors} />
             </div>
             <div className="size">
               <div>Size</div>
+              <SizePicker size={sizes} />
             </div>
             <div className="quantity">
               <div>Quantity</div>

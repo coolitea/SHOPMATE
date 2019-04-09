@@ -17,7 +17,7 @@ const Button: React.SFC<Props> = ({
       className="color-button"
       style={{
         backgroundColor: `${color}`,
-        boxShadow: `${color === activeColor ? '0px 0px 1px 1px #efefef' : 'none'}`,
+        boxShadow: `${color === activeColor ? '0px 0px 1px 1px gray' : 'none'}`,
       }}
       onClick={() => onClick(color)}
     />
