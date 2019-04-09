@@ -18,7 +18,7 @@
       height: 697px;
       background-color: #ffffff;
       margin-right: 20px;
-      margin-top: 3%;
+      margin-top: 1.5%;
       
       @include media('<screen-x') {
         width: 100%;
@@ -115,7 +115,7 @@
 
       & > * {
         flex: 0 0 32%;
-        margin: 3% 0;
+        margin: 2% 0;
       }
 
       & > :nth-child(3n-1) {

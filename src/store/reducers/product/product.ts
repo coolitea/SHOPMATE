@@ -1,16 +1,18 @@
-import { 
+import {
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
   SET_PAGE,
   REQUEST,
   SUCCESS,
-  FAILURE, 
+  FAILURE,
   GET_REVIEWS,
-  GET_PRODUCT_DETAIL} from 'store/constants';
-import { productState } from 'store/models';
+  GET_PRODUCT_DETAIL
+} from 'store/constants';
+import { productState, review } from 'store/models';
 import { ProductActionTypes } from 'store/actions/products';
-import { pagination } from 'lib/utils';
+import { pagination, average } from 'lib/utils';
+import _ from 'underscore';
 
 const initialState: productState = {
   products: {
@@ -22,9 +24,10 @@ const initialState: productState = {
   pager: {},
   reviews: [],
   productDetail: {},
+  star: 0,
 };
 
-export default function(state = initialState, action: any): productState {
+export default function (state = initialState, action: any): productState {
   switch (action.type) {
     case SET_PAGE:
       return {
@@ -62,9 +65,12 @@ export default function(state = initialState, action: any): productState {
         pager: pagination.setPage(state.currentPage, state.pageSize, action.payload.count.count).pager,
       };
     case GET_REVIEWS[SUCCESS]:
+      const total =_.reduce(action.payload, (memo, review: review) => memo + review.rating, 0);
+      const amount = action.payload.length;
       return {
         ...state,
         reviews: action.payload,
+        star: average(total, amount),
       }
     case GET_PRODUCT_DETAIL[SUCCESS]:
       return {

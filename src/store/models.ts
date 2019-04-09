@@ -94,6 +94,7 @@ export interface productState {
   pageSize: number;
   pager: pager;
   reviews: review[];
+  star: number;
 }
 
 export interface review {

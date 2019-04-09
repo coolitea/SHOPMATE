@@ -58,3 +58,4 @@ export const pagination = {
   }
 }
 
+export const average = (total: number, amount: number) => total / amount;

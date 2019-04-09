@@ -10,6 +10,7 @@ import {
   GET_REVIEWS,
   REQUEST,
 } from 'store/constants';
+import { isArray } from 'util';
 
 export function* fetchProducts({ type, id, page }: any) {
   if(type === GET_PRODUCTS_BY_CATEGORY[REQUEST]) {
