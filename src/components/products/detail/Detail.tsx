@@ -1,13 +1,14 @@
 import * as React from 'react';
 import './Detail.scss';
-import { 
+import {
   Responsive,
   StarRating,
   ColorPicker,
   SizePicker,
   Button,
- } from 'components/common';
+} from 'components/common';
 import { attribute, review, products_detail } from 'store/models';
+import Review from './Review';
 
 interface Props {
   reviews: review[];
@@ -33,10 +34,10 @@ const Detail: React.SFC<Props> = ({
       <div className="detail_container">
         <div className="detail">
           <div className="images">
-            <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`}/>
+            <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`} />
             <div className="cards">
-              <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`}/>
-              <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image_2}`}/>
+              <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`} />
+              <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image_2}`} />
             </div>
           </div>
 
@@ -61,14 +62,14 @@ const Detail: React.SFC<Props> = ({
               <div className="container">
                 <div
                   className="minus"
-                  onClick={() => onChangequantity(quantity-1)}
+                  onClick={() => onChangequantity(quantity - 1)}
                 >
                   <div />
                 </div>
                 <div className="content">{quantity}</div>
-                <div 
+                <div
                   className="plus"
-                  onClick={() => onChangequantity(quantity+1)}
+                  onClick={() => onChangequantity(quantity + 1)}
                 >
                   <div />
                   <div />
@@ -83,7 +84,15 @@ const Detail: React.SFC<Props> = ({
           </div>
         </div>
         <div className="reviews">
-
+          <h3>Product reviews</h3>
+          {reviews.map((review, i) =>
+            <Review
+              key={i}
+              name={review.name}
+              rating={review.rating}
+              review={review.review}
+            />
+          )}
         </div>
       </div>
     </Responsive>
