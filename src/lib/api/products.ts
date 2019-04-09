@@ -1,7 +1,7 @@
 import { AxiosPromise } from 'axios';
 import client from 'lib/client';
 
-const getProduct = (id: string | undefined, page = 1, limit = 20, description_length = 200): AxiosPromise => {
+const getProduct = (id: string | undefined, page = 1, limit = 6, description_length = 200): AxiosPromise => {
   if (id === undefined) {
     return client.get(`/products`, {
       params: {
@@ -21,7 +21,7 @@ const getProduct = (id: string | undefined, page = 1, limit = 20, description_le
   }
 }
 
-const getProductByCategory = (id: string | undefined, page = 1, limit = 20, description_length = 200): AxiosPromise => {
+const getProductByCategory = (id: string | undefined, page = 1, limit = 6, description_length = 200): AxiosPromise => {
   if (id === undefined) {
     return client.get(`/products/inCategory`, {
       params: {
@@ -42,7 +42,7 @@ const getProductByCategory = (id: string | undefined, page = 1, limit = 20, desc
 
 }
 
-const getProductByDepartment = (id: string | undefined, page = 1, limit = 20, description_length = 200): AxiosPromise => {
+const getProductByDepartment = (id: string | undefined, page = 1, limit = 6, description_length = 200): AxiosPromise => {
   if (id === undefined) {
     return client.get(`/products/inDepartment`, {
       params: {

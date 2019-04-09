@@ -19,14 +19,26 @@ interface Props extends RouteComponentProps<Params> {
   sizes: attribute[];
 }
 
-class DetailContainer extends React.Component<Props> {
+interface DetailState {
+  quantity: number;
+}
+class DetailContainer extends React.Component<Props, DetailState> {
+  state = {
+    quantity: 0,
+  }
   componentDidMount() {
     this.props.getAttributes(this.props.match.params.id);
     this.props.getDetails(this.props.match.params.id);
     this.props.getReviews(this.props.match.params.id);
   }
+  onChangequantity(quantity: number) {
+    this.setState({
+      quantity
+    })
+  }
   render() {
     const { reviews, details, star, sizes, colors } = this.props;
+    const { quantity } = this.state;
     return (
       <>
         <Detail
@@ -35,6 +47,8 @@ class DetailContainer extends React.Component<Props> {
           star={star}
           sizes={sizes}
           colors={colors}
+          quantity={quantity}
+          onChangequantity={this.onChangequantity.bind(this)}
         />
       </>
     );

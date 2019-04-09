@@ -20,7 +20,7 @@ const initialState: productState = {
     rows: [],
   },
   currentPage: 1,
-  pageSize: 20,
+  pageSize: 6,
   pager: {},
   reviews: [],
   productDetail: {},

@@ -5,6 +5,7 @@ import {
   StarRating,
   ColorPicker,
   SizePicker,
+  Button,
  } from 'components/common';
 import { attribute, review, products_detail } from 'store/models';
 
@@ -14,6 +15,8 @@ interface Props {
   star: number;
   colors: attribute[];
   sizes: attribute[];
+  quantity: number;
+  onChangequantity: (quantity: number) => void;
 }
 
 const Detail: React.SFC<Props> = ({
@@ -22,6 +25,8 @@ const Detail: React.SFC<Props> = ({
   star,
   colors,
   sizes,
+  quantity,
+  onChangequantity,
 }) => {
   return (
     <Responsive>
@@ -54,8 +59,28 @@ const Detail: React.SFC<Props> = ({
             </div>
             <div className="quantity">
               <div>Quantity</div>
+              <div className="container">
+                <div
+                  className="minus"
+                  onClick={() => onChangequantity(quantity-1)}
+                >
+                  <div />
+                </div>
+                <div className="content">{quantity}</div>
+                <div 
+                  className="plus"
+                  onClick={() => onChangequantity(quantity+1)}
+                >
+                  <div />
+                  <div />
+                </div>
+              </div>
             </div>
-            
+            <Button
+              className="medium1"
+            >
+              Add to cart
+            </Button>
           </div>
         </div>
         <div className="reviews">
