@@ -1,0 +1,30 @@
+.star {
+  // cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 2px;
+  float: left;
+  background: grey;
+  clip-path: polygon(
+    50% 0%,
+    63% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0% 38%,
+    37% 38%,
+  );
+  border-radius: 25px;
+  &:nth-child(1) {
+    margin-left: 0;
+  }
+  &.selected {
+    background: goldenrod;
+  }
+  &.show {
+    cursor: none;
+  }
+}

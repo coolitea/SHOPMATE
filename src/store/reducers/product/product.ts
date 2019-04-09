@@ -70,7 +70,7 @@ export default function (state = initialState, action: any): productState {
       return {
         ...state,
         reviews: action.payload,
-        star: average(total, amount),
+        star: (total === null) ? 0 : average(total, amount),
       }
     case GET_PRODUCT_DETAIL[SUCCESS]:
       return {

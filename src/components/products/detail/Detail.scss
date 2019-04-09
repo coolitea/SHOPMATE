@@ -1,3 +1,5 @@
+@import '~assets/styles/main';
+
 .detail_container {
   display: flex;
   flex-direction: column;
@@ -47,13 +49,19 @@
       width: 50%;
 
       .title {
-
+        margin-bottom: .75rem;
+        font-family: Montserrat;
       }
       .price {
-
+        color: $red-pink;
+        font-family: Montserrat;
+        font-weight: bold;
+        margin-bottom: .75rem;
       }
       .color {
-
+        color: grey;
+        font-weight: bold;
+        font-size: 14px;
       }
       .size {
 

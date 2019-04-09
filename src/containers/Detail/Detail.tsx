@@ -15,6 +15,7 @@ interface Props extends RouteComponentProps<Params> {
   attributes: attribute[];
   reviews: review[];
   details: products_detail;
+  star: number;
 }
 
 class DetailContainer extends React.Component<Props> {
@@ -24,13 +25,14 @@ class DetailContainer extends React.Component<Props> {
     this.props.getReviews(this.props.match.params.id);
   }
   render() {
-    const { reviews, attributes, details } = this.props;
+    const { reviews, attributes, details, star } = this.props;
     return (
       <>
         <Detail
           reviews={reviews}
           attributes={attributes}
           details={details}
+          star={star}
         />
       </>
     );
@@ -41,6 +43,7 @@ const mapStateToProps = (rootState: rootState) => ({
   attributes: rootState.attribute.attributes,
   reviews: rootState.product.reviews,
   details: rootState.product.productDetail,
+  star: rootState.product.star,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
