@@ -4,6 +4,8 @@ import axios, {
   AxiosResponse,
 } from 'axios';
 
+import storage from 'lib/storage';
+
 export interface Error {
   code: number;
   field: string;
@@ -12,40 +14,24 @@ export interface Error {
 }
 
 class utils {
-  private token: string;
   private axios: AxiosInstance;
   private loginResolve: () => void;
   public loginChain: Promise<any>;
 
   constructor() {
-    this.token = '';
     this.axios = axios.create({
       baseURL: process.env.REACT_APP_API_URL,
       timeout: process.env.REACT_APP_REQUEST_TIMEOUT,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
+    this.axios.defaults.headers.common['user-key'] = storage.get('USER-KEY');
     this.loginResolve = () => '';
     this.loginChain = new Promise((resolve) => {
       this.loginResolve = resolve;
     });
   };
-
-  auth(token: string) {
-    this.token = token;
-    this.axios.defaults.headers.common['user-key'] = token;
-    if (token) {
-      this.loginResolve();
-      this.loginResolve = () => '';
-      this.loginChain = Promise.resolve(token);
-    } else {
-      this.loginChain = new Promise((resolve) => {
-        this.loginResolve = resolve;
-      });
-    };
-  };
-
-  isAuthorized() {
-    return !!this.token;
-  }
 
   handleError = (error: AxiosError): Promise<Error> => {
     const errResponse =

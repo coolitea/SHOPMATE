@@ -11,6 +11,7 @@ interface Props {
   departments: departments[],
   getDeparments: typeof departmentAction.departmentRequest;
   postRegister: ({ name, email, password }: register) => void;
+  getUser: typeof authAction.getUserRequest;
   postLogin: ({ email, password }: login) => void;
   user?: customer;
 }
@@ -121,6 +122,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
 
   componentDidMount() {
     this.props.getDeparments('');
+    this.props.getUser();
   }
   render() {
     const { departments, user } = this.props;
@@ -150,6 +152,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   getDeparments: (id: string | null) => dispatch(departmentAction.departmentRequest(id)),
   postRegister: ({ name, email, password }: register) => dispatch(authAction.registerRequest({ name, email, password })),
   postLogin: ({ email, password }: login) => dispatch(authAction.loginRequest({ email, password })),
+  getUser: () => dispatch(authAction.getUserRequest()),
 });
 
 const connectModule = connect(

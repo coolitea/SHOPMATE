@@ -1,4 +1,4 @@
-import { all, fork, call, put, take } from 'redux-saga/effects';
+import { all, fork, call, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
 import { Customers } from 'lib/api';
 import { authAction } from 'store/actions';
 import * as types from 'store/constants';
@@ -11,9 +11,9 @@ export function* fetchLogin({ email, password }: login) {
     password,
   });
   if (response) {
-    yield storage.set('Authorization', response.data.accessToken);
+    yield storage.set('USER-KEY', response.data.accessToken);
     yield put(authAction.loginSuccess(response.data));
-    // yield (location.href = '/');
+    yield (location.href = '/');
   } else
     yield put(authAction.loginFailure(response.error));
 }
@@ -25,11 +25,19 @@ export function* fetchRegister({ email, password, name }: register) {
     name,
   });
   if (response) {
-    yield storage.set('Authorization', response.data.accessToken);
+    yield storage.set('USER-KEY', response.data.accessToken);
     yield put(authAction.registerSuccess(response.data));
-    // yield (location.href = '/');
+    yield (location.href = '/');
   } else
     yield put(authAction.registerFailure(response.error));
+}
+
+export function* fetchUser() {
+  const { data, error } = yield call(Customers.getUser);
+  if (data) {
+    yield put(authAction.getUserSuccess(data));
+  } else
+    yield put(authAction.getUserFailure(error));
 }
 
 export function* watchFetchLogin() {
@@ -46,9 +54,14 @@ export function* watchFetchRegister() {
   }
 }
 
+export function* watchFetchgetUser() {
+  yield takeEvery(types.GET_USER[types.REQUEST], fetchUser);
+}
+
 export default function* () {
   yield all([
     fork(watchFetchLogin),
     fork(watchFetchRegister),
+    fork(watchFetchgetUser),
   ]);
 }

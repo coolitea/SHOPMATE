@@ -1,11 +1,13 @@
 import { 
   POST_LOGIN,
   POST_REGISTER,
+  GET_USER,
   REQUEST,
   SUCCESS,
   FAILURE } from 'store/constants';
 import { customerState } from 'store/models';
 import { Error } from 'lib/client/utils';
+
 export interface login {
   email: string;
   password: string;
@@ -14,6 +16,35 @@ export interface login {
 export interface register extends login {
   name: string;
 }
+// GET USER
+const getUserRequest = () => ({
+  type: GET_USER[REQUEST],
+});
+
+const getUserSuccess = (customer: customerState) => ({
+  type: GET_USER[SUCCESS],
+  payload: customer,
+});
+
+const getUserFailure = (err: Error) => ({
+  type: GET_USER[FAILURE],
+  err,
+});
+
+interface getUserRequestAction {
+  type: typeof GET_USER["REQUEST"];
+}
+
+interface getUserSuccessAction {
+  type: typeof GET_USER["SUCCESS"];
+  payload: customerState;
+}
+
+interface getUserFailureAction {
+  type: typeof GET_USER["FAILURE"];
+  err: Error;
+}
+
 // LOGIN
 const loginRequest = ({ email, password }: login) => ({
   type: POST_LOGIN[REQUEST],
@@ -88,4 +119,7 @@ export default {
   registerRequest,
   registerSuccess,
   registerFailure,
+  getUserRequest,
+  getUserSuccess,
+  getUserFailure,
 }

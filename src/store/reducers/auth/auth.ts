@@ -1,6 +1,7 @@
 import { 
   POST_LOGIN,
   POST_REGISTER,
+  GET_USER,
   REQUEST,
   SUCCESS,
   FAILURE } from 'store/constants';
@@ -12,21 +13,24 @@ export default function(state = initialState, action: any): customerState {
   switch (action.type) {
     case POST_LOGIN[REQUEST]:
       return {
-        ...initialState,
+        ...state,
       };
     case POST_LOGIN[SUCCESS]:
       return {
-        ...initialState,
-        user: action.payload.user,
+        ...state,
       };
     case POST_REGISTER[SUCCESS]:
       return {
-        ...initialState,
-        user: action.payload.user,
+        ...state,
       };
+    case GET_USER[SUCCESS]:
+      return {
+        ...state,
+        user: action.payload,
+      }
     case POST_LOGIN[FAILURE]:
       return {
-        ...initialState,
+        ...state,
         error: action.err,
       };
     default:

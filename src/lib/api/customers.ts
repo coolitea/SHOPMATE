@@ -26,8 +26,13 @@ const postLogin = ({
     });
 }
 
+const getUser = () => {
+  return client.get('/customer');
+}
+
 
 export default {
   postRegister,
   postLogin,
+  getUser,
 }
