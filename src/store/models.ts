@@ -44,9 +44,7 @@ export interface customer {
 }
 
 export interface customerState {
-  customer?: customer;
-  accessToken?: string;
-  expires_in?: string;
+  user?: customer;
   error?: string;
 }
 

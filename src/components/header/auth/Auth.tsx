@@ -2,7 +2,8 @@ import * as React from 'react';
 import './Auth.scss';
 import cn from 'classnames';
 import { Input, Button } from 'components/common';
-
+import { customer } from 'store/models';
+import storage from 'lib/storage'
 interface Props {
   clickRegister: () => void;
   clickLogin: () => void;
@@ -10,6 +11,7 @@ interface Props {
   valCheck: (num: number, e: { target: HTMLInputElement }) => void;
   valCheckMsg: string[];
   checkAll: boolean;
+  user?: customer;
 }
 
 const Auth: React.SFC<Props> = ({
@@ -19,15 +21,16 @@ const Auth: React.SFC<Props> = ({
   valCheck,
   valCheckMsg,
   checkAll,
+  user,
 }) => {
   const [auth, setAuth] = React.useState(true);
   const [signin, setSignin] = React.useState(false);
   const [register, setRegister] = React.useState(false);
+  const test = <><strong onClick={() => setSignin(!signin)}>Sing in</strong> or <strong onClick={() => setRegister(!register)}>Register</strong></>;
   return (
     <>
       <div className={auth ? 'auth open' : 'auth'}>
-        <p>Hi! <strong onClick={() => setSignin(!signin)}>Sing in</strong> or <strong onClick={() => setRegister(!register)}>Register</strong></p>
-        <p onClick={() => setAuth(false)}>x</p>
+        <p>Hi! { storage.get('Authorization') ? '': test}</p>
       </div>
       <div className={signin ? 'signin open' : 'signin'}>
         <div className="content">
@@ -44,6 +47,9 @@ const Auth: React.SFC<Props> = ({
             valCheck={valCheck}
             num={1}
           />
+          <p className={cn('errMsg', { msgShow: valCheckMsg[1] })}>
+            {valCheckMsg[1]}
+          </p>
           <Input
             type="password"
             placeholder="password"
@@ -51,6 +57,9 @@ const Auth: React.SFC<Props> = ({
             valCheck={valCheck}
             num={2}
           />
+          <p className={cn('errMsg', { msgShow: valCheckMsg[2] })}>
+            {valCheckMsg[2]}
+          </p>
           <Button className="medium1" onClick={clickLogin}>Sign in</Button>
         </div>
       </div>

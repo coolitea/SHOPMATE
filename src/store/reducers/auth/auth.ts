@@ -1,6 +1,10 @@
-import { POST_LOGIN, REQUEST, SUCCESS, FAILURE } from 'store/constants';
+import { 
+  POST_LOGIN,
+  POST_REGISTER,
+  REQUEST,
+  SUCCESS,
+  FAILURE } from 'store/constants';
 import { customerState } from 'store/models';
-import { LoginActionTypes } from 'store/actions/login';
 
 const initialState: customerState = {};
 
@@ -13,7 +17,12 @@ export default function(state = initialState, action: any): customerState {
     case POST_LOGIN[SUCCESS]:
       return {
         ...initialState,
-        customer: action.payload.customer,
+        user: action.payload.user,
+      };
+    case POST_REGISTER[SUCCESS]:
+      return {
+        ...initialState,
+        user: action.payload.user,
       };
     case POST_LOGIN[FAILURE]:
       return {

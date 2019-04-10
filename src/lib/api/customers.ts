@@ -1,7 +1,6 @@
 import { AxiosPromise } from 'axios';
 import client from 'lib/client';
-import { register } from 'store/actions/register';
-import { login } from 'store/actions/login';
+import { login, register } from 'store/actions/auth';
 
 const postRegister = ({
   name,
@@ -24,7 +23,8 @@ const postLogin = ({
     .post(`/customers/login`, {
       email,
       password,
-    }).then(result => result);
+    })
+    .then(result => result);
 }
 
 

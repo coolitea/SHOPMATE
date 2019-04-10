@@ -23,7 +23,7 @@ export const GET_REVIEWS = createRequestTypes('GET_REVIEWS');
 export const GET_PRODUCT_DETAIL = createRequestTypes('GET_PRODUCT_DETAIL');
 
 export const POST_REGISTER = createRequestTypes('POST_REGISTER');
-export const POST_LOGIN = createRequestTypes('POST_REGISTER');
+export const POST_LOGIN = createRequestTypes('POST_LOGIN');
 
 export const GET_ATTRIBUTES_WITH_PRODUCTID = createRequestTypes('GET_ATTRIBUTES_WITH_PRODUCTID');
 // without I/O

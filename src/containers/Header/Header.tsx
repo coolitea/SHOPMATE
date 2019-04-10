@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { departmentAction, registerAction, loginAction } from 'store/actions';
-import { register } from 'store/actions/register';
-import { login } from 'store/actions/login';
+import { departmentAction, authAction } from 'store/actions';
+import { login, register } from 'store/actions/auth';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { departments } from 'store/models';
+import { departments, customer } from 'store/models';
 import { Header } from 'components';
 
 interface Props {
@@ -13,6 +12,7 @@ interface Props {
   getDeparments: typeof departmentAction.departmentRequest;
   postRegister: ({ name, email, password }: register) => void;
   postLogin: ({ email, password }: login) => void;
+  user?: customer;
 }
 
 interface HeaderState {
@@ -49,7 +49,6 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
     ];
     const key = e.target.placeholder as keyof HeaderState;
     const value = e.target.value;
-
     this.setState({
       ...this.state,
       valCheckMsg: checkMsg,
@@ -124,7 +123,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
     this.props.getDeparments('');
   }
   render() {
-    const { departments } = this.props;
+    const { departments, user } = this.props;
     return (
       <>
         <Header
@@ -135,6 +134,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
           valCheck={this.valCheck}
           valCheckMsg={this.state.valCheckMsg}
           checkAll={this.state.checkAll}
+          user={user}
         />
       </>
     );
@@ -142,13 +142,14 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
 }
 
 const mapStateToProps = (rootState: rootState) => ({
+  user: rootState.customer.user,
   departments: rootState.departments.departments,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getDeparments: (id: string | null) => dispatch(departmentAction.departmentRequest(id)),
-  postRegister: ({ name, email, password }: register) => dispatch(registerAction.registerRequest({ name, email, password })),
-  postLogin: ({ email, password }: login) => dispatch(loginAction.loginRequest({ email, password })),
+  postRegister: ({ name, email, password }: register) => dispatch(authAction.registerRequest({ name, email, password })),
+  postLogin: ({ email, password }: login) => dispatch(authAction.loginRequest({ email, password })),
 });
 
 const connectModule = connect(

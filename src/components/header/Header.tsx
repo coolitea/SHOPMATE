@@ -6,7 +6,7 @@ import { FaOpencart, FaSearch } from "react-icons/fa";
 import { Responsive } from 'components/common';
 import storage from 'lib/storage';
 import Auth from './auth';
-
+import { customer } from 'store/models';
 interface Props extends RouteComponentProps {
   departments: departments[];
   clickRegister: () => void;
@@ -15,6 +15,7 @@ interface Props extends RouteComponentProps {
   valCheck: (num: number, e: { target: HTMLInputElement }) => void;
   valCheckMsg: string[];
   checkAll: boolean;
+  user?: customer;
 }
 
 const Header: React.SFC<Props> = ({
@@ -26,20 +27,20 @@ const Header: React.SFC<Props> = ({
   valCheck,
   valCheckMsg,
   checkAll,
+  user,
 }) => {
   const [burger, setBurger] = React.useState(false);
   return (
     <Responsive>
-      {storage.get('Authorization') ? '' : (
-        <Auth
-          clickRegister={clickRegister}
-          clickLogin={clickLogin}
-          changeInput={changeInput}
-          valCheck={valCheck}
-          valCheckMsg={valCheckMsg}
-          checkAll={checkAll}
-        />
-      )}
+      <Auth
+        clickRegister={clickRegister}
+        clickLogin={clickLogin}
+        changeInput={changeInput}
+        valCheck={valCheck}
+        valCheckMsg={valCheckMsg}
+        checkAll={checkAll}
+        user={user}
+      />
       <header className="header">
         <h1 onClick={() => history.push('/')}>SHOPMATE</h1>
         <div className="header_departments">
