@@ -1,6 +1,6 @@
 import { GET_ATTRIBUTES_WITH_PRODUCTID, REQUEST, SUCCESS, FAILURE } from 'store/constants';
 import { attributeState } from 'store/models';
-
+import { Error } from 'lib/client/utils';
 const attributeRequest = (id: string) => ({
   type: GET_ATTRIBUTES_WITH_PRODUCTID[REQUEST],
   id,
@@ -13,7 +13,7 @@ const attributeSuccess = (detail: attributeState) => ({
 
 const attributefailure = (err: Error) => ({
   type: GET_ATTRIBUTES_WITH_PRODUCTID[FAILURE],
-  err: err.message,
+  err: err,
 });
 
 interface attributeRequestAction {
@@ -28,7 +28,7 @@ interface attributeSuccessAction {
 
 interface attributeFailureAction {
   type: typeof GET_ATTRIBUTES_WITH_PRODUCTID['FAILURE'];
-  err: string;
+  err: Error;
 }
 
 export type AttributeActionTypes = attributeRequestAction | attributeSuccessAction | attributeFailureAction;

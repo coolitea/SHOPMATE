@@ -8,6 +8,8 @@ declare namespace NodeJS {
     PUBLIC_URL: string;
     REACT_APP_API_URL: string;
     REACT_APP_IMAGE_URL: string;
+    REACT_APP_REQUEST_TIMEOUT: number;
+    REACT_APP_CACHE_TIMEOUT: number;
   }
 }
 

@@ -1,3 +1,5 @@
+import { Error } from 'lib/client/utils';
+
 // DEPARTMENTS
 export interface departments {
   department_id: number;
@@ -8,7 +10,7 @@ export interface departments {
 export interface departmentsState {
   isLoading: boolean;
   departments: departments[];
-  err?: string;
+  err?: Error;
 }
 
 // CATEGORIES
@@ -22,7 +24,7 @@ export interface categories {
 export interface categoriesState {
   count?: number;
   rows: categories[];
-  err?: string;
+  err?: Error;
   isLoading: boolean;
 }
 
@@ -45,7 +47,7 @@ export interface customer {
 
 export interface customerState {
   user?: customer;
-  error?: string;
+  error?: Error;
 }
 
 // PRODUCTS
@@ -112,4 +114,5 @@ export interface attribute {
 export interface attributeState {
   colors: attribute[];
   sizes: attribute[];
+  err?: Error;
 }

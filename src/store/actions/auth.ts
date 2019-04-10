@@ -5,7 +5,7 @@ import {
   SUCCESS,
   FAILURE } from 'store/constants';
 import { customerState } from 'store/models';
-
+import { Error } from 'lib/client/utils';
 export interface login {
   email: string;
   password: string;
@@ -28,7 +28,7 @@ const loginSuccess = (customer: customerState) => ({
 
 const loginFailure = (err: Error) => ({
   type: POST_LOGIN[FAILURE],
-  err: err.message,
+  err,
 });
 
 interface loginRequestAction {
@@ -43,7 +43,7 @@ interface loginSuccessAction {
 
 interface loginFailureAction {
   type: typeof POST_LOGIN["FAILURE"];
-  err: string;
+  err: Error;
 }
 
 // REGISTER
@@ -61,7 +61,7 @@ const registerSuccess = (customer: customerState) => ({
 
 const registerFailure = (err: Error) => ({
   type: POST_REGISTER[FAILURE],
-  err: err.message,
+  err: err,
 });
 
 interface registerRequestAction {
@@ -76,7 +76,7 @@ interface registerSuccessAction {
 
 interface registerFailureAction {
   type: typeof POST_REGISTER["FAILURE"];
-  err: string;
+  err: Error;
 }
 
 export type LoginActionTypes = loginRequestAction | loginSuccessAction | loginFailureAction;

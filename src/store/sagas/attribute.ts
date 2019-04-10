@@ -3,13 +3,12 @@ import { Attributes } from 'lib/api';
 import { attributeAction } from 'store/actions';
 import * as types from 'store/constants';
 
-export function* fetchAttribute({id}: any) {
-  try {
-    var { data } = yield call(Attributes.getAttributeByProductId, id);
+export function* fetchAttribute({ id }: any) {
+  const { data, error } = yield call(Attributes.getAttributeByProductId, id);
+  if (data)
     yield put(attributeAction.attributeSuccess(data));
-  } catch(error) {
-    // yield put(attributeAction.attributefailure(error));
-  }
+  else
+    yield put(attributeAction.attributefailure(error));
 }
 
 export default function* watchFetchAttribues() {

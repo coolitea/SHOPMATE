@@ -1,11 +1,11 @@
 import { AxiosPromise } from 'axios';
-import client from 'lib/client';
+import client from 'lib/client/utils';
 
-const getCategories = (id: string): AxiosPromise => client.get(`/categories/${id}`).then( result => result );
+const getCategories = (id: string): any => client.get(`/categories/${id}`);
 
-const getCategoriesOfProduct = (id: string): AxiosPromise => client.get(`/categories/inProduct/${id}`).then( result => result );
+const getCategoriesOfProduct = (id: string): any => client.get(`/categories/inProduct/${id}`);
 
-const getCategoriesOfDepartment = (id: string): AxiosPromise => client.get(`/categories/inDepartment/${id}`).then( result => result );
+const getCategoriesOfDepartment = (id: string): any => client.get(`/categories/inDepartment/${id}`);
 
 export default {
   getCategories,

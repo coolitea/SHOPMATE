@@ -1,5 +1,6 @@
 import { GET_CATEGORIES, REQUEST, SUCCESS, FAILURE } from 'store/constants';
 import { categoriesState } from 'store/models';
+import { Error } from 'lib/client/utils';
 
 let request: string, success: string, failure: string;
 
@@ -20,7 +21,7 @@ const categorySuccess = (categories: categoriesState) => ({
 
 const categoryfailure = (err: Error) => ({
   type: failure,
-  err: err.message,
+  err: err,
 });
 
 interface categoryRequestAction {
@@ -35,7 +36,7 @@ interface categorySuccessAction {
 
 interface categoryFailureAction {
   type: typeof failure;
-  err: string;
+  err: Error;
 }
 
 export type CategoryActionTypes = categoryRequestAction | categorySuccessAction | categoryFailureAction;

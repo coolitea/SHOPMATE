@@ -23,6 +23,7 @@ export default function (state = initialState, action: any): attributeState {
     case GET_ATTRIBUTES_WITH_PRODUCTID[FAILURE]:
       return {
         ...state,
+        err: action.err,
       };
     default:
       return state;

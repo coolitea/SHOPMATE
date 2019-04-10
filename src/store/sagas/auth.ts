@@ -6,32 +6,30 @@ import { login, register } from 'store/actions/auth';
 import storage from 'lib/storage';
 
 export function* fetchLogin({ email, password }: login) {
-  try {
-    const { data } = yield call(Customers.postLogin, {
-      email,
-      password,
-    });
-    yield storage.set('Authorization', data.accessToken);
-    yield put(authAction.loginSuccess(data));
+  const response = yield call(Customers.postLogin, {
+    email,
+    password,
+  });
+  if (response) {
+    yield storage.set('Authorization', response.data.accessToken);
+    yield put(authAction.loginSuccess(response.data));
     // yield (location.href = '/');
-  } catch (error) {
-    yield put(authAction.loginFailure(error));
-  }
+  } else
+    yield put(authAction.loginFailure(response.error));
 }
 
 export function* fetchRegister({ email, password, name }: register) {
-  try {
-    const { data } = yield call(Customers.postRegister, {
-      email,
-      password,
-      name
-    });
-    yield storage.set('Authorization', data.accessToken);
-    yield put(authAction.registerSuccess(data));
+  const response = yield call(Customers.postRegister, {
+    email,
+    password,
+    name,
+  });
+  if (response) {
+    yield storage.set('Authorization', response.data.accessToken);
+    yield put(authAction.registerSuccess(response.data));
     // yield (location.href = '/');
-  } catch (error) {
-    yield put(authAction.registerFailure(error));
-  }
+  } else
+    yield put(authAction.registerFailure(response.error));
 }
 
 export function* watchFetchLogin() {

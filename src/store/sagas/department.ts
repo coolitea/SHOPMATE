@@ -4,12 +4,11 @@ import { departmentAction } from 'store/actions';
 import * as types from 'store/constants';
 
 export function* fetchCountries(id: string) {
-  try {
-    const { data } = yield call(api.getDepartments, id);
-    yield put(departmentAction.departmentSuccess(data));
-  } catch (error) {
-    yield put(departmentAction.departmentfailure(error));
-  }
+  const { data, error } = yield call(api.getDepartments, id)
+  if (data)
+    yield put(departmentAction.departmentSuccess(data))
+  else
+    yield put(departmentAction.departmentfailure(error))
 }
 
 export function* watchFetchCountries() {

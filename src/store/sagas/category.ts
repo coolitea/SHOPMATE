@@ -4,12 +4,11 @@ import { categoryAction } from 'store/actions';
 import * as types from 'store/constants';
 
 export function* fetchCountries(id: string) {
-  try {
-    const { data } = yield call(Catogories.getCategories, id);
+  const { data, error } = yield call(Catogories.getCategories, id);
+  if (data)
     yield put(categoryAction.categorySuccess(data));
-  } catch (error) {
+  else
     yield put(categoryAction.categoryfailure(error));
-  }
 }
 
 export function* watchFetchCountries() {

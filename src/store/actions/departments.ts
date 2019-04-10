@@ -1,5 +1,6 @@
 import * as types from 'store/constants';
 import { departmentsState } from 'store/models';
+import { Error } from 'lib/client/utils';
 
 let request: string, success: string, failure: string;
 
@@ -20,7 +21,7 @@ const departmentSuccess = (departments: departmentsState) => ({
 
 const departmentfailure = (err: Error) => ({
   type: failure,
-  err: err.message,
+  err: err,
 });
 
 interface departmentRequestAction {
@@ -35,7 +36,7 @@ interface departmentSuccessAction {
 
 interface departmentFailureAction {
   type: typeof failure;
-  err: string;
+  err: Error;
 }
 
 export type DepartmentActionTypes = departmentRequestAction | departmentSuccessAction | departmentFailureAction;

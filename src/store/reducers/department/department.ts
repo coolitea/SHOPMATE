@@ -24,7 +24,7 @@ export default function(state = initialState, action: any): departmentsState {
     case GET_DEPARTMENTS[FAILURE]:
       return {
         ...initialState,
-        err: 'error',
+        err: action.err,
       };
     default:
       return state;

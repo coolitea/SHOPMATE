@@ -1,4 +1,4 @@
 import { AxiosPromise } from 'axios';
-import client from 'lib/client';
+import client from 'lib/client/utils';
 
-export const getDepartments = (id: string): AxiosPromise => client.get(`/departments/${id}`).then( result => result );
+export const getDepartments = (id: string): any => client.get(`/departments/${id}`);
