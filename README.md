@@ -15,7 +15,7 @@
 ## Feature requirements
 1. [X] Users can view all items when entering the website.
 2. [X] Items are displayed properly based on the selected department and category.
-3. [ ] Users can search items through search box.
+3. [X] Users can search items through search box.
 4. [X] Support paging if we have too many items.
 5. [X] Users can see item details by selecting a specific item.
 6. [ ] Users can add items to their shopping carts.

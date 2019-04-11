@@ -7,6 +7,7 @@ import { Responsive } from 'components/common';
 import storage from 'lib/storage';
 import Auth from './auth';
 import { customer } from 'store/models';
+
 interface Props extends RouteComponentProps {
   departments: departments[];
   clickRegister: () => void;
@@ -16,6 +17,7 @@ interface Props extends RouteComponentProps {
   valCheckMsg: string[];
   checkAll: boolean;
   user?: customer;
+  onChangeSearch: (e: { target: HTMLInputElement }) => void;
 }
 
 const Header: React.SFC<Props> = ({
@@ -28,6 +30,7 @@ const Header: React.SFC<Props> = ({
   valCheckMsg,
   checkAll,
   user,
+  onChangeSearch,
 }) => {
   const [burger, setBurger] = React.useState(false);
   return (
@@ -56,6 +59,7 @@ const Header: React.SFC<Props> = ({
           <input
             type="text"
             placeholder="search anithing"
+            onChange={(e) => onChangeSearch(e)}
           />
         </div>
         <div className="cart" >

@@ -13,6 +13,7 @@ import {
 import { productState, products, products_detail, product_lists, pager, review } from 'store/models';
 
 // GET_PRODUCT_SEARCH
+
 const searchRequest = (
   query_string: string,
   all_word?: string,
