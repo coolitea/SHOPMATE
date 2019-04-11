@@ -2,6 +2,7 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
+  GET_PRODUCT_SEARCH,
   SET_PAGE,
   REQUEST,
   SUCCESS,
@@ -15,6 +16,10 @@ import { pagination, average } from 'lib/utils';
 import _ from 'underscore';
 
 const initialState: productState = {
+  search: {
+    count: 0,
+    rows: [],
+  },
   products: {
     count: 0,
     rows: [],
@@ -34,6 +39,10 @@ export default function (state = initialState, action: any): productState {
         ...state,
         currentPage: action.currentpage,
       }
+    case GET_PRODUCT_SEARCH[REQUEST]:
+      return {
+        ...state,
+      };
     case GET_PRODUCTS[REQUEST]:
       return {
         ...state,
@@ -45,6 +54,11 @@ export default function (state = initialState, action: any): productState {
     case GET_PRODUCT_DETAIL[REQUEST]:
       return {
         ...state,
+      };
+    case GET_PRODUCT_SEARCH[SUCCESS]:
+      return {
+        ...state,
+        search: action.payload,
       };
     case GET_PRODUCTS[SUCCESS]:
       return {

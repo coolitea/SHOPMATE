@@ -4,12 +4,58 @@ import {
   GET_PRODUCTS_BY_DEPARTMENT,
   GET_REVIEWS,
   GET_PRODUCT_DETAIL,
+  GET_PRODUCT_SEARCH,
   SET_PAGE,
   REQUEST,
   SUCCESS,
   FAILURE,
 } from 'store/constants';
 import { productState, products, products_detail, product_lists, pager, review } from 'store/models';
+
+// GET_PRODUCT_SEARCH
+const searchRequest = (
+  query_string: string,
+  all_word?: string,
+  page?: number,
+  limit?: number,
+  description_length?: number,
+  ) => ({
+  type: GET_PRODUCT_SEARCH[REQUEST],
+  query_string,
+  all_word,
+  page,
+  limit,
+  description_length,
+});
+
+const searchSuccess = (products: product_lists) => ({
+  type: GET_PRODUCT_SEARCH[SUCCESS],
+  payload: products,
+});
+
+const searchFailure = (err: Error) => ({
+  type: GET_PRODUCT_SEARCH[FAILURE],
+  err: err.message,
+});
+
+interface searchRequestAction {
+  type: typeof GET_PRODUCT_SEARCH["REQUEST"];
+  query_string: string,
+  all_word?: string,
+  page?: number,
+  limit?: number,
+  description_length?: number,
+}
+
+interface searchSuccessAction {
+  type: typeof GET_PRODUCT_SEARCH["SUCCESS"];
+  payload: product_lists;
+}
+
+interface searchFailureAction {
+  type: typeof GET_PRODUCT_SEARCH["FAILURE"];
+  err: string;
+}
 
 // GET_PRODUCT_DETATILS
 const detailRequest = (id: string) => ({
@@ -183,6 +229,9 @@ interface setPageAction {
 export type ProductActionTypes = productRequestAction | productSuccessAction | productFailureAction | productByCategoryRequestAction |productByCategorySuccessAction | productByCategoryFailureAction | productByDepartmentRequestAction | productByDepartmentSuccessAction | productByDepartmentFailureAction | setPageAction;
 
 export default {
+  searchRequest,
+  searchSuccess,
+  searchFailure,
   productRequest,
   productSuccess,
   productFailure,

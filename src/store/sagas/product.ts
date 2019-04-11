@@ -8,10 +8,27 @@ import {
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
   GET_REVIEWS,
+  GET_PRODUCT_SEARCH,
   REQUEST,
 } from 'store/constants';
 
-export function* fetchProducts({ type, id, page }: any) {
+export function* fetchProducts({ 
+  type,
+  id,
+  page,
+  query_string,
+  all_word,
+  limit,
+  description_length,
+ }: any) {
+  if(type ===GET_PRODUCT_SEARCH[REQUEST]) {
+    try {
+      var { data } = yield call(Products.getSearch, query_string, all_word, page, limit, description_length);
+      yield put(productAction.searchSuccess(data));
+    } catch(error) {
+      yield put(productAction.searchFailure(error));
+    }
+  }
   if(type === GET_PRODUCTS_BY_CATEGORY[REQUEST]) {
     try {
       var { data } = yield call(Products.getProductByCategory, id, page);
@@ -61,5 +78,6 @@ export default function* watchFetchProducts() {
     types.GET_PRODUCTS_BY_DEPARTMENT[types.REQUEST],
     types.GET_REVIEWS[types.REQUEST],
     types.GET_PRODUCT_DETAIL[types.REQUEST],
+    types.GET_PRODUCT_SEARCH[types.REQUEST],
   ], fetchProducts);
 };

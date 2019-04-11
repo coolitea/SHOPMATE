@@ -4,7 +4,9 @@ import cn from 'classnames';
 import { Input, Button } from 'components/common';
 import { customer } from 'store/models';
 import storage from 'lib/storage'
-interface Props {
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+
+interface Props extends RouteComponentProps {
   clickRegister: () => void;
   clickLogin: () => void;
   changeInput: (num: number, e: { target: HTMLInputElement }) => void;
@@ -22,15 +24,25 @@ const Auth: React.SFC<Props> = ({
   valCheckMsg,
   checkAll,
   user,
+  history,
 }) => {
   const [auth, setAuth] = React.useState(true);
   const [signin, setSignin] = React.useState(false);
   const [register, setRegister] = React.useState(false);
-  const test = <><strong onClick={() => setSignin(!signin)}>Sing in</strong> or <strong onClick={() => setRegister(!register)}>Register</strong></>;
+  const out = () => {
+    storage.remove('USER-KEY');
+    location.href = '/';
+  }
+  const noAuth = (
+    <p>Hi <strong onClick={() => setSignin(!signin)}>Sing in</strong> or <strong onClick={() => setRegister(!register)}>Register</strong></p>
+  );
+  const yesAuth = (
+    user && <p>Hi <strong className="name">{user.name}</strong><span className="out" onClick={() => out()}>log out</span></p>
+  )
   return (
     <>
       <div className={auth ? 'auth open' : 'auth'}>
-        <p>Hi! { storage.get('Authorization') ? '': test}</p>
+        {user ? yesAuth : noAuth}
       </div>
       <div className={signin ? 'signin open' : 'signin'}>
         <div className="content">
@@ -109,4 +121,4 @@ const Auth: React.SFC<Props> = ({
   )
 }
 
-export default Auth;
+export default withRouter(Auth);

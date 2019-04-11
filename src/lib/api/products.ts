@@ -1,6 +1,23 @@
 import { AxiosPromise } from 'axios';
 import client from 'lib/client';
 
+const getSearch = (
+  query_string: string,
+  all_word = "on",
+  page = 1,
+  limit = 20,
+  description_length = 200): AxiosPromise => {
+  return client.get(`/products/search`, {
+    params: {
+      query_string,
+      all_word,
+      page,
+      limit,
+      description_length,
+    },
+  });
+}
+
 const getProduct = (id: string | undefined, page = 1, limit = 6, description_length = 200): AxiosPromise => {
   if (id === undefined) {
     return client.get(`/products`, {
@@ -74,4 +91,5 @@ export default {
   getProductByDepartment,
   getReviews,
   getProductDetail,
+  getSearch,
 }

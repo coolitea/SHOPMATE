@@ -88,6 +88,7 @@ export interface pager {
 }
 
 export interface productState {
+  search: product_lists,
   products: product_lists;
   productDetail: products_detail;
   currentPage: number;

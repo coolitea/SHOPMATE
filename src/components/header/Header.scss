@@ -28,6 +28,15 @@
       letter-spacing: normal;
       color: $red-pink;
       cursor: pointer;
+
+      &.name {
+        cursor: default;
+        margin-left: 5px;
+      }
+    }
+    .out {
+      margin-left: 10px;
+      cursor: pointer;
     }
   }
   p:nth-child(2) {

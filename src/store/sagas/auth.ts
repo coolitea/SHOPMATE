@@ -10,6 +10,7 @@ export function* fetchLogin({ email, password }: login) {
     email,
     password,
   });
+  console.log(response)
   if (response) {
     yield storage.set('USER-KEY', response.data.accessToken);
     yield put(authAction.loginSuccess(response.data));
@@ -55,7 +56,9 @@ export function* watchFetchRegister() {
 }
 
 export function* watchFetchgetUser() {
-  yield takeEvery(types.GET_USER[types.REQUEST], fetchUser);
+  // while(true) {
+    yield takeLatest(types.GET_USER[types.REQUEST], fetchUser);
+  // }
 }
 
 export default function* () {
