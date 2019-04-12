@@ -16,17 +16,30 @@ export interface Error {
 class utils {
   private axios: AxiosInstance;
   private loginResolve: () => void;
+  public isLoggedIn: () => boolean;
+  private authUserHeader: () => object;
   public loginChain: Promise<any>;
 
   constructor() {
+    this.isLoggedIn = () => !!storage.get('USER-KEY');
+    this.authUserHeader = () => {
+      const user = storage.get('USER-KEY');
+      if(this.isLoggedIn()) {
+        return {
+          'USER-KEY': user || {},
+        }
+      }
+      return {}
+    }
     this.axios = axios.create({
       baseURL: process.env.REACT_APP_API_URL,
       timeout: process.env.REACT_APP_REQUEST_TIMEOUT,
       headers: {
         'Content-Type': 'application/json',
+        ...this.authUserHeader(),
       },
     });
-    this.axios.defaults.headers.common['user-key'] = storage.get('USER-KEY');
+    // this.axios.defaults.headers.common['user-key'] = storage.get('USER-KEY');
     this.loginResolve = () => '';
     this.loginChain = new Promise((resolve) => {
       this.loginResolve = resolve;

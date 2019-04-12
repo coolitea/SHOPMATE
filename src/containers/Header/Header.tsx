@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { departments, customer } from 'store/models';
 import { Header } from 'components';
 import _ from 'underscore';
+import client from 'lib/client/utils';
 
 interface Props {
   departments: departments[],
@@ -130,7 +131,9 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
   }
   componentDidMount() {
     this.props.getDeparments('');
-    // this.props.getUser();
+    if(client.isLoggedIn()) {
+      this.props.getUser();
+    }
   }
 
   componentDidUpdate(prevProps: Props, prevState: HeaderState) {
