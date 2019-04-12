@@ -6,7 +6,8 @@ import { FaOpencart, FaSearch } from "react-icons/fa";
 import { Responsive } from 'components/common';
 import storage from 'lib/storage';
 import Auth from './auth';
-import { customer } from 'store/models';
+import { customer, products } from 'store/models';
+import List from './list';
 
 interface Props extends RouteComponentProps {
   departments: departments[];
@@ -18,6 +19,7 @@ interface Props extends RouteComponentProps {
   checkAll: boolean;
   user?: customer;
   onChangeSearch: (e: { target: HTMLInputElement }) => void;
+  searchItems?: products[];
 }
 
 const Header: React.SFC<Props> = ({
@@ -31,6 +33,7 @@ const Header: React.SFC<Props> = ({
   checkAll,
   user,
   onChangeSearch,
+  searchItems,
 }) => {
   const [burger, setBurger] = React.useState(false);
   return (
@@ -58,9 +61,19 @@ const Header: React.SFC<Props> = ({
           />
           <input
             type="text"
-            placeholder="search anithing"
+            placeholder="search anything"
             onChange={(e) => onChangeSearch(e)}
           />
+          <ul className="searchlists">
+            { searchItems && searchItems.map(({name, price, thumbnail, product_id}, i) =>
+              <List
+                key={i}
+                name={name}
+                price={price}
+                thumbnail={thumbnail}
+                product_id={product_id}/>
+            )}
+          </ul>
         </div>
         <div className="cart" >
           <FaOpencart style={{ color: 'white' }} />

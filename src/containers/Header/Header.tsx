@@ -4,7 +4,7 @@ import { login, register } from 'store/actions/auth';
 import { rootState } from 'store/reducers';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { departments, customer } from 'store/models';
+import { departments, customer, products } from 'store/models';
 import { Header } from 'components';
 import _ from 'underscore';
 import client from 'lib/client/utils';
@@ -17,6 +17,7 @@ interface Props {
   postLogin: ({ email, password }: login) => void;
   user?: customer;
   getSearch: typeof productAction.searchRequest;
+  searchItems: products[];
 }
 
 interface HeaderState {
@@ -143,7 +144,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
   }
 
   render() {
-    const { departments, user } = this.props;
+    const { departments, user, searchItems } = this.props;
     const { searchInput } = this.state;
     return (
       <>
@@ -157,6 +158,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
           checkAll={this.state.checkAll}
           user={user}
           onChangeSearch={_.debounce(this.onChangeSearch, 2000, true)}
+          searchItems={searchItems}
         />
       </>
     );
@@ -166,7 +168,8 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
 const mapStateToProps = (rootState: rootState) => ({
   user: rootState.customer.user,
   departments: rootState.departments.departments,
-})
+  searchItems: rootState.product.search.rows,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getDeparments: (id: string | null) => dispatch(departmentAction.departmentRequest(id)),
