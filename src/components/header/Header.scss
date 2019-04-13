@@ -275,6 +275,7 @@
   .cart {
     justify-content: flex-end;
     margin-left: 30px;
+    cursor: pointer;
 
     @include media('<screen-x') {
       display: none;

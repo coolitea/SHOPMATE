@@ -19,14 +19,6 @@ class StarRating extends React.Component<StarRatingProps, StarRatingState> {
   state = {
     starsSelected: 0,
   }
-  componentWillMount() {
-    // const { starsSelected } = this.props;
-    // if (starsSelected) {
-    //   this.setState({
-    //     starsSelected
-    //   })
-    // }
-  }
   componentDidUpdate(prev: StarRatingProps) {
     // const { starsSelected } = this.props;
     // if(prev.starsSelected !== this.props.starsSelected) {

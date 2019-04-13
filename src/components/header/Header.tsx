@@ -8,6 +8,10 @@ import storage from 'lib/storage';
 import Auth from './auth';
 import { customer, products } from 'store/models';
 import List from './list';
+import client from 'lib/client/utils';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props extends RouteComponentProps {
   departments: departments[];
@@ -36,6 +40,8 @@ const Header: React.SFC<Props> = ({
   searchItems,
 }) => {
   const [burger, setBurger] = React.useState(false);
+  const notify = () => toast('please sign in', { autoClose: 1500});
+  const toCart = () => history.push('/cart');
   return (
     <Responsive>
       <Auth
@@ -65,18 +71,22 @@ const Header: React.SFC<Props> = ({
             onChange={(e) => onChangeSearch(e)}
           />
           <ul className="searchlists">
-            { searchItems && searchItems.map(({name, price, thumbnail, product_id}, i) =>
+            {searchItems && searchItems.map(({ name, price, thumbnail, product_id }, i) =>
               <List
                 key={i}
                 name={name}
                 price={price}
                 thumbnail={thumbnail}
-                product_id={product_id}/>
+                product_id={product_id} />
             )}
           </ul>
         </div>
-        <div className="cart" >
+        <div
+          className="cart"
+          onClick={client.isLoggedIn() ? toCart : notify}
+        >
           <FaOpencart style={{ color: 'white' }} />
+          <ToastContainer />
         </div>
         <div className={burger ? 'burger open' : 'burger'} onClick={() => setBurger(!burger)}>
           <span></span>
