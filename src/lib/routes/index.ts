@@ -1,24 +1,24 @@
-import { Home, Product, Detail, Cart } from 'page';
+import { Home, Product, Detail, Cart } from "page";
 
 export const routes = [
   {
-    path: '/',
+    path: "/",
     page: Home,
-    exact: true,
+    exact: true
   },
   {
-    path: '/product/:direction(\\d+|category|department)?/:id?',
+    path: "/product/:direction(\\d+|category|department)?/:id?",
     page: Product,
-    exact: true,
+    exact: true
   },
   {
-    path: '/detail/:id',
+    path: "/detail/:id",
     page: Detail,
-    exact: true,
+    exact: true
   },
   {
-    path: '/cart',
+    path: "/cart",
     page: Cart,
-    exact: true,
-  },
+    exact: true
+  }
 ];

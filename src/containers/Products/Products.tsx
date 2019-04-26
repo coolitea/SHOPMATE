@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { rootState } from 'store/reducers';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { Params } from 'lib/type';
-import { Products } from 'components';
-import { productAction, categoryAction } from 'store/actions';
-import { product_lists, pager, categories } from 'store/models';
+import * as React from "react";
+import { rootState } from "store/reducers";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import { Params } from "lib/type";
+import { Products } from "components";
+import { productAction, categoryAction } from "store/actions";
+import { product_lists, pager, categories } from "store/models";
 
 interface Props extends RouteComponentProps<Params> {
   getProduct: typeof productAction.productRequest;
@@ -23,11 +23,11 @@ interface Props extends RouteComponentProps<Params> {
 class ProductsContainer extends React.Component<Props> {
   componentWillMount() {
     switch (this.props.match.params.direction) {
-      case 'category':
+      case "category":
         this.props.setPage(1);
         this.props.getProductByCategory(this.props.match.params.id);
         break;
-      case 'department':
+      case "department":
         this.props.setPage(1);
         this.props.getProductByDepartment(this.props.match.params.id);
         break;
@@ -37,7 +37,7 @@ class ProductsContainer extends React.Component<Props> {
     }
   }
   componentDidMount() {
-    this.props.getCategories('');
+    this.props.getCategories("");
   }
   componentDidUpdate(prevProps: Props) {
     if (prevProps === undefined) {
@@ -45,11 +45,11 @@ class ProductsContainer extends React.Component<Props> {
     }
     if (prevProps.match.url !== this.props.match.url) {
       switch (this.props.match.params.direction) {
-        case 'category':
+        case "category":
           this.props.getProductByCategory(this.props.match.params.id);
           this.props.setPage(1);
           break;
-        case 'department':
+        case "department":
           this.props.getProductByDepartment(this.props.match.params.id);
           this.props.setPage(1);
           break;
@@ -59,14 +59,23 @@ class ProductsContainer extends React.Component<Props> {
       }
     } else if (prevProps.currentpage !== this.props.currentpage) {
       switch (this.props.match.params.direction) {
-        case 'category':
-          this.props.getProductByCategory(this.props.match.params.id, this.props.currentpage);
+        case "category":
+          this.props.getProductByCategory(
+            this.props.match.params.id,
+            this.props.currentpage
+          );
           break;
-        case 'department':
-          this.props.getProductByDepartment(this.props.match.params.id, this.props.currentpage);
+        case "department":
+          this.props.getProductByDepartment(
+            this.props.match.params.id,
+            this.props.currentpage
+          );
           break;
         default:
-          this.props.getProduct(this.props.match.params.direction, this.props.currentpage);
+          this.props.getProduct(
+            this.props.match.params.direction,
+            this.props.currentpage
+          );
       }
     }
   }
@@ -91,16 +100,21 @@ const mapStateToProps = (rootState: rootState) => {
     products: rootState.product.products,
     pager: rootState.product.pager,
     currentpage: rootState.product.currentPage,
-    categories: rootState.categories.rows,
-  }
-}
+    categories: rootState.categories.rows
+  };
+};
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getProduct: (id?: string, page?: number) => dispatch(productAction.productRequest(id, page)),
-  getProductByCategory: (id?: string, page?: number) => dispatch(productAction.productByCategoryRequest(id, page)),
-  getProductByDepartment: (id?: string, page?: number) => dispatch(productAction.productByDepartmentRequest(id, page)),
-  setPage: (currentpage: number) => dispatch(productAction.setPage(currentpage)),
-  getCategories: (id: string | null) => dispatch(categoryAction.categoryRequest(id)),
+  getProduct: (id?: string, page?: number) =>
+    dispatch(productAction.productRequest(id, page)),
+  getProductByCategory: (id?: string, page?: number) =>
+    dispatch(productAction.productByCategoryRequest(id, page)),
+  getProductByDepartment: (id?: string, page?: number) =>
+    dispatch(productAction.productByDepartmentRequest(id, page)),
+  setPage: (currentpage: number) =>
+    dispatch(productAction.setPage(currentpage)),
+  getCategories: (id: string | null) =>
+    dispatch(categoryAction.categoryRequest(id))
 });
 
 const connectModule = connect(

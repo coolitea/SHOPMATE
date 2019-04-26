@@ -1,1 +1,1 @@
-export { default as MainTemplate } from 'components/templete/main';
+export { default as MainTemplate } from "components/templete/main";

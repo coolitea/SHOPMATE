@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import cn from 'classnames';
-import './Button.scss';
+import * as React from "react";
+import { Link } from "react-router-dom";
+import cn from "classnames";
+import "./Button.scss";
 
 interface ButtonProps {
   className: string;
@@ -15,11 +15,11 @@ const Button: React.SFC<ButtonProps> = ({
   onClick,
   ...rest
 }: ButtonProps) => {
-  const processedClass = cn('button', className)
+  const processedClass = cn("button", className);
   return to ? (
-    <Link className={processedClass} to={to} {...rest}/>
+    <Link className={processedClass} to={to} {...rest} />
   ) : (
-    <button className={processedClass} onClick={onClick}{...rest}/>
+    <button className={processedClass} onClick={onClick} {...rest} />
   );
 };
 

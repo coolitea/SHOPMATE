@@ -1,17 +1,17 @@
-import * as _ from 'underscore';
-import { pager } from 'store/models';
+import * as _ from "underscore";
+import { pager } from "store/models";
 
 // PAGINATIONS
 export const pagination = {
-  setPage(page: number,pageSize: number, count: number): {pager: pager }{
+  setPage(page: number, pageSize: number, count: number): { pager: pager } {
     // if (page < 1) {
     //   return;
     // }
     // get new pager object for specified page
     const pager = this.getPager(count, page, pageSize);
     return {
-      pager,
-    }
+      pager
+    };
   },
   getPager(totalitems: number, currentpage: number, pagesize: number) {
     // default first page
@@ -53,9 +53,9 @@ export const pagination = {
       endPage,
       startIndex,
       endIndex,
-      pages,
-    }
+      pages
+    };
   }
-}
+};
 
 export const average = (total: number, amount: number) => total / amount;

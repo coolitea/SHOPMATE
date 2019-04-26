@@ -1,6 +1,6 @@
-import * as React from 'react';
-import './Responsive.scss';
-import cn from 'classnames';
+import * as React from "react";
+import "./Responsive.scss";
+import cn from "classnames";
 
 interface Props {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ const Responsive: React.SFC<Props> = ({
   className,
   ...rest
 }: Props) => (
-  <div className={cn('common', 'responsive', className)} {...rest}>
+  <div className={cn("common", "responsive", className)} {...rest}>
     {children}
   </div>
 );

@@ -1,12 +1,9 @@
-import * as React from 'react';
-import { MainTemplate, Footer } from 'components';
-import { HeaderContainer, HomeContainer } from 'containers'
+import * as React from "react";
+import { MainTemplate, Footer } from "components";
+import { HeaderContainer, HomeContainer } from "containers";
 
 const Home: React.FC = () => (
-  <MainTemplate 
-    header={<HeaderContainer />}
-    footer={<Footer />}
-  >
+  <MainTemplate header={<HeaderContainer />} footer={<Footer />}>
     <HomeContainer />
   </MainTemplate>
 );

@@ -1,29 +1,22 @@
-import * as React from 'react'
-import './Snackbar.scss';
+import * as React from "react";
+import "./Snackbar.scss";
 
-interface SnackbarProps {
-}
+interface SnackbarProps {}
 
-interface SnackbarState {
-}
+interface SnackbarState {}
 
 class Snackbar extends React.PureComponent<SnackbarProps, SnackbarState> {
-  state = {
-  }
+  state = {};
   onpenSnackBar = () => {
-    this.setState({ isActive: true}, () => {
-      setTimeout(()=> {
-        this.setState({ isActive: false});
+    this.setState({ isActive: true }, () => {
+      setTimeout(() => {
+        this.setState({ isActive: false });
       }, 3000);
     });
-  }
+  };
 
   render() {
-    return (
-      <div className="snackbar show">
-        please sing up
-      </div>
-    )
+    return <div className="snackbar show">please sing up</div>;
   }
 }
 

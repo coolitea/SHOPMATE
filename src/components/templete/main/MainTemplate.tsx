@@ -1,5 +1,5 @@
-import * as React from 'react';
-import './MainTemplate.scss';
+import * as React from "react";
+import "./MainTemplate.scss";
 
 interface Props {
   children?: React.ReactNode;

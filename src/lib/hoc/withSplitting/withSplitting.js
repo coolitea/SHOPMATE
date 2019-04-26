@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-const withSplitting = (getComponent) => {
+const withSplitting = getComponent => {
   class WithSplitting extends React.Component {
     state = {
       Splitted: null
@@ -10,7 +10,7 @@ const withSplitting = (getComponent) => {
       super(props);
       getComponent().then(({ default: Splitted }) => {
         this.setState({
-          Splitted,
+          Splitted
         });
       });
     }
@@ -24,6 +24,6 @@ const withSplitting = (getComponent) => {
     }
   }
   return WithSplitting;
-}
+};
 
 export default withSplitting;

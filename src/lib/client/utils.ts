@@ -1,10 +1,6 @@
-import axios, {
-  AxiosError,
-  AxiosInstance,
-  AxiosResponse,
-} from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
 
-import storage from 'lib/storage';
+import storage from "lib/storage";
 
 export interface Error {
   code: number;
@@ -21,41 +17,41 @@ class utils {
   public loginChain: Promise<any>;
 
   constructor() {
-    this.isLoggedIn = () => !!storage.get('USER-KEY');
+    this.isLoggedIn = () => !!storage.get("USER-KEY");
     this.authUserHeader = () => {
-      const user = storage.get('USER-KEY');
-      if(this.isLoggedIn()) {
+      const user = storage.get("USER-KEY");
+      if (this.isLoggedIn()) {
         return {
-          'USER-KEY': user || {},
-        }
+          "USER-KEY": user || {}
+        };
       }
-      return {}
-    }
+      return {};
+    };
     this.axios = axios.create({
       baseURL: process.env.REACT_APP_API_URL,
       timeout: process.env.REACT_APP_REQUEST_TIMEOUT,
       headers: {
-        'Content-Type': 'application/json',
-        ...this.authUserHeader(),
-      },
+        "Content-Type": "application/json",
+        ...this.authUserHeader()
+      }
     });
     // this.axios.defaults.headers.common['user-key'] = storage.get('USER-KEY');
-    this.loginResolve = () => '';
-    this.loginChain = new Promise((resolve) => {
+    this.loginResolve = () => "";
+    this.loginChain = new Promise(resolve => {
       this.loginResolve = resolve;
     });
-  };
+  }
 
   handleError = (error: AxiosError): Promise<Error> => {
     const errResponse =
       error.response && error.response.data
         ? error.response.data.error
         : {
-          code: error.code,
-          field: '',
-          message: error.message,
-          status: error.code,
-        };
+            code: error.code,
+            field: "",
+            message: error.message,
+            status: error.code
+          };
     return Promise.reject(errResponse);
   };
 
@@ -69,32 +65,32 @@ class utils {
   post(path: string, payload: any) {
     return this.axios
       .post(path, payload)
-      .then((result: AxiosResponse) => result )
+      .then((result: AxiosResponse) => result)
       .catch(this.handleError);
   }
 
   put(path: string, payload: any) {
     return this.axios
-    .post(path, payload)
-    .then((result: AxiosResponse) => result.data || result)
-    .catch(this.handleError);
-  }
-
-  authGet(path: string, payload: any): Promise<any>{
-    return this.loginChain
-      .then(()=> this.get(path, payload))
+      .post(path, payload)
+      .then((result: AxiosResponse) => result.data || result)
       .catch(this.handleError);
   }
 
-  authPost(path: string, payload: any): Promise<any>{
+  authGet(path: string, payload: any): Promise<any> {
     return this.loginChain
-      .then(()=> this.get(path, payload))
+      .then(() => this.get(path, payload))
       .catch(this.handleError);
   }
 
-  authPut(path: string, payload: any): Promise<any>{
+  authPost(path: string, payload: any): Promise<any> {
     return this.loginChain
-      .then(()=> this.get(path, payload))
+      .then(() => this.get(path, payload))
+      .catch(this.handleError);
+  }
+
+  authPut(path: string, payload: any): Promise<any> {
+    return this.loginChain
+      .then(() => this.get(path, payload))
       .catch(this.handleError);
   }
 }

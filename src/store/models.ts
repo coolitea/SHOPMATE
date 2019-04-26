@@ -1,4 +1,4 @@
-import { Error } from 'lib/client/utils';
+import { Error } from "lib/client/utils";
 
 // DEPARTMENTS
 export interface departments {
@@ -37,8 +37,8 @@ export interface customer {
   address_2?: string;
   city?: string;
   region?: string;
-  postal_code?: string,
-  country?: string,
+  postal_code?: string;
+  country?: string;
   shipping_region_id?: number;
   day_phone?: string;
   eve_phone?: string;
@@ -88,7 +88,7 @@ export interface pager {
 }
 
 export interface productState {
-  search: product_lists,
+  search: product_lists;
   products: product_lists;
   productDetail: products_detail;
   currentPage: number;

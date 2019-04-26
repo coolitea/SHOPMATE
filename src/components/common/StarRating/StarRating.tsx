@@ -1,5 +1,5 @@
-import * as React from 'react';
-import Star from './Star';
+import * as React from "react";
+import Star from "./Star";
 
 interface StarRatingProps {
   totalStar: number;
@@ -14,11 +14,11 @@ interface StarRatingState {
 class StarRating extends React.Component<StarRatingProps, StarRatingState> {
   static defaultProps = {
     totalStar: 5,
-    show: false,
-  }
+    show: false
+  };
   state = {
-    starsSelected: 0,
-  }
+    starsSelected: 0
+  };
   componentDidUpdate(prev: StarRatingProps) {
     // const { starsSelected } = this.props;
     // if(prev.starsSelected !== this.props.starsSelected) {
@@ -28,22 +28,23 @@ class StarRating extends React.Component<StarRatingProps, StarRatingState> {
     // }
   }
   change(starsSelected: number) {
-    this.setState({ starsSelected })
+    this.setState({ starsSelected });
   }
   render() {
     const { totalStar, show, starsSelected } = this.props;
     // const { starsSelected } = this.state;
     return (
       <div className="star-rating">
-        {[...Array(totalStar)].map((n, i) =>
-          <Star key={i}
+        {[...Array(totalStar)].map((n, i) => (
+          <Star
+            key={i}
             selected={i < starsSelected}
-            onClick={(e) => this.change(i + 1)}
+            onClick={e => this.change(i + 1)}
             show={show}
           />
-        )}
+        ))}
       </div>
-    )
+    );
   }
 }
 

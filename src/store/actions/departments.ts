@@ -1,6 +1,6 @@
-import * as types from 'store/constants';
-import { departmentsState } from 'store/models';
-import { Error } from 'lib/client/utils';
+import * as types from "store/constants";
+import { departmentsState } from "store/models";
+import { Error } from "lib/client/utils";
 
 let request: string, success: string, failure: string;
 
@@ -8,20 +8,19 @@ request = types.GET_DEPARTMENTS[types.REQUEST];
 success = types.GET_DEPARTMENTS[types.SUCCESS];
 failure = types.GET_DEPARTMENTS[types.FAILURE];
 
-
 const departmentRequest = (id: string | null) => ({
   type: request,
-  id,
+  id
 });
 
 const departmentSuccess = (departments: departmentsState) => ({
   type: success,
-  payload: departments,
+  payload: departments
 });
 
 const departmentfailure = (err: Error) => ({
   type: failure,
-  err: err,
+  err: err
 });
 
 interface departmentRequestAction {
@@ -39,10 +38,13 @@ interface departmentFailureAction {
   err: Error;
 }
 
-export type DepartmentActionTypes = departmentRequestAction | departmentSuccessAction | departmentFailureAction;
+export type DepartmentActionTypes =
+  | departmentRequestAction
+  | departmentSuccessAction
+  | departmentFailureAction;
 
 export default {
   departmentRequest,
   departmentSuccess,
-  departmentfailure,
-}
+  departmentfailure
+};

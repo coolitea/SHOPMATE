@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Button from './Button';
-import { attribute } from 'store/models';
-import './ColorPicker.scss';
+import * as React from "react";
+import Button from "./Button";
+import { attribute } from "store/models";
+import "./ColorPicker.scss";
 
 interface ColorPickerProps {
   color: attribute[];
@@ -12,8 +12,8 @@ interface ColorPickerState {
 
 class ColorPicker extends React.Component<ColorPickerProps, ColorPickerState> {
   state = {
-    activeColor: '',
-  }
+    activeColor: ""
+  };
   componentDidUpdate(prev: ColorPickerProps) {
     const { color } = this.props;
     if (prev === undefined) {
@@ -23,25 +23,25 @@ class ColorPicker extends React.Component<ColorPickerProps, ColorPickerState> {
   onChange(color: string) {
     setTimeout(() => {
       this.setState({
-        activeColor: color,
-      })
-    }, 1)
+        activeColor: color
+      });
+    }, 1);
   }
   render() {
     const { color } = this.props;
     const { activeColor } = this.state;
     return (
       <div className="color-picker">
-        { color.map((att, i) =>
+        {color.map((att, i) => (
           <Button
             key={i}
             color={att.attribute_value}
             activeColor={activeColor}
             onClick={this.onChange.bind(this)}
           />
-        )}
+        ))}
       </div>
-    )
+    );
   }
 }
 

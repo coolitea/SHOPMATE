@@ -1,12 +1,13 @@
-import { 
+import {
   POST_LOGIN,
   POST_REGISTER,
   GET_USER,
   REQUEST,
   SUCCESS,
-  FAILURE } from 'store/constants';
-import { customerState } from 'store/models';
-import { Error } from 'lib/client/utils';
+  FAILURE
+} from "store/constants";
+import { customerState } from "store/models";
+import { Error } from "lib/client/utils";
 
 export interface login {
   email: string;
@@ -18,17 +19,17 @@ export interface register extends login {
 }
 // GET USER
 const getUserRequest = () => ({
-  type: GET_USER[REQUEST],
+  type: GET_USER[REQUEST]
 });
 
 const getUserSuccess = (customer: customerState) => ({
   type: GET_USER[SUCCESS],
-  payload: customer,
+  payload: customer
 });
 
 const getUserFailure = (err: Error) => ({
   type: GET_USER[FAILURE],
-  err,
+  err
 });
 
 interface getUserRequestAction {
@@ -49,17 +50,17 @@ interface getUserFailureAction {
 const loginRequest = ({ email, password }: login) => ({
   type: POST_LOGIN[REQUEST],
   email,
-  password,
+  password
 });
 
 const loginSuccess = (customer: customerState) => ({
   type: POST_LOGIN[SUCCESS],
-  payload: customer,
+  payload: customer
 });
 
 const loginFailure = (err: Error) => ({
   type: POST_LOGIN[FAILURE],
-  err,
+  err
 });
 
 interface loginRequestAction {
@@ -82,17 +83,17 @@ const registerRequest = ({ email, password, name }: register) => ({
   type: POST_REGISTER[REQUEST],
   email,
   password,
-  name,
+  name
 });
 
 const registerSuccess = (customer: customerState) => ({
   type: POST_REGISTER[SUCCESS],
-  payload: customer,
+  payload: customer
 });
 
 const registerFailure = (err: Error) => ({
   type: POST_REGISTER[FAILURE],
-  err: err,
+  err: err
 });
 
 interface registerRequestAction {
@@ -110,7 +111,10 @@ interface registerFailureAction {
   err: Error;
 }
 
-export type LoginActionTypes = loginRequestAction | loginSuccessAction | loginFailureAction;
+export type LoginActionTypes =
+  | loginRequestAction
+  | loginSuccessAction
+  | loginFailureAction;
 
 export default {
   loginRequest,
@@ -121,5 +125,5 @@ export default {
   registerFailure,
   getUserRequest,
   getUserSuccess,
-  getUserFailure,
-}
+  getUserFailure
+};

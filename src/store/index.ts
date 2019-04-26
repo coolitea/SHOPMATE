@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import logger from 'redux-logger';
-import { rootReducer } from 'store/reducers';
-import rootSaga from 'store/sagas';
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
+import logger from "redux-logger";
+import { rootReducer } from "store/reducers";
+import rootSaga from "store/sagas";
 
 function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
@@ -15,7 +15,7 @@ function configureStore() {
   rootSaga.map(sagaMiddleware.run);
 
   return store;
-};
+}
 
 const rootStore = configureStore();
 

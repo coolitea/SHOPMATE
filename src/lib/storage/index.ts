@@ -1,18 +1,18 @@
 type LocalStorage = {
   [key: string]: any;
-}
+};
 
-const st: LocalStorage = typeof localStorage === 'object' ? localStorage : {};
+const st: LocalStorage = typeof localStorage === "object" ? localStorage : {};
 
 type Storage = {
   set(key: string, value: any): void;
-  get(key: string): any,
-  remove(key: string): void,
-  clear(): void,
-}
+  get(key: string): any;
+  remove(key: string): void;
+  clear(): void;
+};
 
 export const keys = {
-  user: '__shopmate_user__',
+  user: "__shopmate_user__"
 };
 
 const storage: Storage = {
@@ -36,7 +36,7 @@ const storage: Storage = {
     if (st.clear) {
       st.clear();
     }
-  },
+  }
 };
 
 export default storage;

@@ -1,14 +1,14 @@
-import * as React from 'react';
-import './Detail.scss';
+import * as React from "react";
+import "./Detail.scss";
 import {
   Responsive,
   StarRating,
   ColorPicker,
   SizePicker,
-  Button,
-} from 'components/common';
-import { attribute, review, products_detail } from 'store/models';
-import Review from './Review';
+  Button
+} from "components/common";
+import { attribute, review, products_detail } from "store/models";
+import Review from "./Review";
 
 interface Props {
   reviews: review[];
@@ -27,7 +27,7 @@ const Detail: React.SFC<Props> = ({
   colors,
   sizes,
   quantity,
-  onChangequantity,
+  onChangequantity
 }) => {
   return (
     <Responsive>
@@ -37,16 +37,14 @@ const Detail: React.SFC<Props> = ({
             <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`} />
             <div className="cards">
               <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image}`} />
-              <img src={`${process.env.REACT_APP_IMAGE_URL}${details.image_2}`} />
+              <img
+                src={`${process.env.REACT_APP_IMAGE_URL}${details.image_2}`}
+              />
             </div>
           </div>
 
           <div className="contents">
-            <StarRating
-              totalStar={5}
-              starsSelected={star}
-              show={true}
-            />
+            <StarRating totalStar={5} starsSelected={star} show={true} />
             <h3 className="title">{details.name}</h3>
             <div className="price">${details.price}</div>
             <div className="color">
@@ -76,27 +74,23 @@ const Detail: React.SFC<Props> = ({
                 </div>
               </div>
             </div>
-            <Button
-              className="medium1"
-            >
-              Add to cart
-            </Button>
+            <Button className="medium1">Add to cart</Button>
           </div>
         </div>
         <div className="reviews">
           <h3>Product reviews</h3>
-          {reviews.map((review, i) =>
+          {reviews.map((review, i) => (
             <Review
               key={i}
               name={review.name}
               rating={review.rating}
               review={review.review}
             />
-          )}
+          ))}
         </div>
       </div>
     </Responsive>
   );
-}
+};
 
 export default Detail;

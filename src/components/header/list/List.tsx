@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import './List.scss';
+import * as React from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import "./List.scss";
 
 interface Props extends RouteComponentProps {
   name: string;
@@ -9,15 +9,17 @@ interface Props extends RouteComponentProps {
   product_id: number;
 }
 
-const List: React.SFC<Props> = ({ 
+const List: React.SFC<Props> = ({
   name,
   price,
   thumbnail,
   product_id,
-  history,
+  history
 }) => (
   <li className="list">
-    <span className="name">{name} ${price}</span>
+    <span className="name">
+      {name} ${price}
+    </span>
   </li>
 );
 

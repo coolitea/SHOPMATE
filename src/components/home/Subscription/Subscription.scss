@@ -1,11 +1,11 @@
-@import '~assets/styles/main';
+@import "~assets/styles/main";
 
 .subscription {
   height: 264px;
   background-color: #efefef;
   padding-top: 43px;
 
-  @include media('<tablet-xx') {
+  @include media("<tablet-xx") {
     height: 350px;
   }
 
@@ -23,10 +23,9 @@
     color: $red-pink;
     margin: 0 auto;
 
-    @include media('<tablet-xx') {
+    @include media("<tablet-xx") {
       width: 300px;
     }
-
   }
 
   .subscription_sub {
@@ -44,7 +43,7 @@
     margin: 0 auto;
     margin-top: 10px;
 
-    @include media('<tablet-xx') {
+    @include media("<tablet-xx") {
       width: 359px;
     }
   }
@@ -58,19 +57,19 @@
     margin-top: 24px;
     flex-wrap: wrap;
 
-    @include media('<tablet-xx') {
+    @include media("<tablet-xx") {
       width: 188px;
     }
 
     .mail {
       position: relative;
-  
+
       .mail-icon {
-        position:absolute;
+        position: absolute;
         top: 10px;
         left: 15px;
       }
-  
+
       input {
         text-align: left;
         border-radius: 18px;
@@ -91,17 +90,17 @@
 
         &:focus {
           outline: 0;
-          transition: .5s;
+          transition: 0.5s;
         }
       }
-  
+
       ::placeholder {
         color: #bababa;
       }
     }
 
     .small1 {
-      @include media('<tablet-xx') {
+      @include media("<tablet-xx") {
         margin-top: 20px;
       }
     }

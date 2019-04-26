@@ -1,4 +1,4 @@
-import { 
+import {
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORY,
   GET_PRODUCTS_BY_DEPARTMENT,
@@ -8,9 +8,16 @@ import {
   SET_PAGE,
   REQUEST,
   SUCCESS,
-  FAILURE,
-} from 'store/constants';
-import { productState, products, products_detail, product_lists, pager, review } from 'store/models';
+  FAILURE
+} from "store/constants";
+import {
+  productState,
+  products,
+  products_detail,
+  product_lists,
+  pager,
+  review
+} from "store/models";
 
 // GET_PRODUCT_SEARCH
 
@@ -19,33 +26,33 @@ const searchRequest = (
   all_word?: string,
   page?: number,
   limit?: number,
-  description_length?: number,
-  ) => ({
+  description_length?: number
+) => ({
   type: GET_PRODUCT_SEARCH[REQUEST],
   query_string,
   all_word,
   page,
   limit,
-  description_length,
+  description_length
 });
 
 const searchSuccess = (products: product_lists) => ({
   type: GET_PRODUCT_SEARCH[SUCCESS],
-  payload: products,
+  payload: products
 });
 
 const searchFailure = (err: Error) => ({
   type: GET_PRODUCT_SEARCH[FAILURE],
-  err: err.message,
+  err: err.message
 });
 
 interface searchRequestAction {
   type: typeof GET_PRODUCT_SEARCH["REQUEST"];
-  query_string: string,
-  all_word?: string,
-  page?: number,
-  limit?: number,
-  description_length?: number,
+  query_string: string;
+  all_word?: string;
+  page?: number;
+  limit?: number;
+  description_length?: number;
 }
 
 interface searchSuccessAction {
@@ -61,17 +68,17 @@ interface searchFailureAction {
 // GET_PRODUCT_DETATILS
 const detailRequest = (id: string) => ({
   type: GET_PRODUCT_DETAIL[REQUEST],
-  id,
+  id
 });
 
 const detailSuccess = (details: products_detail) => ({
   type: GET_PRODUCT_DETAIL[SUCCESS],
-  payload: details,
+  payload: details
 });
 
 const detailFailure = (err: Error) => ({
   type: GET_PRODUCT_DETAIL[FAILURE],
-  err: err.message,
+  err: err.message
 });
 
 interface detailRequestAction {
@@ -91,17 +98,17 @@ interface detailFailureAction {
 // GET_REVIEWS
 const reviewRequest = (id: string) => ({
   type: GET_REVIEWS[REQUEST],
-  id,
+  id
 });
 
 const reviewSuccess = (reviews: review[]) => ({
   type: GET_REVIEWS[SUCCESS],
-  payload: reviews,
+  payload: reviews
 });
 
 const reviewFailure = (err: Error) => ({
   type: GET_REVIEWS[FAILURE],
-  err: err.message,
+  err: err.message
 });
 
 interface reviewRequestAction {
@@ -123,17 +130,17 @@ interface reviewFailureAction {
 const productRequest = (id?: string, page?: number) => ({
   type: GET_PRODUCTS[REQUEST],
   id,
-  page,
+  page
 });
 
 const productSuccess = (data: product_lists) => ({
   type: GET_PRODUCTS[SUCCESS],
-  payload: data,
+  payload: data
 });
 
 const productFailure = (err: Error) => ({
   type: GET_PRODUCTS[FAILURE],
-  err: err.message,
+  err: err.message
 });
 
 interface productRequestAction {
@@ -156,23 +163,23 @@ interface productFailureAction {
 const productByCategoryRequest = (id?: string, page?: number) => ({
   type: GET_PRODUCTS_BY_CATEGORY[REQUEST],
   id,
-  page,
+  page
 });
 
 const productByCategorySuccess = (data: product_lists) => ({
   type: GET_PRODUCTS_BY_CATEGORY[SUCCESS],
-  payload: data,
+  payload: data
 });
 
 const productByCategoryFailure = (err: Error) => ({
   type: GET_PRODUCTS_BY_CATEGORY[FAILURE],
-  err: err.message,
+  err: err.message
 });
 
 interface productByCategoryRequestAction {
   type: typeof GET_PRODUCTS_BY_CATEGORY["REQUEST"];
   id?: string;
-  page?: number
+  page?: number;
 }
 
 interface productByCategorySuccessAction {
@@ -188,17 +195,17 @@ interface productByCategoryFailureAction {
 const productByDepartmentRequest = (id?: string, page?: number) => ({
   type: GET_PRODUCTS_BY_DEPARTMENT[REQUEST],
   id,
-  page,
+  page
 });
 
 const productByDepartmentSuccess = (data: product_lists) => ({
   type: GET_PRODUCTS_BY_DEPARTMENT[SUCCESS],
-  payload: data,
+  payload: data
 });
 
 const productByDepartmentFailure = (err: Error) => ({
   type: GET_PRODUCTS_BY_DEPARTMENT[FAILURE],
-  err: err.message,
+  err: err.message
 });
 
 interface productByDepartmentRequestAction {
@@ -218,16 +225,26 @@ interface productByDepartmentFailureAction {
 }
 
 export const setPage = (currentpage: number) => ({
-  type: SET_PAGE, 
-  currentpage,
-})
+  type: SET_PAGE,
+  currentpage
+});
 
 interface setPageAction {
   type: typeof SET_PAGE;
   currentpage: number;
 }
 
-export type ProductActionTypes = productRequestAction | productSuccessAction | productFailureAction | productByCategoryRequestAction |productByCategorySuccessAction | productByCategoryFailureAction | productByDepartmentRequestAction | productByDepartmentSuccessAction | productByDepartmentFailureAction | setPageAction;
+export type ProductActionTypes =
+  | productRequestAction
+  | productSuccessAction
+  | productFailureAction
+  | productByCategoryRequestAction
+  | productByCategorySuccessAction
+  | productByCategoryFailureAction
+  | productByDepartmentRequestAction
+  | productByDepartmentSuccessAction
+  | productByDepartmentFailureAction
+  | setPageAction;
 
 export default {
   searchRequest,
@@ -248,5 +265,5 @@ export default {
   detailRequest,
   detailSuccess,
   detailFailure,
-  setPage,
-}
+  setPage
+};

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import './Button.scss';
+import * as React from "react";
+import "./Button.scss";
 
 interface Props {
   size: string;
@@ -7,13 +7,9 @@ interface Props {
   onClick: (size: string) => void;
 }
 
-const Button: React.SFC<Props> = ({
-  size,
-  activeSize,
-  onClick,
-}) => (
+const Button: React.SFC<Props> = ({ size, activeSize, onClick }) => (
   <div
-    className={ size === activeSize ? "size-button active": "size-button"}
+    className={size === activeSize ? "size-button active" : "size-button"}
     onClick={() => onClick(size)}
   >
     {size}

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import './Pagination.scss';
-import { pager } from 'store/models';
-import { productAction } from 'store/actions';
+import * as React from "react";
+import "./Pagination.scss";
+import { pager } from "store/models";
+import { productAction } from "store/actions";
 
 interface Props {
   pager: pager;
@@ -10,7 +10,7 @@ interface Props {
 
 const Pagination: React.SFC<Props> = ({
   pager: { pages, currentpage, totalPages },
-  setPage,
+  setPage
 }) => {
   if (!pages || pages.length <= 1 || !currentpage || !totalPages) {
     return null;
@@ -19,8 +19,8 @@ const Pagination: React.SFC<Props> = ({
     <div className="pagination">
       <ul>
         <li
-          className={currentpage === 1 ? 'pagination_move' : ''}
-          onClick={() => setPage(currentpage -1)}
+          className={currentpage === 1 ? "pagination_move" : ""}
+          onClick={() => setPage(currentpage - 1)}
         >
           prev
         </li>
@@ -28,24 +28,22 @@ const Pagination: React.SFC<Props> = ({
           return (
             <li
               key={index}
-              className={
-                currentpage === page ? 'pagination--active' : ''
-              }
+              className={currentpage === page ? "pagination--active" : ""}
               onClick={() => setPage(page)}
             >
               {page}
             </li>
-          )
+          );
         })}
         <li
-          className={currentpage === totalPages ? 'pagination_move' : ''}
-          onClick={() => setPage(currentpage +1)}
+          className={currentpage === totalPages ? "pagination_move" : ""}
+          onClick={() => setPage(currentpage + 1)}
         >
           next
         </li>
       </ul>
     </div>
-  )
+  );
 };
 
 export default Pagination;

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import './Star.scss';
+import * as React from "react";
+import "./Star.scss";
 
 interface Props {
   selected: boolean;
@@ -10,12 +10,12 @@ interface Props {
 const Star: React.SFC<Props> = ({
   selected = false,
   onClick = f => f,
-  show,
+  show
 }) => (
-    <div
-      className={(selected) ? "star selected" : "star"}
-      onClick={(show) ? (e) => e.preventDefault : onClick}
-    />
-  )
+  <div
+    className={selected ? "star selected" : "star"}
+    onClick={show ? e => e.preventDefault : onClick}
+  />
+);
 
 export default Star;

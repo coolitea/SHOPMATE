@@ -1,6 +1,6 @@
-import * as React from 'react';
-import cn from 'classnames';
-import './Input.scss';
+import * as React from "react";
+import cn from "classnames";
+import "./Input.scss";
 
 interface InputProps {
   className?: string;
@@ -22,7 +22,7 @@ const Input: React.SFC<InputProps> = ({
   num,
   ...rest
 }: InputProps) => {
-  const processedClass = cn('input', className);
+  const processedClass = cn("input", className);
   return (
     <input
       className={processedClass}

@@ -1,8 +1,9 @@
-import { AxiosPromise } from 'axios';
-import client from 'lib/client/utils';
+import { AxiosPromise } from "axios";
+import client from "lib/client/utils";
 
-const getAttributeByProductId = (id: string): any => client.get(`/attributes/inProduct/${id}`);
+const getAttributeByProductId = (id: string): any =>
+  client.get(`/attributes/inProduct/${id}`);
 
 export default {
-  getAttributeByProductId,
-}
+  getAttributeByProductId
+};

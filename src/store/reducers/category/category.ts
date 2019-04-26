@@ -1,10 +1,10 @@
-import { GET_CATEGORIES, REQUEST, SUCCESS, FAILURE } from 'store/constants';
-import { categoriesState } from 'store/models';
-import { CategoryActionTypes } from 'store/actions/categories';
+import { GET_CATEGORIES, REQUEST, SUCCESS, FAILURE } from "store/constants";
+import { categoriesState } from "store/models";
+import { CategoryActionTypes } from "store/actions/categories";
 
 const initialState: categoriesState = {
   isLoading: false,
-  rows: [],
+  rows: []
 };
 
 export default function(state = initialState, action: any): categoriesState {
@@ -14,19 +14,19 @@ export default function(state = initialState, action: any): categoriesState {
         ...initialState,
         isLoading: true,
         rows: state.rows,
-        count: state.count,
+        count: state.count
       };
     case GET_CATEGORIES[SUCCESS]:
       return {
         ...initialState,
         isLoading: false,
         rows: action.payload.rows,
-        count: action.payload.count,
+        count: action.payload.count
       };
     case GET_CATEGORIES[FAILURE]:
       return {
         ...initialState,
-        err: action.err,
+        err: action.err
       };
     default:
       return state;
