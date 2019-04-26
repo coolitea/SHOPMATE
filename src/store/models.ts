@@ -117,3 +117,19 @@ export interface attributeState {
   sizes: attribute[];
   err?: Error;
 }
+
+// SHOPPINGCART
+export interface cart {
+  item_id: number;
+  name: string;
+  attributes: string;
+  price: string;
+  quantity: number;
+  subtotal: string;
+}
+
+export interface cartState {
+  cart_id: string;
+  cart: cart[];
+  err?: string;
+}

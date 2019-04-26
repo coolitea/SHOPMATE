@@ -37,5 +37,14 @@ export const GET_USER = createRequestTypes("GET_USER");
 export const GET_ATTRIBUTES_WITH_PRODUCTID = createRequestTypes(
   "GET_ATTRIBUTES_WITH_PRODUCTID"
 );
+
+export const GET_GENERATE_CART_ID = createRequestTypes("GET_GENERATE_CART_ID");
+export const POST_ADD_PRODUCT = createRequestTypes("POST_ADD_PRODUCT");
+export const GET_LIST_OF_CART = createRequestTypes("GET_LIST_OF_CART");
+export const PUT_UPDATE_CART = createRequestTypes("PUT_UPDATE_CART");
+export const DELETE_EMPTY_CART = createRequestTypes("DELETE_EMPTY_CART");
+export const GET_TOTAL_AMOUNT = createRequestTypes("GET_TOTAL_AMOUNT");
+export const DELETE_PRODUCT_IN_CART = createRequestTypes("DELETE_PRODUCT_IN_CART");
+
 // without I/O
 export const SET_PAGE = "SET_PAGE";

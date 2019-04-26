@@ -1,14 +1,12 @@
-import { all, fork, call, put, take } from 'redux-saga/effects';
-import { Catogories } from 'lib/api';
-import { categoryAction } from 'store/actions';
-import * as types from 'store/constants';
+import { all, fork, call, put, take } from "redux-saga/effects";
+import { Catogories } from "lib/api";
+import { categoryAction } from "store/actions";
+import * as types from "store/constants";
 
 export function* fetchCountries(id: string) {
   const { data, error } = yield call(Catogories.getCategories, id);
-  if (data)
-    yield put(categoryAction.categorySuccess(data));
-  else
-    yield put(categoryAction.categoryfailure(error));
+  if (data) yield put(categoryAction.categorySuccess(data));
+  else yield put(categoryAction.categoryfailure(error));
 }
 
 export function* watchFetchCountries() {
@@ -18,6 +16,6 @@ export function* watchFetchCountries() {
   }
 }
 
-export default function* () {
+export default function*() {
   yield all([fork(watchFetchCountries)]);
 }
