@@ -5,14 +5,11 @@ import { Helmet } from 'react-helmet';
 
 const App: React.FC = () => (
   <>
-    <Helmet>
-      <title>ShopMate</title>
-      <meta
-        name="description"
-        content="Turing front-end e-commerce system code"
-      />
-      <meta property="fb:app_id" content="203040656938507" />
-      <meta property="og:image" content="https://images.velog.io/velog.png" />
+    <Helmet
+      htmlAttributes={{lang: 'en'}}
+      meta={[{ name: "description", content: "Turing front-end e-commerce system code"}]}
+      title="ShopMate"
+    >
     </Helmet>
     <Switch>
       {routes.map(({ path, page, exact }, i) => (

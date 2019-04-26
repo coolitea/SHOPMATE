@@ -1,12 +1,12 @@
 import * as React from 'react';
-import './Header.scss';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { departments } from 'store/models';
 import { FaOpencart, FaSearch } from "react-icons/fa";
 import { Responsive } from 'components/common';
-import storage from 'lib/storage';
-import Auth from './auth';
 import { customer, products } from 'store/models';
+
+import './Header.scss';
+import Auth from './auth';
 import List from './list';
 import client from 'lib/client/utils';
 
@@ -40,7 +40,7 @@ const Header: React.SFC<Props> = ({
   searchItems,
 }) => {
   const [burger, setBurger] = React.useState(false);
-  const notify = () => toast('please sign in', { autoClose: 1500});
+  const notify = () => toast.info('please sign in', { autoClose: 1500});
   const toCart = () => history.push('/cart');
   return (
     <Responsive>
