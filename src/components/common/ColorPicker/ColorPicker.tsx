@@ -5,6 +5,7 @@ import "./ColorPicker.scss";
 
 interface ColorPickerProps {
   color: attribute[];
+  onChangeColor: (color: string) => void;
 }
 interface ColorPickerState {
   activeColor: string;
@@ -26,6 +27,7 @@ class ColorPicker extends React.Component<ColorPickerProps, ColorPickerState> {
         activeColor: color
       });
     }, 1);
+    this.props.onChangeColor(color);
   }
   render() {
     const { color } = this.props;

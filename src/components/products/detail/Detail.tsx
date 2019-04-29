@@ -9,6 +9,10 @@ import {
 } from "components/common";
 import { attribute, review, products_detail } from "store/models";
 import Review from "./Review";
+import client from "lib/client/utils";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
   reviews: review[];
@@ -18,6 +22,9 @@ interface Props {
   sizes: attribute[];
   quantity: number;
   onChangequantity: (quantity: number) => void;
+  onChangeColor: (color: string) => void;
+  onChangeSize: (size: string) => void;
+  addToCart: () => void;
 }
 
 const Detail: React.SFC<Props> = ({
@@ -27,8 +34,12 @@ const Detail: React.SFC<Props> = ({
   colors,
   sizes,
   quantity,
-  onChangequantity
+  onChangequantity,
+  onChangeColor,
+  onChangeSize,
+  addToCart
 }) => {
+  const notify = () => toast.info("please sign in", { autoClose: 1500 });
   return (
     <Responsive>
       <div className="detail_container">
@@ -49,18 +60,20 @@ const Detail: React.SFC<Props> = ({
             <div className="price">${details.price}</div>
             <div className="color">
               <div>Color</div>
-              <ColorPicker color={colors} />
+              <ColorPicker color={colors} onChangeColor={onChangeColor} />
             </div>
             <div className="size">
               <div>Size</div>
-              <SizePicker size={sizes} />
+              <SizePicker size={sizes} onChangeSize={onChangeSize} />
             </div>
             <div className="quantity">
               <div>Quantity</div>
               <div className="container">
                 <div
                   className="minus"
-                  onClick={() => onChangequantity(quantity - 1)}
+                  onClick={() =>
+                    quantity > 1 ? onChangequantity(quantity - 1) : ""
+                  }
                 >
                   <div />
                 </div>
@@ -74,7 +87,11 @@ const Detail: React.SFC<Props> = ({
                 </div>
               </div>
             </div>
-            <Button className="medium1">Add to cart</Button>
+            <Button
+              className="medium1"
+              onClick={client.isLoggedIn() ? addToCart : notify}
+            >Add to cart</Button>
+            <ToastContainer />
           </div>
         </div>
         <div className="reviews">

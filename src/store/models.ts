@@ -129,7 +129,7 @@ export interface cart {
 }
 
 export interface cartState {
-  cart_id: string;
   cart: cart[];
+  total_amount: number;
   err?: string;
 }

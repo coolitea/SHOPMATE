@@ -1,5 +1,10 @@
 import * as React from "react";
-import { departmentAction, authAction, productAction } from "store/actions";
+import {
+  departmentAction,
+  authAction,
+  productAction,
+  cartAction
+} from "store/actions";
 import { login, register } from "store/actions/auth";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
@@ -8,6 +13,7 @@ import { departments, customer, products } from "store/models";
 import { Header } from "components";
 import _ from "underscore";
 import client from "lib/client/utils";
+import storage from "lib/storage";
 
 interface Props {
   departments: departments[];
@@ -18,6 +24,7 @@ interface Props {
   user?: customer;
   getSearch: typeof productAction.searchRequest;
   searchItems: products[];
+  getCartId: typeof cartAction.generateCartRequest;
 }
 
 interface HeaderState {
@@ -135,6 +142,9 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
     if (client.isLoggedIn()) {
       this.props.getUser();
     }
+    if (storage.get("CART_ID") === null) {
+      this.props.getCartId();
+    }
   }
 
   componentDidUpdate(prevProps: Props, prevState: HeaderState) {
@@ -194,7 +204,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         limit,
         description_length
       )
-    )
+    ),
+  getCartId: () => dispatch(cartAction.generateCartRequest())
 });
 
 const connectModule = connect(

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { attributeAction, productAction } from "store/actions";
+import { attributeAction, productAction, cartAction } from "store/actions";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -17,14 +17,19 @@ interface Props extends RouteComponentProps<Params> {
   star: number;
   colors: attribute[];
   sizes: attribute[];
+  addToCart: typeof cartAction.addToCartRequest;
 }
 
 interface DetailState {
   quantity: number;
+  color: string;
+  size: string;
 }
 class DetailContainer extends React.Component<Props, DetailState> {
   state = {
-    quantity: 0
+    quantity: 1,
+    color: "",
+    size: ""
   };
   componentDidMount() {
     this.props.getAttributes(this.props.match.params.id);
@@ -35,6 +40,26 @@ class DetailContainer extends React.Component<Props, DetailState> {
     this.setState({
       quantity
     });
+  }
+  onChangeColor(color: string) {
+    this.setState({
+      color
+    });
+  }
+  onChangeSize(size: string) {
+    this.setState({
+      size
+    });
+  }
+  addToCart() {
+    const { color, size, quantity } = this.state;
+    const { addToCart, match: { params: { id }} } = this.props;
+    const data = { 
+      product_id: id,
+      quantity,
+      attributes: `${size},${color}`,
+    };
+    addToCart(data);
   }
   render() {
     const { reviews, details, star, sizes, colors } = this.props;
@@ -49,6 +74,9 @@ class DetailContainer extends React.Component<Props, DetailState> {
           colors={colors}
           quantity={quantity}
           onChangequantity={this.onChangequantity.bind(this)}
+          onChangeColor={this.onChangeColor.bind(this)}
+          onChangeSize={this.onChangeSize.bind(this)}
+          addToCart={this.addToCart.bind(this)}
         />
       </>
     );
@@ -66,7 +94,8 @@ const mapStateToProps = (rootState: rootState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   getAttributes: (id: string) => dispatch(attributeAction.attributeRequest(id)),
   getReviews: (id: string) => dispatch(productAction.reviewRequest(id)),
-  getDetails: (id: string) => dispatch(productAction.detailRequest(id))
+  getDetails: (id: string) => dispatch(productAction.detailRequest(id)),
+  addToCart: (data: any) => dispatch(cartAction.addToCartRequest(data))
 });
 
 const connectModule = connect(

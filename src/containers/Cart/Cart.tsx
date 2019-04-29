@@ -1,27 +1,36 @@
 import * as React from "react";
-import { attributeAction, productAction } from "store/actions";
+import { cartAction } from "store/actions";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { review, products_detail, attribute } from "store/models";
+import { cart } from "store/models";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { Params } from "lib/type";
-import Detail from "components/products/detail";
 
-interface Props extends RouteComponentProps<Params> {}
+interface Props extends RouteComponentProps {
+  listOfCart: typeof cartAction.listCartRequest;
+  totalAmount: typeof cartAction.totalAmountRequest;
+  cart: cart[];
+}
 
-interface CartState {}
-class CartContainer extends React.Component<Props, CartState> {
-  componentDidMount() {}
+class CartContainer extends React.Component<Props> {
+  componentDidMount() {
+    this.props.listOfCart();
+    this.props.totalAmount();
+  }
 
   render() {
     return <>cart container</>;
   }
 }
 
-const mapStateToProps = (rootState: rootState) => ({});
+const mapStateToProps = (rootState: rootState) => ({
+  cart: rootState.shoppingcart.cart
+});
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  listOfCart: () => dispatch(cartAction.listCartRequest()),
+  totalAmount: () => dispatch(cartAction.totalAmountRequest())
+});
 
 const connectModule = connect(
   mapStateToProps,

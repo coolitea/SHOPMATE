@@ -5,6 +5,7 @@ import { attribute } from "store/models";
 
 interface SizePickerProps {
   size: attribute[];
+  onChangeSize: (size: string) => void;
 }
 interface SizePickerState {
   activeSize: string;
@@ -26,6 +27,7 @@ class SizePicker extends React.Component<SizePickerProps, SizePickerState> {
         activeSize: size
       });
     }, 1);
+    this.props.onChangeSize(size);
   }
   render() {
     const { size } = this.props;
