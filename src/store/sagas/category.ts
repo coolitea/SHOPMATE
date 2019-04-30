@@ -1,21 +1,15 @@
-import { all, fork, call, put, take } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { Catogories } from "lib/api";
 import { categoryAction } from "store/actions";
 import * as types from "store/constants";
 
-export function* fetchCountries(id: string) {
-  const { data, error } = yield call(Catogories.getCategories, id);
+export function* fetchCategories(action: any) {
+  const { data, error } = yield call(Catogories.getCategories, action.payload);
   if (data) yield put(categoryAction.categorySuccess(data));
-  else yield put(categoryAction.categoryfailure(error));
+  else yield put(categoryAction.categoryFailure(error));
 }
 
-export function* watchFetchCountries() {
-  while (true) {
-    const { id } = yield take(types.GET_CATEGORIES[types.REQUEST]);
-    yield fork(fetchCountries, id);
-  }
+export default function* watchCategories() {
+  yield takeLatest(types.GET_CATEGORIES[types.REQUEST], fetchCategories);
 }
 
-export default function*() {
-  yield all([fork(watchFetchCountries)]);
-}

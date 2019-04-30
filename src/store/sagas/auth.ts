@@ -1,12 +1,4 @@
-import {
-  all,
-  fork,
-  call,
-  put,
-  take,
-  takeEvery,
-  takeLatest
-} from "redux-saga/effects";
+import { all, fork, call, put, take, takeLatest } from "redux-saga/effects";
 import { Customers } from "lib/api";
 import { authAction } from "store/actions";
 import * as types from "store/constants";
@@ -62,9 +54,7 @@ export function* watchFetchRegister() {
 }
 
 export function* watchFetchgetUser() {
-  // while(true) {
   yield takeLatest(types.GET_USER[types.REQUEST], fetchUser);
-  // }
 }
 
 export default function*() {

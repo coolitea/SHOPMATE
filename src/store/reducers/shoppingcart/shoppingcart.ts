@@ -11,7 +11,7 @@ import { cartState, cart } from "store/models";
 
 const initialState: cartState = {
   cart: [],
-  total_amount: 0,
+  total_amount: '0',
 };
 
 export default function(state = initialState, action: any): cartState {

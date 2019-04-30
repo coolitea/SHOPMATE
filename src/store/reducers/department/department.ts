@@ -1,6 +1,5 @@
 import { GET_DEPARTMENTS, REQUEST, SUCCESS, FAILURE } from "store/constants";
 import { departmentsState } from "store/models";
-import { DepartmentActionTypes } from "store/actions/departments";
 
 const initialState: departmentsState = {
   isLoading: false,

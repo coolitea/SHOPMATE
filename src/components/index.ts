@@ -18,3 +18,6 @@ export { default as Products } from "components/products";
 
 // products
 export { default as Product } from "components/products/product";
+
+// cart
+export { default as Cart } from "components/cart";

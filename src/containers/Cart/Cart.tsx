@@ -5,11 +5,13 @@ import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { cart } from "store/models";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { Cart } from "components";
 
 interface Props extends RouteComponentProps {
   listOfCart: typeof cartAction.listCartRequest;
   totalAmount: typeof cartAction.totalAmountRequest;
   cart: cart[];
+  total: string;
 }
 
 class CartContainer extends React.Component<Props> {
@@ -19,12 +21,19 @@ class CartContainer extends React.Component<Props> {
   }
 
   render() {
-    return <>cart container</>;
+    const { cart, total } = this.props;
+    return (
+        <Cart
+          cart={cart}
+          total={total}
+        />
+      );
   }
 }
 
 const mapStateToProps = (rootState: rootState) => ({
-  cart: rootState.shoppingcart.cart
+  cart: rootState.shoppingcart.cart,
+  total: rootState.shoppingcart.total_amount
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

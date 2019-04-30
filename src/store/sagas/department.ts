@@ -1,21 +1,14 @@
-import { all, fork, call, put, take } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import * as api from "lib/api";
 import { departmentAction } from "store/actions";
 import * as types from "store/constants";
 
-export function* fetchCountries(id: string) {
-  const { data, error } = yield call(api.getDepartments, id);
+export function* fetchDepartment(action: any) {
+  const { data, error } = yield call(api.getDepartments, action.payload);
   if (data) yield put(departmentAction.departmentSuccess(data));
-  else yield put(departmentAction.departmentfailure(error));
+  else yield put(departmentAction.departmentFailure(error));
 }
 
-export function* watchFetchCountries() {
-  while (true) {
-    const { id } = yield take(types.GET_DEPARTMENTS[types.REQUEST]);
-    yield fork(fetchCountries, id);
-  }
-}
-
-export default function*() {
-  yield all([fork(watchFetchCountries)]);
+export default function* watchDepartment() {
+  yield takeLatest([types.GET_DEPARTMENTS[types.REQUEST]], fetchDepartment);
 }

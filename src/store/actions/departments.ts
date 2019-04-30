@@ -1,50 +1,15 @@
-import * as types from "store/constants";
+import { GET_DEPARTMENTS, REQUEST, SUCCESS, FAILURE } from "store/constants";
 import { departmentsState } from "store/models";
 import { Error } from "lib/client/utils";
+import { ActionsUnion } from "./types";
+import { createAction } from "./action-helpers";
 
-let request: string, success: string, failure: string;
-
-request = types.GET_DEPARTMENTS[types.REQUEST];
-success = types.GET_DEPARTMENTS[types.SUCCESS];
-failure = types.GET_DEPARTMENTS[types.FAILURE];
-
-const departmentRequest = (id: string | null) => ({
-  type: request,
-  id
-});
-
-const departmentSuccess = (departments: departmentsState) => ({
-  type: success,
-  payload: departments
-});
-
-const departmentfailure = (err: Error) => ({
-  type: failure,
-  err: err
-});
-
-interface departmentRequestAction {
-  type: typeof request;
-  url: string;
-}
-
-interface departmentSuccessAction {
-  type: typeof success;
-  payload: departmentsState;
-}
-
-interface departmentFailureAction {
-  type: typeof failure;
-  err: Error;
-}
-
-export type DepartmentActionTypes =
-  | departmentRequestAction
-  | departmentSuccessAction
-  | departmentFailureAction;
-
-export default {
-  departmentRequest,
-  departmentSuccess,
-  departmentfailure
+export const Actions = {
+  departmentRequest: (id: string | null) =>
+    createAction(GET_DEPARTMENTS[REQUEST], id),
+  departmentSuccess: (departments: departmentsState) =>
+    createAction(GET_DEPARTMENTS[SUCCESS], departments),
+  departmentFailure: (err: Error) => createAction(GET_DEPARTMENTS[FAILURE], err)
 };
+
+export type Actions = ActionsUnion<typeof Actions>;

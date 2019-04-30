@@ -1,6 +1,5 @@
 import { GET_CATEGORIES, REQUEST, SUCCESS, FAILURE } from "store/constants";
 import { categoriesState } from "store/models";
-import { CategoryActionTypes } from "store/actions/categories";
 
 const initialState: categoriesState = {
   isLoading: false,

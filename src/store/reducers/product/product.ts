@@ -11,7 +11,6 @@ import {
   GET_PRODUCT_DETAIL
 } from "store/constants";
 import { productState, review } from "store/models";
-import { ProductActionTypes } from "store/actions/products";
 import { pagination, average } from "lib/utils";
 import _ from "underscore";
 

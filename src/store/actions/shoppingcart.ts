@@ -8,75 +8,30 @@ import {
   FAILURE
 } from "store/constants";
 import { cart } from "store/models";
+import { ActionsUnion } from "./types";
+import { createAction } from "./action-helpers";
 
-const generateCartRequest = () => ({
-  type: GET_GENERATE_CART_ID[REQUEST]
-});
-
-const generateCartSuccess = (id: string) => ({
-  type: GET_GENERATE_CART_ID[SUCCESS],
-  payload: id
-});
-
-const generateCartFailure = (err: Error) => ({
-  type: GET_GENERATE_CART_ID[FAILURE],
-  err: err
-});
-
-const listCartRequest = () => ({
-  type: GET_LIST_OF_CART[REQUEST]
-});
-
-const listCartSuccess = (cart: cart[]) => ({
-  type: GET_LIST_OF_CART[SUCCESS],
-  payload: cart
-});
-
-const listCartFailure = (err: Error) => ({
-  type: GET_LIST_OF_CART[FAILURE],
-  err: err
-});
-
-const addToCartRequest = (payload: any) => ({
-  type: POST_ADD_PRODUCT[REQUEST],
-  payload
-});
-
-const addToCartSuccess = (payload: any) => ({
-  type: POST_ADD_PRODUCT[SUCCESS],
-  payload
-});
-
-const addToCartFailure = (err: Error) => ({
-  type: POST_ADD_PRODUCT[FAILURE],
-  err: err
-});
-
-const totalAmountRequest = () => ({
-  type: GET_TOTAL_AMOUNT[REQUEST],
-});
-
-const totalAmountSuccess = (payload: any) => ({
-  type: GET_TOTAL_AMOUNT[SUCCESS],
-  payload
-});
-
-const totalAmountFailure = (err: Error) => ({
-  type: GET_TOTAL_AMOUNT[FAILURE],
-  err: err
-});
-
-export default {
-  generateCartRequest,
-  generateCartSuccess,
-  generateCartFailure,
-  listCartRequest,
-  listCartSuccess,
-  listCartFailure,
-  addToCartRequest,
-  addToCartSuccess,
-  addToCartFailure,
-  totalAmountRequest,
-  totalAmountSuccess,
-  totalAmountFailure
+export const Actions = {
+  generateCartRequest: () => createAction(GET_GENERATE_CART_ID[REQUEST]),
+  generateCartSuccess: (id: string) =>
+    createAction(GET_GENERATE_CART_ID[SUCCESS], id),
+  generateCartFailure: (err: Error) =>
+    createAction(GET_GENERATE_CART_ID[FAILURE], err),
+  listCartRequest: () => createAction(GET_LIST_OF_CART[REQUEST]),
+  listCartSuccess: (cart: cart[]) =>
+    createAction(GET_LIST_OF_CART[SUCCESS], cart),
+  listCartFailure: (err: Error) => createAction(GET_LIST_OF_CART[FAILURE], err),
+  addToCartRequest: (payload: any) =>
+    createAction(POST_ADD_PRODUCT[REQUEST], payload),
+  addToCartSuccess: (payload: any) =>
+    createAction(POST_ADD_PRODUCT[SUCCESS], payload),
+  addToCartFailure: (err: Error) =>
+    createAction(POST_ADD_PRODUCT[FAILURE], err),
+  totalAmountRequest: () => createAction(GET_TOTAL_AMOUNT[REQUEST]),
+  totalAmountSuccess: (payload: any) =>
+    createAction(GET_TOTAL_AMOUNT[SUCCESS], payload),
+  totalAmountFailure: (err: Error) =>
+    createAction(GET_TOTAL_AMOUNT[FAILURE], err)
 };
+
+export type Actions = ActionsUnion<typeof Actions>;

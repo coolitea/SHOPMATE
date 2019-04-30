@@ -1,4 +1,4 @@
-import { AxiosPromise } from "axios";
+
 import client from "lib/client/utils";
 
 const getAttributeByProductId = (id: string): any =>

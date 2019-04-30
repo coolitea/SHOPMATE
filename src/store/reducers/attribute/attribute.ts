@@ -5,8 +5,8 @@ import {
   FAILURE
 } from "store/constants";
 import { attributeState, attribute } from "store/models";
-import { AttributeActionTypes } from "store/actions/attributes";
 import _ from "underscore";
+import * as fromActions from "store/actions/attributes";
 
 const initialState: attributeState = {
   colors: [],
@@ -20,21 +20,21 @@ export default function(state = initialState, action: any): attributeState {
         ...state
       };
     case GET_ATTRIBUTES_WITH_PRODUCTID[SUCCESS]:
+      const { payload } = action;
       return {
         ...state,
         colors: _.filter(
-          action.payload,
+          payload,
           (att: attribute) => att.attribute_name === "Color"
         ),
         sizes: _.filter(
-          action.payload,
+          payload,
           (att: attribute) => att.attribute_name === "Size"
         )
       };
     case GET_ATTRIBUTES_WITH_PRODUCTID[FAILURE]:
       return {
         ...state,
-        err: action.err
       };
     default:
       return state;
