@@ -1,7 +1,6 @@
+import client from "lib/client";
 
-import client from "lib/client/utils";
-
-const getAttributeByProductId = (id: string): any =>
+const getAttributeByProductId = (id: string) =>
   client.get(`/attributes/inProduct/${id}`);
 
 export default {

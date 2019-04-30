@@ -1,4 +1,4 @@
-import client from "lib/client/utils";
+import client from "lib/client";
 
 const getGenerateId = () => client.get(`/shoppingcart/generateUniqueId`);
 

@@ -7,7 +7,7 @@ import {
   FAILURE
 } from "store/constants";
 import { customerState } from "store/models";
-import { Error } from "lib/client/utils";
+import { Error } from "lib/client";
 
 export interface login {
   email: string;

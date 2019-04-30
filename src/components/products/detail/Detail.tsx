@@ -9,7 +9,7 @@ import {
 } from "components/common";
 import { attribute, review, products_detail } from "store/models";
 import Review from "./Review";
-import client from "lib/client/utils";
+import client from "lib/client";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

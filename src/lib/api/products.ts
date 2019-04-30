@@ -1,4 +1,3 @@
-import { AxiosPromise } from "axios";
 import client from "lib/client";
 
 const getSearch = (
@@ -7,8 +6,8 @@ const getSearch = (
   page = 1,
   limit = 20,
   description_length = 200
-): AxiosPromise => {
-  return client.get(`/products/search`, {
+) =>
+  client.get(`/products/search`, {
     params: {
       query_string,
       all_word,
@@ -17,14 +16,13 @@ const getSearch = (
       description_length
     }
   });
-};
 
 const getProduct = (
   id: string | undefined,
   page = 1,
   limit = 6,
   description_length = 200
-): AxiosPromise => {
+) => {
   if (id === undefined) {
     return client.get(`/products`, {
       params: {
@@ -49,7 +47,7 @@ const getProductByCategory = (
   page = 1,
   limit = 6,
   description_length = 200
-): AxiosPromise => {
+) => {
   if (id === undefined) {
     return client.get(`/products/inCategory`, {
       params: {
@@ -74,7 +72,7 @@ const getProductByDepartment = (
   page = 1,
   limit = 6,
   description_length = 200
-): AxiosPromise => {
+) => {
   if (id === undefined) {
     return client.get(`/products/inDepartment`, {
       params: {
@@ -94,12 +92,9 @@ const getProductByDepartment = (
   }
 };
 
-const getReviews = (id: string): AxiosPromise => {
-  return client.get(`/products/${id}/reviews`);
-};
+const getReviews = (id: string) => client.get(`/products/${id}/reviews`);
 
-const getProductDetail = (id: string): AxiosPromise =>
-  client.get(`/products/${id}/details`);
+const getProductDetail = (id: string) => client.get(`/products/${id}/details`);
 
 export default {
   getProduct,

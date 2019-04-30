@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { departments, customer, products } from "store/models";
 import { Header } from "components";
 import _ from "underscore";
-import client from "lib/client/utils";
+import client from "lib/client";
 import storage from "lib/storage";
 
 interface Props {

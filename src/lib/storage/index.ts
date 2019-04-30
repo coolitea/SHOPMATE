@@ -11,10 +11,6 @@ type Storage = {
   clear(): void;
 };
 
-export const keys = {
-  user: "__shopmate_user__"
-};
-
 const storage: Storage = {
   set(key, value) {
     st[key] = JSON.stringify(value);

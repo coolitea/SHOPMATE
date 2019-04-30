@@ -8,7 +8,7 @@ import { customer, products } from "store/models";
 import "./Header.scss";
 import Auth from "./auth";
 import List from "./list";
-import client from "lib/client/utils";
+import client from "lib/client";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

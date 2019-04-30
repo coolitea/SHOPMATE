@@ -1,6 +1,6 @@
 import { GET_CATEGORIES, REQUEST, SUCCESS, FAILURE } from "store/constants";
 import { categoriesState } from "store/models";
-import { Error } from "lib/client/utils";
+import { Error } from "lib/client";
 import { ActionsUnion } from "./types";
 import { createAction } from "./action-helpers";
 

@@ -1,4 +1,4 @@
-import { Error } from "lib/client/utils";
+import { Error } from "lib/client";
 
 // DEPARTMENTS
 export interface departments {
