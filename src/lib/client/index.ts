@@ -70,27 +70,14 @@ class utils {
 
   put(path: string, payload: any) {
     return this.axios
-      .post(path, payload)
-      .then((result: AxiosResponse) => result.data || result)
-      .catch(this.handleError);
+      .put(path, payload)
+      .then((result: AxiosResponse) => result);
   }
-
-  authGet(path: string, payload: any): Promise<any> {
-    return this.loginChain
-      .then(() => this.get(path, payload))
-      .catch(this.handleError);
-  }
-
-  authPost(path: string, payload: any): Promise<any> {
-    return this.loginChain
-      .then(() => this.get(path, payload))
-      .catch(this.handleError);
-  }
-
-  authPut(path: string, payload: any): Promise<any> {
-    return this.loginChain
-      .then(() => this.get(path, payload))
-      .catch(this.handleError);
+  
+  delete(path: string, payload = null as any) {
+    return this.axios
+      .delete(path, payload)
+      .then((result: AxiosResponse) => result);
   }
 }
 

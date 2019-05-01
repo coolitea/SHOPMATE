@@ -10,6 +10,9 @@ import { Cart } from "components";
 interface Props extends RouteComponentProps {
   listOfCart: typeof cartAction.listCartRequest;
   totalAmount: typeof cartAction.totalAmountRequest;
+  emptyCart: typeof cartAction.empyCartRequest;
+  removeProduct: typeof cartAction.removeProductRequest;
+  update: typeof cartAction.updateRequest;
   cart: cart[];
   total: string;
 }
@@ -21,13 +24,16 @@ class CartContainer extends React.Component<Props> {
   }
 
   render() {
-    const { cart, total } = this.props;
+    const { cart, total, emptyCart, removeProduct, update } = this.props;
     return (
-        <Cart
-          cart={cart}
-          total={total}
-        />
-      );
+      <Cart
+        cart={cart}
+        total={total}
+        emptyCart={emptyCart}
+        removeProduct={removeProduct}
+        update={update}
+      />
+    );
   }
 }
 
@@ -38,7 +44,11 @@ const mapStateToProps = (rootState: rootState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   listOfCart: () => dispatch(cartAction.listCartRequest()),
-  totalAmount: () => dispatch(cartAction.totalAmountRequest())
+  totalAmount: () => dispatch(cartAction.totalAmountRequest()),
+  emptyCart: () => dispatch(cartAction.empyCartRequest()),
+  removeProduct: (item_id: number) =>
+    dispatch(cartAction.removeProductRequest(item_id)),
+  update: (form: any) => dispatch(cartAction.updateRequest(form))
 });
 
 const connectModule = connect(

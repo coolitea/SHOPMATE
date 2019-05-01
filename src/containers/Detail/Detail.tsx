@@ -52,12 +52,16 @@ class DetailContainer extends React.Component<Props, DetailState> {
     });
   }
   addToCart() {
-    const { color, size, quantity } = this.state;
-    const { addToCart, match: { params: { id }} } = this.props;
-    const data = { 
+    const { color, size } = this.state;
+    const {
+      addToCart,
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    const data = {
       product_id: id,
-      quantity,
-      attributes: `${size},${color}`,
+      attributes: `${size},${color}`
     };
     addToCart(data);
   }

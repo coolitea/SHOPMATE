@@ -3,6 +3,9 @@ import {
   GET_LIST_OF_CART,
   POST_ADD_PRODUCT,
   GET_TOTAL_AMOUNT,
+  DELETE_EMPTY_CART,
+  DELETE_PRODUCT_IN_CART,
+  PUT_UPDATE_CART,
   REQUEST,
   SUCCESS,
   FAILURE
@@ -12,6 +15,7 @@ import { cartState, cart } from "store/models";
 const initialState: cartState = {
   cart: [],
   total_amount: '0',
+  total_items: 0
 };
 
 export default function(state = initialState, action: any): cartState {
@@ -36,7 +40,10 @@ export default function(state = initialState, action: any): cartState {
     case GET_LIST_OF_CART[SUCCESS]:
       return {
         ...state,
-        cart: action.payload
+        cart: action.payload,
+        total_items: action.payload.reduce((accumulator: number, current: cart) => {
+          return accumulator += current.quantity;
+        },0)
       };
     case GET_LIST_OF_CART[FAILURE]:
       return {
@@ -50,7 +57,10 @@ export default function(state = initialState, action: any): cartState {
     case POST_ADD_PRODUCT[SUCCESS]:
       return {
         ...state,
-        cart: action.payload
+        cart: action.payload,
+        total_items: action.payload.reduce((accumulator: number, current: cart) => {
+          return accumulator += current.quantity;
+        },0)
       };
     case POST_ADD_PRODUCT[FAILURE]:
       return {
@@ -67,6 +77,43 @@ export default function(state = initialState, action: any): cartState {
         total_amount: action.payload.total_amount
       };
     case GET_TOTAL_AMOUNT[FAILURE]:
+      return {
+        ...state,
+        err: action.err
+      };
+    case DELETE_EMPTY_CART[REQUEST]:
+      return {
+        ...state
+      };
+    case DELETE_EMPTY_CART[SUCCESS]:
+      return {
+        ...state,
+        cart: action.payload
+      };
+    case DELETE_EMPTY_CART[FAILURE]:
+      return {
+        ...state,
+        err: action.err
+      };
+    case DELETE_PRODUCT_IN_CART[REQUEST]:
+      return {
+        ...state
+      };
+    case DELETE_PRODUCT_IN_CART[FAILURE]:
+      return {
+        ...state,
+        err: action.err
+      };
+    case PUT_UPDATE_CART[REQUEST]:
+      return {
+        ...state
+      };
+    case PUT_UPDATE_CART[SUCCESS]:
+      return {
+        ...state,
+        cart: action.payload
+      };
+    case PUT_UPDATE_CART[FAILURE]:
       return {
         ...state,
         err: action.err

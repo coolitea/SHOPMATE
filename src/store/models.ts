@@ -131,5 +131,6 @@ export interface cart {
 export interface cartState {
   cart: cart[];
   total_amount: string;
+  total_items: number;
   err?: string;
 }

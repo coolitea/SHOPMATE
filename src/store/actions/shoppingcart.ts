@@ -3,6 +3,9 @@ import {
   GET_LIST_OF_CART,
   POST_ADD_PRODUCT,
   GET_TOTAL_AMOUNT,
+  DELETE_EMPTY_CART,
+  DELETE_PRODUCT_IN_CART,
+  PUT_UPDATE_CART,
   REQUEST,
   SUCCESS,
   FAILURE
@@ -31,7 +34,20 @@ export const Actions = {
   totalAmountSuccess: (payload: any) =>
     createAction(GET_TOTAL_AMOUNT[SUCCESS], payload),
   totalAmountFailure: (err: Error) =>
-    createAction(GET_TOTAL_AMOUNT[FAILURE], err)
+    createAction(GET_TOTAL_AMOUNT[FAILURE], err),
+  empyCartRequest: () => createAction(DELETE_EMPTY_CART[REQUEST]),
+  empyCartSuccess: (payload: any) =>
+    createAction(DELETE_EMPTY_CART[SUCCESS], payload),
+  empyCartFailure: (err: Error) => createAction(DELETE_EMPTY_CART[FAILURE], err),
+  removeProductRequest: (item_id: number) => createAction(DELETE_PRODUCT_IN_CART[REQUEST],item_id),
+  removeProductSuccess: () =>
+    createAction(DELETE_PRODUCT_IN_CART[SUCCESS]),
+  removeProductFailure: (err: Error) => createAction(DELETE_PRODUCT_IN_CART[FAILURE], err),
+  updateRequest: (form: any) => createAction(PUT_UPDATE_CART[REQUEST],form),
+  updateSuccess: (data: cart) =>
+    createAction(PUT_UPDATE_CART[SUCCESS], data),
+  updateFailure: (err: Error) => createAction(PUT_UPDATE_CART[FAILURE], err),
+
 };
 
 export type Actions = ActionsUnion<typeof Actions>;

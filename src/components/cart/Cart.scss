@@ -1,0 +1,61 @@
+.cartcontainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 31px;
+
+  h2 {
+    margin: 30px 0 0 0;
+  }
+  .deleteall {
+    padding: 30px;
+    cursor: pointer;
+    color: red;
+  }
+  table {
+
+    th {
+      padding: 30px;
+      background: #efefef;
+    }
+
+    th:nth-child(1),
+    th:nth-child(2) {
+      text-align: left;
+    }
+
+    tr {
+      text-align: center;
+
+      td {
+        padding: 20px;
+      }
+      td:nth-child(1),
+      td:nth-child(2) {
+        text-align: left;
+      }
+      td:nth-child(1) {
+        .name {
+          margin-bottom: 5px;
+        }
+        .attributes {
+          font-size: 5px;
+          color: gray;
+        }
+      }
+      td:nth-child(2) {
+        span {
+          margin-left: 6px;
+        }
+        .calc {
+          cursor: pointer;
+        }
+      }
+    }
+    .totalname {
+      color: #f62f5e;
+    }
+    .total {
+      font-weight: bold;
+    }
+  }
+}
