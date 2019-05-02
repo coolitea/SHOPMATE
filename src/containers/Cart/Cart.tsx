@@ -17,14 +17,25 @@ interface Props extends RouteComponentProps {
   total: string;
 }
 
-class CartContainer extends React.Component<Props> {
+interface State {
+  show: boolean;
+}
+
+class CartContainer extends React.Component<Props, State> {
+  state = {
+    show: false
+  };
+
   componentDidMount() {
     this.props.listOfCart();
     this.props.totalAmount();
   }
-
+  onShow() {
+    this.setState({show: !this.state.show})
+  }
   render() {
     const { cart, total, emptyCart, removeProduct, update } = this.props;
+    const { show } = this.state;
     return (
       <Cart
         cart={cart}
@@ -32,6 +43,8 @@ class CartContainer extends React.Component<Props> {
         emptyCart={emptyCart}
         removeProduct={removeProduct}
         update={update}
+        show={show}
+        onShow={this.onShow.bind(this)}
       />
     );
   }

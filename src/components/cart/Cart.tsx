@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Cart.scss";
-import { Responsive } from "components/common";
+import { Responsive, Button, Modal } from "components/common";
 import { cartAction } from "store/actions";
 import { cart } from "store/models";
 import { FaTrash } from "react-icons/fa";
@@ -11,6 +11,8 @@ interface Props {
   emptyCart: typeof cartAction.empyCartRequest;
   removeProduct: typeof cartAction.removeProductRequest;
   update: typeof cartAction.updateRequest;
+  show: boolean;
+  onShow: () => void;
 }
 
 const Cart: React.SFC<Props> = ({
@@ -18,15 +20,20 @@ const Cart: React.SFC<Props> = ({
   total,
   emptyCart,
   removeProduct,
-  update
+  update,
+  show,
+  onShow
 }) => (
   <Responsive>
     <div className="cartcontainer">
       <h2>Shopping Cart</h2>
-      <div className="deleteall" onClick={() => {
-        toast.success("removed", { autoClose: 1000 });
-        return emptyCart()
-      }}>
+      <div
+        className="deleteall"
+        onClick={() => {
+          toast.success("removed", { autoClose: 1000 });
+          return emptyCart();
+        }}
+      >
         Empy all items
       </div>
       <table>
@@ -82,7 +89,7 @@ const Cart: React.SFC<Props> = ({
                     }}
                     onClick={() => {
                       toast.success("removed", { autoClose: 1000 });
-                      return removeProduct(row.item_id)
+                      return removeProduct(row.item_id);
                     }}
                   />
                   <ToastContainer />
@@ -102,6 +109,10 @@ const Cart: React.SFC<Props> = ({
           </tr>
         </tfoot>
       </table>
+      <Button className="big1" onClick={onShow}>
+        Checkout
+      </Button>
+      <Modal show={show} onClose={onShow} />
     </div>
   </Responsive>
 );
