@@ -296,6 +296,12 @@
     margin-left: 30px;
     cursor: pointer;
 
+    .total_items {
+      font-size: 7px;
+      color: white;
+      z-index: 999;
+      transform: translateY(-30px) translateX(15px);
+    }
     @include media("<screen-x") {
       display: none;
     }

@@ -25,6 +25,7 @@ interface Props {
   getSearch: typeof productAction.searchRequest;
   searchItems: products[];
   getCartId: typeof cartAction.generateCartRequest;
+  total_items: number;
 }
 
 interface HeaderState {
@@ -154,8 +155,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
   }
 
   render() {
-    const { departments, user, searchItems } = this.props;
-    const { searchInput } = this.state;
+    const { departments, user, searchItems, total_items } = this.props;
     return (
       <>
         <Header
@@ -169,6 +169,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
           user={user}
           onChangeSearch={_.debounce(this.onChangeSearch, 2000, true)}
           searchItems={searchItems}
+          total_items={total_items}
         />
       </>
     );
@@ -178,7 +179,8 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
 const mapStateToProps = (rootState: rootState) => ({
   user: rootState.customer.user,
   departments: rootState.departments.departments,
-  searchItems: rootState.product.search.rows
+  searchItems: rootState.product.search.rows,
+  total_items: rootState.shoppingcart.total_items
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

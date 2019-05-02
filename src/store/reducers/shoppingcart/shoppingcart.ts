@@ -111,7 +111,10 @@ export default function(state = initialState, action: any): cartState {
     case PUT_UPDATE_CART[SUCCESS]:
       return {
         ...state,
-        cart: action.payload
+        cart: action.payload,
+        total_items: action.payload.reduce((accumulator: number, current: cart) => {
+          return accumulator += current.quantity;
+        },0)
       };
     case PUT_UPDATE_CART[FAILURE]:
       return {

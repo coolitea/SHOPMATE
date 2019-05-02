@@ -24,6 +24,7 @@ interface Props extends RouteComponentProps {
   user?: customer;
   onChangeSearch: (e: { target: HTMLInputElement }) => void;
   searchItems?: products[];
+  total_items: number;
 }
 
 const Header: React.SFC<Props> = ({
@@ -37,7 +38,8 @@ const Header: React.SFC<Props> = ({
   checkAll,
   user,
   onChangeSearch,
-  searchItems
+  searchItems,
+  total_items
 }) => {
   const [burger, setBurger] = React.useState(false);
   const notify = () => toast.info("please sign in", { autoClose: 1500 });
@@ -91,6 +93,7 @@ const Header: React.SFC<Props> = ({
         </div>
         <div className="cart" onClick={client.isLoggedIn() ? toCart : notify}>
           <FaOpencart style={{ color: "white" }} />
+          <p className="total_items">{total_items}</p>
           <ToastContainer />
         </div>
         <div
