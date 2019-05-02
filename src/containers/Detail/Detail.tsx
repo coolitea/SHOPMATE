@@ -7,6 +7,7 @@ import { review, products_detail, attribute } from "store/models";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { Params } from "lib/type";
 import Detail from "components/products/detail";
+import { toast } from "react-toastify";
 
 interface Props extends RouteComponentProps<Params> {
   getAttributes: typeof attributeAction.attributeRequest;
@@ -63,6 +64,7 @@ class DetailContainer extends React.Component<Props, DetailState> {
       product_id: id,
       attributes: `${size},${color}`
     };
+    toast.success("added", { autoClose: 1000 });
     addToCart(data);
   }
   render() {

@@ -4,7 +4,7 @@ import { Responsive } from "components/common";
 import { cartAction } from "store/actions";
 import { cart } from "store/models";
 import { FaTrash } from "react-icons/fa";
-
+import { ToastContainer, toast } from "react-toastify";
 interface Props {
   cart: cart[];
   total: string;
@@ -23,7 +23,10 @@ const Cart: React.SFC<Props> = ({
   <Responsive>
     <div className="cartcontainer">
       <h2>Shopping Cart</h2>
-      <div className="deleteall" onClick={() => emptyCart()}>
+      <div className="deleteall" onClick={() => {
+        toast.success("removed", { autoClose: 1000 });
+        return emptyCart()
+      }}>
         Empy all items
       </div>
       <table>
@@ -49,22 +52,40 @@ const Cart: React.SFC<Props> = ({
               </td>
               <td>
                 <span>{row.quantity}</span>
-                <span className="calc" onClick={() => update({
-                  item_id: row.item_id,
-                  quantity: row.quantity +=1
-                })}>+</span>
-                <span className="calc" onClick={() => update({
-                  item_id: row.item_id,
-                  quantity: row.quantity -=1
-                })}>-</span>
+                <span
+                  className="calc"
+                  onClick={() =>
+                    update({
+                      item_id: row.item_id,
+                      quantity: row.quantity += 1
+                    })
+                  }
+                >
+                  +
+                </span>
+                <span
+                  className="calc"
+                  onClick={() =>
+                    update({
+                      item_id: row.item_id,
+                      quantity: row.quantity -= 1
+                    })
+                  }
+                >
+                  -
+                </span>
                 <span>
                   <FaTrash
                     style={{
                       transform: "translateY(2px)",
                       cursor: "pointer"
                     }}
-                    onClick={() => removeProduct(row.item_id)}
+                    onClick={() => {
+                      toast.success("removed", { autoClose: 1000 });
+                      return removeProduct(row.item_id)
+                    }}
                   />
+                  <ToastContainer />
                 </span>
               </td>
               <td>$ {row.price}</td>
@@ -72,10 +93,10 @@ const Cart: React.SFC<Props> = ({
             </tr>
           ))}
         </tbody>
-        <tfoot >
+        <tfoot>
           <tr>
-            <td></td>
-            <td></td>
+            <td />
+            <td />
             <td className="totalname">TOTAL</td>
             <td className="total">$ {total}</td>
           </tr>
