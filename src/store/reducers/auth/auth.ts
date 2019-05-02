@@ -29,11 +29,6 @@ export default function(state = initialState, action: any): customerState {
         ...state,
         user: action.payload
       };
-    case POST_LOGIN[FAILURE]:
-      return {
-        ...state,
-        error: action.err
-      };
     default:
       return state;
   }

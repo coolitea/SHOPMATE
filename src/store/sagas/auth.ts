@@ -2,32 +2,35 @@ import { all, fork, call, put, take, takeLatest } from "redux-saga/effects";
 import { Customers } from "lib/api";
 import { authAction } from "store/actions";
 import * as types from "store/constants";
-import { login, register } from "store/actions/auth";
+import { login, register } from "store/actions/types";
 import storage from "lib/storage";
+import { toast } from "react-toastify";
 
 export function* fetchLogin({ email, password }: login) {
-  const response = yield call(Customers.postLogin, {
-    email,
-    password
-  });
-  if (response) {
-    yield storage.set("USER-KEY", response.data.accessToken);
-    yield put(authAction.loginSuccess(response.data));
+  try {
+    const { data } = yield call(Customers.postLogin, {
+      email,
+      password
+    });
+    yield storage.set("USER-KEY", data.accessToken);
     yield (location.href = "/");
-  } else yield put(authAction.loginFailure(response.error));
+  } catch (error) {
+    toast.error(error.message, { autoClose: 2000 });
+  }
 }
 
 export function* fetchRegister({ email, password, name }: register) {
-  const response = yield call(Customers.postRegister, {
-    email,
-    password,
-    name
-  });
-  if (response) {
-    yield storage.set("USER-KEY", response.data.accessToken);
-    yield put(authAction.registerSuccess(response.data));
+  try {
+    const { data } = yield call(Customers.postRegister, {
+      email,
+      password,
+      name
+    });
+    yield storage.set("USER-KEY", data.accessToken);
     yield (location.href = "/");
-  } else yield put(authAction.registerFailure(response.error));
+  } catch (error) {
+    toast.error(error.message, { autoClose: 2000 });
+  }
 }
 
 export function* fetchUser() {
@@ -39,17 +42,15 @@ export function* fetchUser() {
 
 export function* watchFetchLogin() {
   while (true) {
-    const { email, password } = yield take(types.POST_LOGIN[types.REQUEST]);
-    yield fork(fetchLogin, { email, password });
+    const { payload } = yield take(types.POST_LOGIN[types.REQUEST]);
+    yield fork(fetchLogin, payload);
   }
 }
 
 export function* watchFetchRegister() {
   while (true) {
-    const { email, password, name } = yield take(
-      types.POST_REGISTER[types.REQUEST]
-    );
-    yield fork(fetchRegister, { email, password, name });
+    const { payload } = yield take(types.POST_REGISTER[types.REQUEST]);
+    yield fork(fetchRegister, payload);
   }
 }
 

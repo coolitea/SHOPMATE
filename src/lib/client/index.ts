@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 import storage from "lib/storage";
 
@@ -9,12 +9,10 @@ export interface Error {
   status: number;
 }
 
-class utils {
+class Client {
   private axios: AxiosInstance;
-  private loginResolve: () => void;
   public isLoggedIn: () => boolean;
   private authUserHeader: () => object;
-  public loginChain: Promise<any>;
 
   constructor() {
     this.isLoggedIn = () => !!storage.get("USER-KEY");
@@ -35,37 +33,18 @@ class utils {
         ...this.authUserHeader()
       }
     });
-    this.loginResolve = () => "";
-    this.loginChain = new Promise(resolve => {
-      this.loginResolve = resolve;
-    });
   }
-
-  handleError = (error: AxiosError): Promise<Error> => {
-    const errResponse =
-      error.response && error.response.data
-        ? error.response.data.error
-        : {
-            code: error.code,
-            field: "",
-            message: error.message,
-            status: error.code
-          };
-    return Promise.reject(errResponse);
-  };
 
   get(path: string, payload = null as any) {
     return this.axios
       .get(path, payload)
-      .then((result: AxiosResponse) => result)
-      .catch(this.handleError);
+      .then((response: AxiosResponse) => response );
   }
 
   post(path: string, payload: any) {
     return this.axios
       .post(path, payload)
-      .then((result: AxiosResponse) => result)
-      .catch(this.handleError);
+      .then((response: AxiosResponse) => response);
   }
 
   put(path: string, payload: any) {
@@ -73,7 +52,7 @@ class utils {
       .put(path, payload)
       .then((result: AxiosResponse) => result);
   }
-  
+
   delete(path: string, payload = null as any) {
     return this.axios
       .delete(path, payload)
@@ -81,6 +60,6 @@ class utils {
   }
 }
 
-const client = new utils();
+const client = new Client();
 
 export default client;

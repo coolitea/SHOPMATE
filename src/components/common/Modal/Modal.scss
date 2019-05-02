@@ -7,6 +7,16 @@
   background-color: rgba(0, 0, 0, 0.3);
   padding: 50;
 
+  .close {
+    display: flex;
+    justify-content: flex-end;
+    .x {
+      color: white;
+      cursor: pointer;
+      font-size: 70px;
+    }
+  }
+
   .modal {
     background-color: #fff;
     border-radius: 5;
@@ -15,6 +25,5 @@
     margin: 0 auto;
     padding: 30;
   }
-  .footer {
-  }
+
 }

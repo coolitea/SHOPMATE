@@ -5,6 +5,7 @@ import { cartAction } from "store/actions";
 import { cart } from "store/models";
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
+
 interface Props {
   cart: cart[];
   total: string;

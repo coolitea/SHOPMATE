@@ -5,6 +5,7 @@ import { Input, Button } from "components/common";
 import { customer } from "store/models";
 import storage from "lib/storage";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 interface Props extends RouteComponentProps {
   clickRegister: () => void;
@@ -127,6 +128,7 @@ const Auth: React.SFC<Props> = ({
           <Button className="medium1" onClick={clickRegister}>
             Register
           </Button>
+          <ToastContainer />
         </div>
       </div>
     </>

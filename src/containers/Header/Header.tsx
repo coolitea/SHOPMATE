@@ -5,7 +5,7 @@ import {
   productAction,
   cartAction
 } from "store/actions";
-import { login, register } from "store/actions/auth";
+import { login, register } from "store/actions/types";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
