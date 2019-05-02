@@ -26,6 +26,7 @@ interface Props {
   searchItems: products[];
   getCartId: typeof cartAction.generateCartRequest;
   total_items: number;
+  listOfCart: typeof cartAction.listCartRequest;
 }
 
 interface HeaderState {
@@ -146,6 +147,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
     if (storage.get("CART_ID") === null) {
       this.props.getCartId();
     }
+    this.props.listOfCart();
   }
 
   componentDidUpdate(prevProps: Props, prevState: HeaderState) {
@@ -207,7 +209,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
         description_length
       )
     ),
-  getCartId: () => dispatch(cartAction.generateCartRequest())
+  getCartId: () => dispatch(cartAction.generateCartRequest()),
+  listOfCart: () => dispatch(cartAction.listCartRequest()),
 });
 
 const connectModule = connect(

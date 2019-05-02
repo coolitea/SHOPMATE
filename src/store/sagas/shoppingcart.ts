@@ -58,6 +58,8 @@ export function* fetchEmptyCart() {
   );
   if (data) {
     yield put(cartAction.empyCartSuccess(data));
+    yield fetchListOFCart();
+    yield fetchTotalAmount();
   } else {
     yield put(cartAction.empyCartFailure(error));
   }
