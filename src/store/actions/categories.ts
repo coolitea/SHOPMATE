@@ -1,6 +1,5 @@
 import { GET_CATEGORIES, REQUEST, SUCCESS, FAILURE } from "store/constants";
-import { categoriesState } from "store/models";
-import { Error } from "lib/client";
+import { categoriesState, error } from "store/models";
 import { ActionsUnion } from "./types";
 import { createAction } from "./action-helpers";
 
@@ -9,7 +8,7 @@ export const Actions = {
     createAction(GET_CATEGORIES[REQUEST], id),
   categorySuccess: (categories: categoriesState) =>
     createAction(GET_CATEGORIES[SUCCESS], categories),
-  categoryFailure: (err: Error) => createAction(GET_CATEGORIES[FAILURE], err)
+  categoryFailure: (err: error) => createAction(GET_CATEGORIES[FAILURE], err)
 };
 
 export type Actions = ActionsUnion<typeof Actions>;

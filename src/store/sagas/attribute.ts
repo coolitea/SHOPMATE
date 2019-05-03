@@ -4,9 +4,13 @@ import { attributeAction } from "store/actions";
 import * as types from "store/constants";
 
 export function* fetchAttribute(action: any) {
-  const { data, error } = yield call(Attributes.getAttributeByProductId, action.payload);
-  if (data) yield put(attributeAction.attributeSuccess(data));
-  else yield put(attributeAction.attributeFailure(error));
+  try {
+    const { data } = yield call(Attributes.getAttributeByProductId, action.payload);
+    yield put(attributeAction.attributeSuccess(data));
+  }
+  catch(error) {
+    yield put(attributeAction.attributeFailure(error));
+  }
 }
 
 export default function* watchFetchAttribues() {

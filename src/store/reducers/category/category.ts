@@ -25,7 +25,7 @@ export default function(state = initialState, action: any): categoriesState {
     case GET_CATEGORIES[FAILURE]:
       return {
         ...initialState,
-        err: action.err
+        err: action.payload
       };
     default:
       return state;

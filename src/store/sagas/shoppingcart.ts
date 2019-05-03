@@ -1,86 +1,86 @@
 import { call, put, takeLatest, all, fork } from "redux-saga/effects";
 import { ShoppingCart } from "lib/api";
 import { cartAction } from "store/actions";
+import { toast } from "react-toastify";
 import * as types from "store/constants";
 import storage from "lib/storage";
 
 export function* fetchCartId() {
-  const { data, error } = yield call(ShoppingCart.getGenerateId);
-  if (data) {
+  try {
+    const { data } = yield call(ShoppingCart.getGenerateId);
     yield put(cartAction.generateCartSuccess(data.cart_id));
-    storage.set("CART_ID", data.cart_id);
-  } else {
+    yield storage.set("CART_ID", data.cart_id);
+  } catch(error) {
     yield put(cartAction.generateCartFailure(error));
   }
 }
 
 export function* fetchListOFCart() {
-  const { data, error } = yield call(
-    ShoppingCart.getListOfProducts,
-    storage.get("CART_ID")
-  );
-  if (data) {
+  try {
+    const { data } = yield call(
+      ShoppingCart.getListOfProducts,
+      storage.get("CART_ID")
+    );
     yield put(cartAction.listCartSuccess(data));
-  } else {
+  } catch (error) {
     yield put(cartAction.listCartFailure(error));
   }
 }
 
-export function* fetchAddToCart(action: any) {
-  const form = {
-    ...action.payload,
-    cart_id: storage.get("CART_ID")
-  };
-  const { data, error } = yield call(ShoppingCart.addToCart, form);
-  if (data) {
+export function* fetchAddToCart({ payload }: any) {
+  try {
+    const form = {
+      ...payload,
+      cart_id: storage.get("CART_ID")
+    };
+    const { data } = yield call(ShoppingCart.addToCart, form);
     yield put(cartAction.addToCartSuccess(data));
-  } else {
+  } catch (error) {
     yield put(cartAction.addToCartFailure(error));
   }
 }
 
 export function* fetchTotalAmount() {
-  const { data, error } = yield call(
-    ShoppingCart.getTotalAmount,
-    storage.get("CART_ID")
-  );
-  if (data) {
+  try {
+    const { data } = yield call(
+      ShoppingCart.getTotalAmount,
+      storage.get("CART_ID")
+    );
     yield put(cartAction.totalAmountSuccess(data));
-  } else {
+  } catch (error) {
     yield put(cartAction.totalAmountFailure(error));
   }
 }
 
 export function* fetchEmptyCart() {
-  const { data, error } = yield call(
-    ShoppingCart.empyCart,
-    storage.get("CART_ID")
-  );
-  if (data) {
+  try {
+    const { data } = yield call(ShoppingCart.empyCart, storage.get("CART_ID"));
     yield put(cartAction.empyCartSuccess(data));
+    yield toast.success("removed", { autoClose: 1000 });
     yield fetchListOFCart();
     yield fetchTotalAmount();
-  } else {
+  } catch (error) {
     yield put(cartAction.empyCartFailure(error));
   }
 }
-export function* fetchRemoveProduct(action: any) {
-  const { error } = yield call(ShoppingCart.removeProduct, action.payload);
-  if (error) {
-    yield put(cartAction.removeProductFailure(error));
-  } else {
+export function* fetchRemoveProduct({ payload }: any) {
+  try {
+    yield call(ShoppingCart.removeProduct, payload);
+    yield toast.success("removed", { autoClose: 1000 });
     yield fetchListOFCart();
     yield fetchTotalAmount();
+  } catch (error) {
+    yield put(cartAction.removeProductFailure(error));
   }
 }
 
-export function* fetchUpdate(action: any) {
-  const { item_id, quantity } = action.payload;
-  const { data, error } = yield call(ShoppingCart.update, item_id, quantity);
-  if (data) {
+export function* fetchUpdate({ payload }: any) {
+  try {
+    const { item_id, quantity } = payload;
+    const { data } = yield call(ShoppingCart.update, item_id, quantity);
     yield put(cartAction.updateSuccess(data));
     yield fetchTotalAmount();
-  } else {
+  } catch (error) {
     yield put(cartAction.updateFailure(error));
   }
 }

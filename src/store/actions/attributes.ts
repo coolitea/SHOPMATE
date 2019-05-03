@@ -4,8 +4,7 @@ import {
   SUCCESS,
   FAILURE
 } from "store/constants";
-import { attribute } from "store/models";
-import { Error } from "lib/client";
+import { attribute, error } from "store/models";
 import { ActionsUnion } from "./types";
 import { createAction } from "./action-helpers";
 
@@ -14,7 +13,7 @@ export const Actions = {
     createAction(GET_ATTRIBUTES_WITH_PRODUCTID[REQUEST], id),
   attributeSuccess: (detail: attribute) =>
     createAction(GET_ATTRIBUTES_WITH_PRODUCTID[SUCCESS], detail),
-  attributeFailure: (err: Error) =>
+  attributeFailure: (err: error) =>
     createAction(GET_ATTRIBUTES_WITH_PRODUCTID[FAILURE], err)
 };
 

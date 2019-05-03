@@ -23,7 +23,7 @@ export default function(state = initialState, action: any): departmentsState {
     case GET_DEPARTMENTS[FAILURE]:
       return {
         ...initialState,
-        err: action.err
+        err: action.payload
       };
     default:
       return state;

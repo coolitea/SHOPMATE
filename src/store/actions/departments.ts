@@ -1,6 +1,5 @@
 import { GET_DEPARTMENTS, REQUEST, SUCCESS, FAILURE } from "store/constants";
-import { departmentsState } from "store/models";
-import { Error } from "lib/client";
+import { departmentsState, error } from "store/models";
 import { ActionsUnion } from "./types";
 import { createAction } from "./action-helpers";
 
@@ -9,7 +8,7 @@ export const Actions = {
     createAction(GET_DEPARTMENTS[REQUEST], id),
   departmentSuccess: (departments: departmentsState) =>
     createAction(GET_DEPARTMENTS[SUCCESS], departments),
-  departmentFailure: (err: Error) => createAction(GET_DEPARTMENTS[FAILURE], err)
+  departmentFailure: (err: error) => createAction(GET_DEPARTMENTS[FAILURE], err)
 };
 
 export type Actions = ActionsUnion<typeof Actions>;

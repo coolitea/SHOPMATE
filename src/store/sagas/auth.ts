@@ -15,7 +15,7 @@ export function* fetchLogin({ email, password }: login) {
     yield storage.set("USER-KEY", data.accessToken);
     yield (location.href = "/");
   } catch (error) {
-    toast.error(error.message, { autoClose: 2000 });
+    yield toast.error(error.message, { autoClose: 2000 });
   }
 }
 
@@ -29,15 +29,18 @@ export function* fetchRegister({ email, password, name }: register) {
     yield storage.set("USER-KEY", data.accessToken);
     yield (location.href = "/");
   } catch (error) {
-    toast.error(error.message, { autoClose: 2000 });
+    yield toast.error(error.message, { autoClose: 2000 });
   }
 }
 
 export function* fetchUser() {
-  const { data, error } = yield call(Customers.getUser);
-  if (data) {
+  try {
+    const { data } = yield call(Customers.getUser);
     yield put(authAction.getUserSuccess(data));
-  } else yield put(authAction.getUserFailure(error));
+  }
+  catch(error){
+    yield toast.error(error.message, { autoClose: 2000 });
+  }
 }
 
 export function* watchFetchLogin() {

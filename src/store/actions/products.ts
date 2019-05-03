@@ -11,12 +11,11 @@ import {
   FAILURE
 } from "store/constants";
 import {
-  productState,
   products,
   products_detail,
   product_lists,
-  pager,
-  review
+  review,
+  error
 } from "store/models";
 
 // GET_PRODUCT_SEARCH
@@ -41,7 +40,7 @@ const searchSuccess = (products: product_lists) => ({
   payload: products
 });
 
-const searchFailure = (err: Error) => ({
+const searchFailure = (err: error) => ({
   type: GET_PRODUCT_SEARCH[FAILURE],
   err: err.message
 });
@@ -62,7 +61,7 @@ interface searchSuccessAction {
 
 interface searchFailureAction {
   type: typeof GET_PRODUCT_SEARCH["FAILURE"];
-  err: string;
+  err: error;
 }
 
 // GET_PRODUCT_DETATILS
@@ -76,7 +75,7 @@ const detailSuccess = (details: products_detail) => ({
   payload: details
 });
 
-const detailFailure = (err: Error) => ({
+const detailFailure = (err: error) => ({
   type: GET_PRODUCT_DETAIL[FAILURE],
   err: err.message
 });
@@ -93,7 +92,7 @@ interface detailSuccessAction {
 
 interface detailFailureAction {
   type: typeof GET_REVIEWS["FAILURE"];
-  err: string;
+  err: error;
 }
 // GET_REVIEWS
 const reviewRequest = (id: string) => ({
@@ -106,9 +105,9 @@ const reviewSuccess = (reviews: review[]) => ({
   payload: reviews
 });
 
-const reviewFailure = (err: Error) => ({
+const reviewFailure = (err: error) => ({
   type: GET_REVIEWS[FAILURE],
-  err: err.message
+  err
 });
 
 interface reviewRequestAction {
@@ -123,7 +122,7 @@ interface reviewSuccessAction {
 
 interface reviewFailureAction {
   type: typeof GET_REVIEWS["FAILURE"];
-  err: string;
+  err: error;
 }
 
 // GET_PRODUCTS
@@ -138,9 +137,9 @@ const productSuccess = (data: product_lists) => ({
   payload: data
 });
 
-const productFailure = (err: Error) => ({
+const productFailure = (err: error) => ({
   type: GET_PRODUCTS[FAILURE],
-  err: err.message
+  err
 });
 
 interface productRequestAction {
@@ -156,7 +155,7 @@ interface productSuccessAction {
 
 interface productFailureAction {
   type: typeof GET_PRODUCTS["FAILURE"];
-  err: string;
+  err: error;
 }
 
 // GET_PRODUCTS_BY_CATEGORY
@@ -171,9 +170,9 @@ const productByCategorySuccess = (data: product_lists) => ({
   payload: data
 });
 
-const productByCategoryFailure = (err: Error) => ({
+const productByCategoryFailure = (err: error) => ({
   type: GET_PRODUCTS_BY_CATEGORY[FAILURE],
-  err: err.message
+  err
 });
 
 interface productByCategoryRequestAction {
@@ -189,7 +188,7 @@ interface productByCategorySuccessAction {
 
 interface productByCategoryFailureAction {
   type: typeof GET_PRODUCTS_BY_CATEGORY["FAILURE"];
-  err: string;
+  err: error;
 }
 // GET_PRODUCTS_BY_DEPARTMENT
 const productByDepartmentRequest = (id?: string, page?: number) => ({
@@ -203,9 +202,9 @@ const productByDepartmentSuccess = (data: product_lists) => ({
   payload: data
 });
 
-const productByDepartmentFailure = (err: Error) => ({
+const productByDepartmentFailure = (err: error) => ({
   type: GET_PRODUCTS_BY_DEPARTMENT[FAILURE],
-  err: err.message
+  err
 });
 
 interface productByDepartmentRequestAction {
@@ -221,7 +220,7 @@ interface productByDepartmentSuccessAction {
 
 interface productByDepartmentFailureAction {
   type: typeof GET_PRODUCTS_BY_DEPARTMENT["FAILURE"];
-  err: string;
+  err: error;
 }
 
 export const setPage = (currentpage: number) => ({

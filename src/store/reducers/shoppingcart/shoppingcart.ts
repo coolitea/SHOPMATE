@@ -31,7 +31,7 @@ export default function(state = initialState, action: any): cartState {
     case GET_GENERATE_CART_ID[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     case GET_LIST_OF_CART[REQUEST]:
       return {
@@ -48,7 +48,7 @@ export default function(state = initialState, action: any): cartState {
     case GET_LIST_OF_CART[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     case POST_ADD_PRODUCT[REQUEST]:
       return {
@@ -65,7 +65,7 @@ export default function(state = initialState, action: any): cartState {
     case POST_ADD_PRODUCT[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     case GET_TOTAL_AMOUNT[REQUEST]:
       return {
@@ -79,7 +79,7 @@ export default function(state = initialState, action: any): cartState {
     case GET_TOTAL_AMOUNT[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     case DELETE_EMPTY_CART[REQUEST]:
       return {
@@ -93,7 +93,7 @@ export default function(state = initialState, action: any): cartState {
     case DELETE_EMPTY_CART[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     case DELETE_PRODUCT_IN_CART[REQUEST]:
       return {
@@ -102,7 +102,7 @@ export default function(state = initialState, action: any): cartState {
     case DELETE_PRODUCT_IN_CART[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     case PUT_UPDATE_CART[REQUEST]:
       return {
@@ -119,7 +119,7 @@ export default function(state = initialState, action: any): cartState {
     case PUT_UPDATE_CART[FAILURE]:
       return {
         ...state,
-        err: action.err
+        err: action.payload
       };
     default:
       return state;

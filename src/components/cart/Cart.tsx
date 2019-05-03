@@ -28,14 +28,9 @@ const Cart: React.SFC<Props> = ({
   <Responsive>
     <div className="cartcontainer">
       <h2>Shopping Cart</h2>
-      <div
-        className="deleteall"
-        onClick={() => {
-          toast.success("removed", { autoClose: 1000 });
-          return emptyCart();
-        }}
-      >
+      <div className="deleteall" onClick={() => emptyCart()}>
         Empy all items
+        <ToastContainer />
       </div>
       <table>
         <thead>
@@ -88,10 +83,7 @@ const Cart: React.SFC<Props> = ({
                       transform: "translateY(2px)",
                       cursor: "pointer"
                     }}
-                    onClick={() => {
-                      toast.success("removed", { autoClose: 1000 });
-                      return removeProduct(row.item_id);
-                    }}
+                    onClick={() => removeProduct(row.item_id)}
                   />
                   <ToastContainer />
                 </span>

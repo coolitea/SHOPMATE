@@ -2,6 +2,7 @@
 export interface error {
   message: string;
   field: string;
+  code: string;
 }
 // DEPARTMENTS
 export interface departments {
