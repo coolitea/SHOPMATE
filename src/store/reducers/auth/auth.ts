@@ -2,9 +2,10 @@ import {
   POST_LOGIN,
   POST_REGISTER,
   GET_USER,
+  PUT_UPDATE_ADDRESS,
+  PUT_UPDATE_PHONE,
   REQUEST,
-  SUCCESS,
-  FAILURE
+  SUCCESS
 } from "store/constants";
 import { customerState } from "store/models";
 
@@ -25,6 +26,16 @@ export default function(state = initialState, action: any): customerState {
         ...state
       };
     case GET_USER[SUCCESS]:
+      return {
+        ...state,
+        user: action.payload
+      };
+    case PUT_UPDATE_PHONE[SUCCESS]:
+      return {
+        ...state,
+        user: action.payload
+      };
+    case PUT_UPDATE_ADDRESS[SUCCESS]:
       return {
         ...state,
         user: action.payload

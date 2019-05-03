@@ -16,8 +16,14 @@ const postLogin = ({ email, password }: login) =>
 
 const getUser = () => client.get("/customer");
 
+const putUser = (data: any) => client.put(`customer`, data);
+
+const putUserAddress = (data: any) => client.put(`customers/address`, data);
+
 export default {
   postRegister,
   postLogin,
-  getUser
+  getUser,
+  putUser,
+  putUserAddress
 };

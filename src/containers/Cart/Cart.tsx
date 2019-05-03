@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cartAction } from "store/actions";
+import { cartAction, authAction } from "store/actions";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
@@ -13,6 +13,8 @@ interface Props extends RouteComponentProps {
   emptyCart: typeof cartAction.empyCartRequest;
   removeProduct: typeof cartAction.removeProductRequest;
   update: typeof cartAction.updateRequest;
+  updateUser: typeof authAction.putUserRequest;
+  updateUserAddress: typeof authAction.putUserAddressRequest;
   cart: cart[];
   total: string;
 }
@@ -75,7 +77,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   emptyCart: () => dispatch(cartAction.empyCartRequest()),
   removeProduct: (item_id: number) =>
     dispatch(cartAction.removeProductRequest(item_id)),
-  update: (form: any) => dispatch(cartAction.updateRequest(form))
+  update: (form: any) => dispatch(cartAction.updateRequest(form)),
+  updateUser: (form: any) => dispatch(authAction.putUserRequest(form)),
+  updateUserAddress: (form: any) =>
+    dispatch(authAction.putUserAddressRequest(form))
 });
 
 const connectModule = connect(

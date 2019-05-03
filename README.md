@@ -20,7 +20,7 @@
 5. [X] Users can see item details by selecting a specific item.
 6. [X] Users can add items to their shopping carts.
 7. [X] Users can register/login using website custom forms, or social login libraries.
-8. [ ] Users can update personal profiles with shipping addresses and other info.
+8. [X] Users can update personal profiles with shipping addresses and other info.
 9. [ ] Users can checkout with 3rd party payment gateways: Paypal, Stripe…
 
 
