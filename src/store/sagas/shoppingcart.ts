@@ -21,7 +21,7 @@ export function* fetchListOFCart() {
       ShoppingCart.getListOfProducts,
       storage.get("CART_ID")
     );
-    yield put(cartAction.listCartSuccess(data));
+    yield put(cartAction.listCartSuccess(data[0]));
   } catch (error) {
     yield put(cartAction.listCartFailure(error));
   }

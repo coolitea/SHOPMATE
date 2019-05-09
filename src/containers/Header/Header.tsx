@@ -210,7 +210,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
       )
     ),
   getCartId: () => dispatch(cartAction.generateCartRequest()),
-  listOfCart: () => dispatch(cartAction.listCartRequest()),
+  listOfCart: () => dispatch(cartAction.listCartRequest())
 });
 
 const connectModule = connect(

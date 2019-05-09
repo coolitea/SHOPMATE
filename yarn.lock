@@ -5985,6 +5985,7 @@ nan@^2.10.0, nan@^2.9.2:
 nanobar@^0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/nanobar/-/nanobar-0.4.2.tgz#01c512e6c662e38562694f64e4a88a253732f48f"
+  integrity sha1-AcUS5sZi44ViaU9k5KiKJTcy9I8=
 
 nanomatch@^1.2.9:
   version "1.2.13"

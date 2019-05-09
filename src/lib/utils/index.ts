@@ -59,3 +59,17 @@ export const pagination = {
 };
 
 export const average = (total: number, amount: number) => total / amount;
+
+export class Validation {
+  static valCheckMsg: string[];
+  static userName: string;
+  static password: string;
+  static email: string;
+  static checkAll: boolean;
+
+  constructor() {}
+
+  changeInput(num: number, e: HTMLInputElement): void {}
+  valueCheck(num: number, e: HTMLInputElement): void {}
+  beforeAuth(): void {}
+}

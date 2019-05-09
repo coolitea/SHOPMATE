@@ -34,11 +34,10 @@ class Client {
       }
     });
   }
-
   get(path: string, payload = null as any) {
     return this.axios
       .get(path, payload)
-      .then((response: AxiosResponse) => response );
+      .then((response: AxiosResponse) => response);
   }
 
   post(path: string, payload: any) {

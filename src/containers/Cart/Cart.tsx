@@ -52,6 +52,7 @@ class CartContainer extends React.Component<Props, State> {
   render() {
     const { cart, total, emptyCart, removeProduct, update } = this.props;
     const { show } = this.state;
+    console.log(cart);
     return (
       <Cart
         cart={cart}
