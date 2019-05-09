@@ -50,7 +50,7 @@ export interface customer {
 }
 
 export interface customerState {
-  user?: customer;
+  user: customer;
   error?: error;
 }
 

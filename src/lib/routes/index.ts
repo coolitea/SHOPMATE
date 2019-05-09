@@ -1,4 +1,4 @@
-import { Home, Product, Detail, Cart } from "page";
+import { Home, Product, Detail, Cart, Invoice } from "page";
 
 export const routes = [
   {
@@ -19,6 +19,11 @@ export const routes = [
   {
     path: "/cart",
     page: Cart,
+    exact: true
+  },
+  {
+    path: "/invoice",
+    page: Invoice,
     exact: true
   }
 ];

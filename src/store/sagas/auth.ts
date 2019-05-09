@@ -42,18 +42,36 @@ export function* fetchUser() {
   }
 }
 export function* putUser({ payload }: any) {
+  const {
+    name,
+    email,
+    mob_phone,
+    address_1,
+    city,
+    region,
+    postal_code,
+    country,
+    shipping_region_id
+  } = payload;
   try {
-    const { data } = yield call(Customers.putUser, payload);
-    yield put(authAction.putUserSuccess(data));
-  } catch (error) {
-    yield toast.error(error.response.data.error.message, { autoClose: 2000 });
-  }
-}
-
-export function* putUserAddress({ payload }: any) {
-  try {
-    const { data } = yield call(Customers.putUserAddress, payload);
-    yield put(authAction.putUserAddressSuccess(data));
+    const [user1, user2] = yield all([
+      call(Customers.putUser, {
+        name,
+        email,
+        mob_phone
+      }),
+      call(Customers.putUserAddress, {
+        address_1,
+        city,
+        region,
+        postal_code,
+        country,
+        shipping_region_id
+      })
+    ]);
+    yield put(authAction.putUserSuccess(user1.data));
+    yield put(authAction.putUserSuccess(user2.data));
+    yield (location.href = "/invoice");
   } catch (error) {
     yield toast.error(error.response.data.error.message, { autoClose: 2000 });
   }
@@ -78,18 +96,14 @@ export function* watchFetchgetUser() {
 }
 
 export function* watchPutUser() {
-  yield takeLatest(types.PUT_UPDATE_PHONE[types.REQUEST], putUser);
+  yield takeLatest(types.PUT_UPDATE_USER[types.REQUEST], putUser);
 }
 
-export function* watchPutUserAddress() {
-  yield takeLatest(types.PUT_UPDATE_ADDRESS[types.REQUEST], putUserAddress);
-}
 export default function*() {
   yield all([
     fork(watchFetchLogin),
     fork(watchFetchRegister),
     fork(watchFetchgetUser),
-    fork(watchPutUser),
-    fork(watchPutUserAddress)
+    fork(watchPutUser)
   ]);
 }

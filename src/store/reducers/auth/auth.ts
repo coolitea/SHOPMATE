@@ -2,14 +2,18 @@ import {
   POST_LOGIN,
   POST_REGISTER,
   GET_USER,
-  PUT_UPDATE_ADDRESS,
-  PUT_UPDATE_PHONE,
+  PUT_UPDATE_USER,
   REQUEST,
   SUCCESS
 } from "store/constants";
 import { customerState } from "store/models";
 
-const initialState: customerState = {};
+const initialState: customerState = {
+  user: {
+    name: "",
+    email: ""
+  }
+};
 
 export default function(state = initialState, action: any): customerState {
   switch (action.type) {
@@ -30,12 +34,7 @@ export default function(state = initialState, action: any): customerState {
         ...state,
         user: action.payload
       };
-    case PUT_UPDATE_PHONE[SUCCESS]:
-      return {
-        ...state,
-        user: action.payload
-      };
-    case PUT_UPDATE_ADDRESS[SUCCESS]:
+    case PUT_UPDATE_USER[SUCCESS]:
       return {
         ...state,
         user: action.payload

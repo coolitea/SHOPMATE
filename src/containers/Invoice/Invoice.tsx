@@ -34,7 +34,7 @@ interface CartState {
   checkAll: boolean;
 }
 
-class CartContainer extends React.Component<Props, CartState> {
+class InvoiceContainer extends React.Component<Props, CartState> {
   state = {
     show: false,
     mob_phone: "",
@@ -86,44 +86,9 @@ class CartContainer extends React.Component<Props, CartState> {
     switch (num) {
       case 0:
         if (val === "") {
-          checkMsg[num] = "Please enter mobile phone";
+          checkMsg[num] = "Please enter credit card";
         } else if (false) {
-          checkMsg[num] = "Please enter correct mobile phone format";
-        }
-        break;
-      case 1:
-        if (val === "") {
-          checkMsg[num] = "Please enter address";
-        } else if (false) {
-          checkMsg[num] = "Please enter correct address format";
-        }
-        break;
-      case 2:
-        if (val === "") {
-          checkMsg[num] = "Please enter city";
-        } else if (false) {
-          checkMsg[num] = "Please enter correct city format";
-        }
-        break;
-      case 3:
-        if (val === "") {
-          checkMsg[num] = "Please enter region";
-        } else if (false) {
-          checkMsg[num] = "Please enter correct region format";
-        }
-        break;
-      case 4:
-        if (val === "") {
-          checkMsg[num] = "Please enter postal code";
-        } else if (false) {
-          checkMsg[num] = "Please enter correct postal code format";
-        }
-        break;
-      case 5:
-        if (val === "") {
-          checkMsg[num] = "Please enter country";
-        } else if (false) {
-          checkMsg[num] = "Please enter correct country format";
+          checkMsg[num] = "Please enter correct credit card format";
         }
         break;
       default:
@@ -180,22 +145,7 @@ class CartContainer extends React.Component<Props, CartState> {
     } = this.props;
     const { show } = this.state;
     return (
-      <Cart
-        cart={cart}
-        total={total}
-        emptyCart={emptyCart}
-        removeProduct={removeProduct}
-        update={update}
-        show={show}
-        onShow={this.onShow.bind(this)}
-        changeInput={this.changeInput.bind(this)}
-        valCheck={this.valCheck.bind(this)}
-        valCheckMsg={this.state.valCheckMsg}
-        checkAll={this.state.checkAll}
-        clickNext={this.clickNext.bind(this)}
-        shipping={shipping}
-        changeSelect={this.changeSelect.bind(this)}
-      />
+      <div>Invoice Container</div>
     );
   }
 }
@@ -221,6 +171,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const connectModule = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CartContainer);
+)(InvoiceContainer);
 
 export default withRouter(connectModule);

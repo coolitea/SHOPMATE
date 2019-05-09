@@ -33,8 +33,7 @@ export const GET_PRODUCT_SEARCH = createRequestTypes("GET_PRODUCT_SEARCH");
 export const POST_REGISTER = createRequestTypes("POST_REGISTER");
 export const POST_LOGIN = createRequestTypes("POST_LOGIN");
 export const GET_USER = createRequestTypes("GET_USER");
-export const PUT_UPDATE_PHONE = createRequestTypes("PUT_UPDATE_PHONE");
-export const PUT_UPDATE_ADDRESS = createRequestTypes("PUT_UPDATE_ADDRESS");
+export const PUT_UPDATE_USER = createRequestTypes("PUT_UPDATE_USER");
 
 export const GET_ATTRIBUTES_WITH_PRODUCTID = createRequestTypes(
   "GET_ATTRIBUTES_WITH_PRODUCTID"

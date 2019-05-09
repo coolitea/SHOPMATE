@@ -118,7 +118,7 @@ const Cart: React.SFC<Props> = ({
         </tfoot>
       </table>
       <Button className="big1" onClick={onShow}>
-        Checkout
+        Next
       </Button>
       <Modal
         show={show}

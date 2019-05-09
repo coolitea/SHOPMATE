@@ -2,8 +2,7 @@ import {
   POST_LOGIN,
   POST_REGISTER,
   GET_USER,
-  PUT_UPDATE_PHONE,
-  PUT_UPDATE_ADDRESS,
+  PUT_UPDATE_USER,
   REQUEST,
   SUCCESS
 } from "store/constants";
@@ -18,12 +17,8 @@ export const Actions = {
   loginRequest: (data: login) => createAction(POST_LOGIN[REQUEST], data),
   registerRequest: (data: register) =>
     createAction(POST_REGISTER[REQUEST], data),
-  putUserRequest: (data: any) => createAction(PUT_UPDATE_PHONE[REQUEST], data),
-  putUserSuccess: (data: any) => createAction(PUT_UPDATE_PHONE[SUCCESS], data),
-  putUserAddressRequest: (data: any) =>
-    createAction(PUT_UPDATE_ADDRESS[REQUEST], data),
-  putUserAddressSuccess: (data: any) =>
-    createAction(PUT_UPDATE_ADDRESS[SUCCESS], data)
+  putUserRequest: (data: any) => createAction(PUT_UPDATE_USER[REQUEST], data),
+  putUserSuccess: (data: any) => createAction(PUT_UPDATE_USER[SUCCESS], data),
 };
 
 export type Actions = ActionsUnion<typeof Actions>;
