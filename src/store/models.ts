@@ -138,3 +138,15 @@ export interface cartState {
   total_items: number;
   err?: error;
 }
+
+// SHIPPING
+
+export interface shipping {
+  shipping_region_id: number;
+  shipping_region: String;
+}
+
+export interface shippingState {
+  shipping: shipping[];
+  err?: error;
+}

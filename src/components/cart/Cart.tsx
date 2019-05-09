@@ -2,9 +2,10 @@ import * as React from "react";
 import "./Cart.scss";
 import { Responsive, Button, Modal } from "components/common";
 import { cartAction } from "store/actions";
-import { cart } from "store/models";
+import { cart, shipping } from "store/models";
 import { FaTrash } from "react-icons/fa";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import Personal from "./personal";
 
 interface Props {
   cart: cart[];
@@ -14,6 +15,13 @@ interface Props {
   update: typeof cartAction.updateRequest;
   show: boolean;
   onShow: () => void;
+  changeInput: (num: number, e: { target: HTMLInputElement }) => void;
+  valCheck: (num: number, e: { target: HTMLInputElement }) => void;
+  valCheckMsg: string[];
+  checkAll: boolean;
+  clickNext: () => void;
+  shipping: shipping[];
+  changeSelect: (e: { target: HTMLSelectElement }) => void;
 }
 
 const Cart: React.SFC<Props> = ({
@@ -23,7 +31,14 @@ const Cart: React.SFC<Props> = ({
   removeProduct,
   update,
   show,
-  onShow
+  onShow,
+  changeInput,
+  valCheck,
+  valCheckMsg,
+  checkAll,
+  clickNext,
+  shipping,
+  changeSelect
 }) => (
   <Responsive>
     <div className="cartcontainer">
@@ -105,7 +120,21 @@ const Cart: React.SFC<Props> = ({
       <Button className="big1" onClick={onShow}>
         Checkout
       </Button>
-      <Modal show={show} onClose={onShow} />
+      <Modal
+        show={show}
+        onClose={onShow}
+        children={
+          <Personal
+            changeInput={changeInput}
+            valCheck={valCheck}
+            valCheckMsg={valCheckMsg}
+            checkAll={checkAll}
+            clickNext={clickNext}
+            shipping={shipping}
+            changeSelect={changeSelect}
+          />
+        }
+      />
     </div>
   </Responsive>
 );

@@ -1,0 +1,35 @@
+.personal_container {
+  width: 600px;
+  height: 850px;
+  border-radius: 6px;
+  text-align: center;
+  padding-top: 30px;
+
+  .title {
+    height: 72px;
+    font-family: Montserrat;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #2e2e2e;
+    margin: 0 auto;
+  }
+
+  .input {
+    margin-bottom: 10px;
+  }
+  .custom-select {
+    position: relative;
+    margin-bottom: 40px;
+    
+    select {
+      width: 300px;
+      outline: 0;
+      height: 60px;
+    }
+  }
+}
