@@ -6,6 +6,7 @@ import productReducer from "store/reducers/product";
 import attributeReducer from "store/reducers/attribute";
 import cartReducer from "store/reducers/shoppingcart";
 import shippingReducers from "store/reducers/shipping";
+import orderReducers from "store/reducers/order";
 
 export const rootReducer = combineReducers({
   departments: departmentReducer,
@@ -14,7 +15,8 @@ export const rootReducer = combineReducers({
   product: productReducer,
   attribute: attributeReducer,
   shoppingcart: cartReducer,
-  deliver: shippingReducers
+  deliver: shippingReducers,
+  order: orderReducers
 });
 
 export type rootState = ReturnType<typeof rootReducer>;

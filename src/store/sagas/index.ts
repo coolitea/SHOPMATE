@@ -5,6 +5,7 @@ import productSaga from "store/sagas/product";
 import attributeSaga from "store/sagas/attribute";
 import cartSaga from "store/sagas/shoppingcart";
 import shippingSaga from "store/sagas/shipping";
+import orderSaga from "store/sagas/order";
 
 export default [
   departmentSaga,
@@ -13,5 +14,6 @@ export default [
   productSaga,
   attributeSaga,
   cartSaga,
-  shippingSaga
+  shippingSaga,
+  orderSaga
 ];

@@ -56,7 +56,7 @@ export function* fetchEmptyCart() {
   try {
     const { data } = yield call(ShoppingCart.empyCart, storage.get("CART_ID"));
     yield put(cartAction.empyCartSuccess(data));
-    yield toast.success("removed", { autoClose: 1000 });
+    // yield toast.success("removed", { autoClose: 1000 });
     yield fetchListOFCart();
     yield fetchTotalAmount();
   } catch (error) {

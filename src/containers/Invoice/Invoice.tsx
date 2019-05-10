@@ -1,16 +1,18 @@
 import * as React from "react";
-import { cartAction, shippingAction } from "store/actions";
+import { cartAction, shippingAction, orderAction } from "store/actions";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 import { cart, customer, region } from "store/models";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { Invoice } from "components";
+import storage from "lib/storage";
 
 interface Props extends RouteComponentProps {
   listOfCart: typeof cartAction.listCartRequest;
   totalAmount: typeof cartAction.totalAmountRequest;
   getShippingById: typeof shippingAction.getShippingByIdRequest;
+  postOrder: typeof orderAction.postOrderRequest;
   cart: cart[];
   subtotal: string;
   user: customer;
@@ -46,6 +48,12 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
     }
   }
   onShow() {
+    const data = {
+      cart_id: storage.get("CART_ID"),
+      shipping_id: parseInt(this.state.shipping_id),
+      tax_id: 2
+    };
+    this.props.postOrder(data);
     this.setState({ show: !this.state.show });
   }
   changeSelect = (e: { target: HTMLSelectElement }) => {
@@ -57,12 +65,12 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
       shipping_id: value,
       selected: selected,
       total: (
-        parseInt(this.props.subtotal) + parseInt(selected[0].shipping_cost)
+        parseFloat(this.props.subtotal) + parseFloat(selected[0].shipping_cost)
       ).toString()
     });
   };
   render() {
-    const { cart, subtotal, region } = this.props;
+    const { cart, subtotal, region, user } = this.props;
     const { show, selected, total } = this.state;
     return (
       <Invoice
@@ -74,6 +82,7 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
         changeSelect={this.changeSelect.bind(this)}
         selected={selected}
         total={total}
+        user={user}
       />
     );
   }
@@ -90,7 +99,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   listOfCart: () => dispatch(cartAction.listCartRequest()),
   totalAmount: () => dispatch(cartAction.totalAmountRequest()),
   getShippingById: (id: number) =>
-    dispatch(shippingAction.getShippingByIdRequest(id))
+    dispatch(shippingAction.getShippingByIdRequest(id)),
+  postOrder: (data: any) => dispatch(orderAction.postOrderRequest(data))
 });
 
 const connectModule = connect(

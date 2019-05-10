@@ -50,5 +50,7 @@ export const DELETE_PRODUCT_IN_CART = createRequestTypes("DELETE_PRODUCT_IN_CART
 export const GET_SHIPPING_REGION = createRequestTypes("GET_SHIPPING_REGION");
 export const GET_SHIPPING_REGION_BY_ID = createRequestTypes("GET_SHIPPING_REGION_BY_ID");
 
+export const POST_ORDER = createRequestTypes("POST_ORDER");
+export const GET_ORDER_BY_CUSTOMER = createRequestTypes("GET_ORDER_BY_CUSTOMER");
 // without I/O
 export const SET_PAGE = "SET_PAGE";

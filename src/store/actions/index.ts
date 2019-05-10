@@ -5,3 +5,4 @@ export { default as productAction } from "store/actions/products";
 export { Actions as attributeAction } from "store/actions/attributes";
 export { Actions as cartAction } from "store/actions/shoppingcart";
 export { Actions as shippingAction } from "store/actions/shipping";
+export { Actions as orderAction } from "store/actions/order";

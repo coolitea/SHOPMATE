@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./Invoice.scss";
 import { Responsive, Button, Modal } from "components/common";
-import { cart, region } from "store/models";
+import { cart, region, customer } from "store/models";
 import { ToastContainer } from "react-toastify";
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
   changeSelect: (e: { target: HTMLSelectElement }) => void;
   selected: region[];
   total: string;
+  user: customer;
 }
 
 const Invoice: React.SFC<Props> = ({
@@ -23,7 +24,8 @@ const Invoice: React.SFC<Props> = ({
   region,
   changeSelect,
   selected,
-  total
+  total,
+  user
 }) => {
   return (
     <Responsive>
@@ -67,7 +69,10 @@ const Invoice: React.SFC<Props> = ({
             </tr>
             <tr>
               <td>
-                <select onChange={changeSelect}>
+                <select onChange={changeSelect} defaultValue="default">
+                  <option value="default" disabled>
+                    Choose here
+                  </option>
                   {region.map((data, i) => (
                     <option value={data.shipping_id} key={i}>
                       {data.shipping_type}
@@ -77,7 +82,9 @@ const Invoice: React.SFC<Props> = ({
               </td>
               <td />
               <td className="shippingcost_name">SHIPPING COST</td>
-              <td className="shipping_cost">$ {selected[0] ? selected[0].shipping_cost : 0}</td>
+              <td className="shipping_cost">
+                $ {selected[0] ? selected[0].shipping_cost : 0}
+              </td>
             </tr>
             <tr>
               <td />
@@ -87,6 +94,17 @@ const Invoice: React.SFC<Props> = ({
             </tr>
           </tfoot>
         </table>
+        <div className="delivery_information">
+          <h3>Delivery information</h3>
+          <ul>
+            <li>name: {user.name}</li>
+            <li>address: {user.address_1}</li>
+            <li>city: {user.city}</li>
+            <li>country: {user.country}</li>
+            <li>phone: {user.mob_phone}</li>
+            <li>postal code: {user.postal_code}</li>
+          </ul>
+        </div>
         <Button className="big1" onClick={onShow}>
           Checkout
         </Button>

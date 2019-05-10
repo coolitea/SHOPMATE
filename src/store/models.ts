@@ -157,3 +157,17 @@ export interface shippingState {
   region: region[];
   err?: error;
 }
+// ORDER
+export interface order {
+  order_id: number;
+  total_amount: string;
+  created_on: string;
+  shipped_on: null;
+  status: number;
+  name: string;
+}
+
+export interface orderState {
+  order: order[];
+  err?: error;
+}
