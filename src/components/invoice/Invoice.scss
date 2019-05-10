@@ -1,0 +1,58 @@
+.invoice_container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 31px;
+
+  h2 {
+    margin: 30px 0 30px 0;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  table {
+
+    th {
+      padding: 30px;
+      background: #efefef;
+    }
+
+    th:nth-child(1){
+      text-align: left;
+    }
+
+    tr {
+      text-align: center;
+
+      td {
+        padding: 20px;
+      }
+      td:nth-child(1) {
+        text-align: left;
+        .name {
+          margin-bottom: 5px;
+        }
+        .attributes {
+          font-size: 5px;
+          color: gray;
+        }
+      }
+      td:nth-child(2) {
+        span {
+          margin-left: 6px;
+        }
+      }
+    }
+    .subtotalname,
+    .shippingcost_name,
+    .tax_name,
+    .totalname {
+      text-align: end;
+    }
+    .totalname {
+      color: #f62f5e;
+    }
+    .total {
+      font-weight: bold;
+    }
+  }
+}

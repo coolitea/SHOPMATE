@@ -1,5 +1,6 @@
 import {
   GET_SHIPPING_REGION,
+  GET_SHIPPING_REGION_BY_ID,
   REQUEST,
   SUCCESS,
   FAILURE
@@ -7,7 +8,8 @@ import {
 import { shippingState } from "store/models";
 
 const initialState: shippingState = {
-  shipping: []
+  shipping: [],
+  region: []
 };
 
 export default function(state = initialState, action: any): shippingState {
@@ -17,15 +19,19 @@ export default function(state = initialState, action: any): shippingState {
         ...state
       };
     case GET_SHIPPING_REGION[SUCCESS]:
-      const { payload } = action;
       return {
         ...state,
-        shipping: payload
+        shipping: action.payload
       };
     case GET_SHIPPING_REGION[FAILURE]:
       return {
         ...state,
         err: action.payload
+      };
+    case GET_SHIPPING_REGION_BY_ID[SUCCESS]:
+      return {
+        ...state,
+        region: action.payload
       };
     default:
       return state;

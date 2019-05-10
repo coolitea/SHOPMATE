@@ -6,6 +6,7 @@ import { customer } from "store/models";
 import storage from "lib/storage";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import client from "lib/client";
 
 interface Props extends RouteComponentProps {
   clickRegister: () => void;
@@ -51,7 +52,7 @@ const Auth: React.SFC<Props> = ({
   return (
     <>
       <div className={auth ? "auth open" : "auth"}>
-        {user ? yesAuth : noAuth}
+        {client.isLoggedIn() ? yesAuth : noAuth}
       </div>
       <div className={signin ? "signin open" : "signin"}>
         <div className="content">

@@ -146,7 +146,14 @@ export interface shipping {
   shipping_region: String;
 }
 
+export interface region {
+  shipping_id: number;
+  shipping_type: string;
+  shipping_cost: string;
+  shipping_region_id: number;
+}
 export interface shippingState {
   shipping: shipping[];
+  region: region[];
   err?: error;
 }
