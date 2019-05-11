@@ -1,6 +1,10 @@
 @import "~assets/styles/main";
-.list {
+
+.search_list {
   width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   font-family: OpenSans;
   font-size: 14px;
   font-weight: bold;
@@ -9,7 +13,6 @@
   line-height: 1.71;
   letter-spacing: normal;
   color: gray;
-  //   list-style: circle;
   cursor: pointer;
 
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */

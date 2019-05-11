@@ -253,8 +253,9 @@
 
     .search-icon {
       position: absolute;
-      top: 9px;
+      top: 11px;
       left: 13px;
+      color: white;
     }
 
     input {
@@ -283,7 +284,13 @@
     ::placeholder {
       color: white;
     }
-
+    .delete-search {
+      color: white;
+      position: absolute;
+      top: 11px;
+      right: 20px;
+      cursor: pointer;
+    }
     .searchlists {
       position: absolute;
       left: 45px;

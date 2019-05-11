@@ -16,10 +16,9 @@ const List: React.SFC<Props> = ({
   product_id,
   history
 }) => (
-  <li className="list">
-    <span className="name">
-      {name} ${price}
-    </span>
+  <li className="search_list" onClick={() => history.push(`/detail/${product_id}`)}>
+    <span className="name">{name}</span>
+    <span>${price}</span>
   </li>
 );
 

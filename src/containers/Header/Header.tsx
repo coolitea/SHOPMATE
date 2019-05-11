@@ -139,6 +139,9 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
     const { searchInput } = this.state;
     this.setState({ searchInput: e.target.value });
   };
+  deleteSearch = () => {
+    this.setState({searchInput: ""});
+  }
   componentDidMount() {
     this.props.getDeparments("");
     if (client.isLoggedIn()) {
@@ -172,6 +175,7 @@ class HeaderContainer extends React.Component<Props, HeaderState> {
           onChangeSearch={_.debounce(this.onChangeSearch, 2000, true)}
           searchItems={searchItems}
           total_items={total_items}
+          deleteSearch={this.deleteSearch.bind(this)}
         />
       </>
     );

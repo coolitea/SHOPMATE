@@ -2,6 +2,7 @@ import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { departments } from "store/models";
 import { FaOpencart, FaSearch } from "react-icons/fa";
+import { IoIosClose } from "react-icons/io";
 import { Responsive } from "components/common";
 import { customer, products } from "store/models";
 
@@ -25,6 +26,7 @@ interface Props extends RouteComponentProps {
   onChangeSearch: (e: { target: HTMLInputElement }) => void;
   searchItems?: products[];
   total_items: number;
+  deleteSearch: () => void;
 }
 
 const Header: React.SFC<Props> = ({
@@ -39,7 +41,8 @@ const Header: React.SFC<Props> = ({
   user,
   onChangeSearch,
   searchItems,
-  total_items
+  total_items,
+  deleteSearch
 }) => {
   const [burger, setBurger] = React.useState(false);
   const notify = () => toast.info("please sign in", { autoClose: 1500 });
@@ -72,11 +75,15 @@ const Header: React.SFC<Props> = ({
             ))}
         </div>
         <div className="search">
-          <FaSearch style={{ color: "white" }} className="search-icon" />
+          <FaSearch className="search-icon" />
           <input
             type="text"
             placeholder="search anything"
             onChange={e => onChangeSearch(e)}
+          />
+          <IoIosClose
+            className="delete-search"
+            onClick={() => deleteSearch()}
           />
           <ul className="searchlists">
             {searchItems &&
