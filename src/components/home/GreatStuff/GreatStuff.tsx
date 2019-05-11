@@ -2,7 +2,6 @@ import * as React from "react";
 import { departments, categories } from "store/models";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import "./GreatStuff.scss";
-import Button from "components/common/Button";
 
 interface Props extends RouteComponentProps {
   departments: departments[];

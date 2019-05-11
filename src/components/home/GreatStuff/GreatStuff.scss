@@ -162,6 +162,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        background: #a0bcc9;
 
         @include media("<tablet-xx") {
           padding: 0;
@@ -181,7 +182,7 @@
           cursor: pointer;
         }
         div:hover {
-          color: $red-pink;
+          color: $white-two;
         }
       }
 
@@ -196,7 +197,7 @@
           width: 380px;
           margin-right: 20px;
           border: 0.5px solid #efefef;
-          // background-color: #d8ae47;
+          background-color: #d8d0c3;
 
           @include media("<screen-x") {
             width: 50%;
@@ -208,12 +209,18 @@
             height: 300px;
             margin-bottom: 24px;
           }
+          div:hover {
+            color: $white-two;
+          }
         }
 
         .seasonal {
           flex: 1;
           border: 0.5px solid #efefef;
-          // background-color: #bd3d3a;
+          background-color: #ddb7b7;
+          div:hover {
+            color: $white-two;
+          }
         }
 
         .natual,
@@ -234,9 +241,7 @@
             margin-bottom: 24px;
             cursor: pointer;
           }
-          div:hover {
-            color: $red-pink;
-          }
+
         }
       }
 
