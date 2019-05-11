@@ -52,5 +52,7 @@ export const GET_SHIPPING_REGION_BY_ID = createRequestTypes("GET_SHIPPING_REGION
 
 export const POST_ORDER = createRequestTypes("POST_ORDER");
 export const GET_ORDER_BY_CUSTOMER = createRequestTypes("GET_ORDER_BY_CUSTOMER");
+
+export const POST_CHARGE = createRequestTypes("POST_CHARGE");
 // without I/O
 export const SET_PAGE = "SET_PAGE";

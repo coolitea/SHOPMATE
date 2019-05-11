@@ -6,3 +6,4 @@ export { default as Attributes } from "lib/api/attributes";
 export { default as ShoppingCart } from "lib/api/shoppingcart";
 export { default as Shipping } from "lib/api/shipping";
 export { default as Order } from "lib/api/order";
+export { default as Stripe } from "lib/api/stripe";

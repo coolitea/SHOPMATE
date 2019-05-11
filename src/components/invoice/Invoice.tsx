@@ -1,7 +1,10 @@
 import * as React from "react";
 import "./Invoice.scss";
 import { Responsive, Button, Modal } from "components/common";
-import { cart, region, customer } from "store/models";
+import { cart, region, customer, order } from "store/models";
+import { stripeAction } from "store/actions";
+import Payment from "./payment";
+
 import { ToastContainer } from "react-toastify";
 
 interface Props {
@@ -11,9 +14,11 @@ interface Props {
   onShow: () => void;
   region: region[];
   changeSelect: (e: { target: HTMLSelectElement }) => void;
+  charge: typeof stripeAction.postChargeRequest;
   selected: region[];
   total: string;
   user: customer;
+  currentorder: order;
 }
 
 const Invoice: React.SFC<Props> = ({
@@ -25,7 +30,9 @@ const Invoice: React.SFC<Props> = ({
   changeSelect,
   selected,
   total,
-  user
+  user,
+  currentorder,
+  charge
 }) => {
   return (
     <Responsive>
@@ -108,7 +115,13 @@ const Invoice: React.SFC<Props> = ({
         <Button className="big1" onClick={onShow}>
           Checkout
         </Button>
-        <Modal show={show} onClose={onShow} />
+        <Modal
+          show={show}
+          onClose={onShow}
+          children={
+            <Payment currentorder={currentorder} charge={charge} />
+          }
+        />
       </div>
     </Responsive>
   );

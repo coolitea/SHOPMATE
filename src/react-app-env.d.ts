@@ -10,6 +10,7 @@ declare namespace NodeJS {
     REACT_APP_IMAGE_URL: string;
     REACT_APP_REQUEST_TIMEOUT: number;
     REACT_APP_CACHE_TIMEOUT: number;
+    REACT_APP_STRIPE_PUBLIC_KEY: string;
   }
 }
 

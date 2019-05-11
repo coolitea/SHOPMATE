@@ -22,5 +22,5 @@ export { default as Product } from "components/products/product";
 // cart
 export { default as Cart } from "components/cart";
 
-// cart
+// Invoice
 export { default as Invoice } from "components/invoice";

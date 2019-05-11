@@ -1,22 +1,29 @@
 import * as React from "react";
-import { cartAction, shippingAction, orderAction } from "store/actions";
+import {
+  cartAction,
+  shippingAction,
+  orderAction,
+  stripeAction
+} from "store/actions";
 import { rootState } from "store/reducers";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { cart, customer, region } from "store/models";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { cart, customer, region, order } from "store/models";
 import { Invoice } from "components";
 import storage from "lib/storage";
 
-interface Props extends RouteComponentProps {
+interface Props {
   listOfCart: typeof cartAction.listCartRequest;
   totalAmount: typeof cartAction.totalAmountRequest;
   getShippingById: typeof shippingAction.getShippingByIdRequest;
   postOrder: typeof orderAction.postOrderRequest;
+  getOrder: typeof orderAction.getOrderByCustomerRequest;
+  charge: typeof stripeAction.postChargeRequest;
   cart: cart[];
   subtotal: string;
   user: customer;
   region: region[];
+  currentorder: order;
 }
 
 interface InvoiceState {
@@ -37,6 +44,7 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
   componentDidMount() {
     this.props.listOfCart();
     this.props.totalAmount();
+    this.props.getOrder();
   }
   componentDidUpdate(prevProps: Props) {
     const { user } = this.props;
@@ -53,7 +61,7 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
       shipping_id: parseInt(this.state.shipping_id),
       tax_id: 2
     };
-    this.props.postOrder(data);
+    // this.props.postOrder(data);
     this.setState({ show: !this.state.show });
   }
   changeSelect = (e: { target: HTMLSelectElement }) => {
@@ -70,7 +78,7 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
     });
   };
   render() {
-    const { cart, subtotal, region, user } = this.props;
+    const { cart, subtotal, region, user, currentorder, charge } = this.props;
     const { show, selected, total } = this.state;
     return (
       <Invoice
@@ -83,6 +91,8 @@ class InvoiceContainer extends React.Component<Props, InvoiceState> {
         selected={selected}
         total={total}
         user={user}
+        currentorder={currentorder}
+        charge={charge}
       />
     );
   }
@@ -92,7 +102,8 @@ const mapStateToProps = (rootState: rootState) => ({
   cart: rootState.shoppingcart.cart,
   subtotal: rootState.shoppingcart.total_amount,
   user: rootState.customer.user,
-  region: rootState.deliver.region
+  region: rootState.deliver.region,
+  currentorder: rootState.order.order[rootState.order.order.length - 1]
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -100,7 +111,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   totalAmount: () => dispatch(cartAction.totalAmountRequest()),
   getShippingById: (id: number) =>
     dispatch(shippingAction.getShippingByIdRequest(id)),
-  postOrder: (data: any) => dispatch(orderAction.postOrderRequest(data))
+  postOrder: (data: any) => dispatch(orderAction.postOrderRequest(data)),
+  getOrder: () => dispatch(orderAction.getOrderByCustomerRequest()),
+  charge: (data: any) => dispatch(stripeAction.postChargeRequest(data))
 });
 
 const connectModule = connect(
@@ -108,4 +121,4 @@ const connectModule = connect(
   mapDispatchToProps
 )(InvoiceContainer);
 
-export default withRouter(connectModule);
+export default connectModule;

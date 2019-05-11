@@ -8,9 +8,9 @@ import { fetchEmptyCart } from "./shoppingcart";
 function* fetchOrderByCustomer() {
   try {
     const { data } = yield call(Order.getOrderByCustomer);
-    yield put(orderAction.postOrderByCustomerSuccess(data));
+    yield put(orderAction.getOrderByCustomerSuccess(data));
   } catch (error) {
-    yield put(orderAction.postOrderByCustomerFailure(error));
+    yield put(orderAction.getOrderByCustomerFailure(error));
   }
 }
 
@@ -28,6 +28,13 @@ function* fetchOrder({ payload }: any) {
 function* watchPostOrder() {
   yield takeLatest([types.POST_ORDER[types.REQUEST]], fetchOrder);
 }
+
+function* watchOrderByCustomer() {
+  yield takeLatest(
+    [types.GET_ORDER_BY_CUSTOMER[types.REQUEST]],
+    fetchOrderByCustomer
+  );
+}
 export default function*() {
-  yield all([fork(watchPostOrder)]);
+  yield all([fork(watchPostOrder), fork(watchOrderByCustomer)]);
 }

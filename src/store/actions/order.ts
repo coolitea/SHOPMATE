@@ -13,9 +13,11 @@ export const Actions = {
   postOrderRequest: (data: any) => createAction(POST_ORDER[REQUEST], data),
   postOrderSuccess: (id: number) => createAction(POST_ORDER[SUCCESS], id),
   postOrderFailure: (err: error) => createAction(POST_ORDER[FAILURE], err),
-  postOrderByCustomerSuccess: (data: any) =>
+  getOrderByCustomerRequest: () =>
+    createAction(GET_ORDER_BY_CUSTOMER[REQUEST]),
+  getOrderByCustomerSuccess: (data: any) =>
     createAction(GET_ORDER_BY_CUSTOMER[SUCCESS], data),
-  postOrderByCustomerFailure: (err: error) =>
+  getOrderByCustomerFailure: (err: error) =>
     createAction(GET_ORDER_BY_CUSTOMER[FAILURE], err)
 };
 
