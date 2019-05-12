@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 function* fetchCharge({ payload }: any) {
   try {
     const { data } = yield call(Stripe.chage, payload);
-    console.log(data);
     yield put(stripeAction.postChargeSuccess(data));
     yield toast.success("success payments", { autoClose: 1000 });
     yield (location.href = "/");
