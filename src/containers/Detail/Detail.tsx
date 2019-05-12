@@ -53,7 +53,7 @@ class DetailContainer extends React.Component<Props, DetailState> {
     });
   }
   addToCart() {
-    const { color, size } = this.state;
+    const { color, size, quantity } = this.state;
     const {
       addToCart,
       match: {
@@ -62,9 +62,9 @@ class DetailContainer extends React.Component<Props, DetailState> {
     } = this.props;
     const data = {
       product_id: id,
-      attributes: `${size},${color}`
+      attributes: `${size},${color}`,
+      quantity
     };
-    toast.success("added", { autoClose: 1000 });
     addToCart(data);
   }
   render() {

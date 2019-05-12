@@ -4,13 +4,14 @@ import { cartAction } from "store/actions";
 import { toast } from "react-toastify";
 import * as types from "store/constants";
 import storage from "lib/storage";
+import store from "store";
 
 export function* fetchCartId() {
   try {
     const { data } = yield call(ShoppingCart.getGenerateId);
     yield put(cartAction.generateCartSuccess(data.cart_id));
     yield storage.set("CART_ID", data.cart_id);
-  } catch(error) {
+  } catch (error) {
     yield put(cartAction.generateCartFailure(error));
   }
 }
@@ -29,12 +30,18 @@ export function* fetchListOFCart() {
 
 export function* fetchAddToCart({ payload }: any) {
   try {
-    const form = {
-      ...payload,
-      cart_id: storage.get("CART_ID")
-    };
-    const { data } = yield call(ShoppingCart.addToCart, form);
+    const { data } = yield call(ShoppingCart.addToCart, {
+      cart_id: storage.get("CART_ID"),
+      product_id: payload.product_id,
+      attributes: payload.attributes
+    });
     yield put(cartAction.addToCartSuccess(data));
+    yield store.dispatch(
+      cartAction.updateRequest({
+        item_id: data[data.length - 1].item_id,
+        quantity: payload.quantity
+      })
+    );
   } catch (error) {
     yield put(cartAction.addToCartFailure(error));
   }
@@ -80,6 +87,7 @@ export function* fetchUpdate({ payload }: any) {
     const { data } = yield call(ShoppingCart.update, item_id, quantity);
     yield put(cartAction.updateSuccess(data));
     yield fetchTotalAmount();
+    yield toast.success("sucess", { autoClose: 1200 });
   } catch (error) {
     yield put(cartAction.updateFailure(error));
   }
