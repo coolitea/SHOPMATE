@@ -90,7 +90,9 @@ const Detail: React.SFC<Props> = ({
             <Button
               className="medium1"
               onClick={client.isLoggedIn() ? addToCart : notify}
-            >Add to cart</Button>
+            >
+              Add to cart
+            </Button>
             <ToastContainer />
           </div>
         </div>

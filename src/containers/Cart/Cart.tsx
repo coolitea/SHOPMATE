@@ -44,7 +44,7 @@ class CartContainer extends React.Component<Props, CartState> {
     postal_code: 0,
     country: "",
     shipping_region_id: "",
-    valCheckMsg: ["", "", "", ""],
+    valCheckMsg: [],
     checkAll: false
   };
 
@@ -133,10 +133,10 @@ class CartContainer extends React.Component<Props, CartState> {
       {
         valCheckMsg: checkMsg
       },
-      this.beforeAuth
+      this.beforeNext
     );
   };
-  beforeAuth = () => {
+  beforeNext = () => {
     if (this.state.valCheckMsg.every(msg => msg === "")) {
       this.setState({
         checkAll: true
@@ -176,7 +176,8 @@ class CartContainer extends React.Component<Props, CartState> {
       emptyCart,
       removeProduct,
       update,
-      shipping
+      shipping,
+      user
     } = this.props;
     const { show } = this.state;
     return (
@@ -195,6 +196,7 @@ class CartContainer extends React.Component<Props, CartState> {
         clickNext={this.clickNext.bind(this)}
         shipping={shipping}
         changeSelect={this.changeSelect.bind(this)}
+        user={user}
       />
     );
   }

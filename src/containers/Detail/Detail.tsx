@@ -25,12 +25,18 @@ interface DetailState {
   quantity: number;
   color: string;
   size: string;
+  show: boolean;
+  valCheckMsg: string[];
+  checkAll: boolean;
 }
 class DetailContainer extends React.Component<Props, DetailState> {
   state = {
     quantity: 1,
     color: "",
-    size: ""
+    size: "",
+    show: false,
+    valCheckMsg: ["", "", ""],
+    checkAll: false
   };
   componentDidMount() {
     this.props.getAttributes(this.props.match.params.id);

@@ -5,6 +5,7 @@ import * as types from "store/constants";
 import { login, register } from "store/actions/types";
 import storage from "lib/storage";
 import { toast } from "react-toastify";
+import history from "lib/routes/history";
 
 export function* fetchLogin({ email, password }: login) {
   try {
@@ -71,7 +72,8 @@ export function* putUser({ payload }: any) {
     ]);
     yield put(authAction.putUserSuccess(user1.data));
     yield put(authAction.putUserSuccess(user2.data));
-    yield (location.href = "/invoice");
+    // yield (location.href = "/invoice");
+    yield history.push("/invoice");
   } catch (error) {
     yield toast.error(error.response.data.error.message, { autoClose: 2000 });
   }

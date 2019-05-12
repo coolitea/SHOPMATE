@@ -16,7 +16,7 @@ interface Props extends ReactStripeElements.InjectedStripeProps {
 
 const Form: React.SFC<Props> = ({ currentorder, charge, stripe }) => {
   const onSubmit = async () => {
-    // const { token } = await stripe.createToken({ name: "shopmate"});
+    const data = stripe && await stripe.createToken({ name: "shopmate"});
     charge({
       // stripeToken: token.id,
       order_id: currentorder.order_id,

@@ -2,7 +2,7 @@ import * as React from "react";
 import "./Cart.scss";
 import { Responsive, Button, Modal } from "components/common";
 import { cartAction } from "store/actions";
-import { cart, shipping } from "store/models";
+import { cart, shipping, customer } from "store/models";
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import Personal from "./personal";
@@ -22,6 +22,7 @@ interface Props {
   clickNext: () => void;
   shipping: shipping[];
   changeSelect: (e: { target: HTMLSelectElement }) => void;
+  user: customer;
 }
 
 const Cart: React.SFC<Props> = ({
@@ -38,7 +39,8 @@ const Cart: React.SFC<Props> = ({
   checkAll,
   clickNext,
   shipping,
-  changeSelect
+  changeSelect,
+  user
 }) => (
   <Responsive>
     <div className="cartcontainer">
@@ -132,6 +134,7 @@ const Cart: React.SFC<Props> = ({
             clickNext={clickNext}
             shipping={shipping}
             changeSelect={changeSelect}
+            user={user}
           />
         }
       />
