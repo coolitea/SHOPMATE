@@ -22,7 +22,7 @@ export function* fetchListOFCart() {
       ShoppingCart.getListOfProducts,
       storage.get("CART_ID")
     );
-    yield put(cartAction.listCartSuccess(data[0]));
+    yield put(cartAction.listCartSuccess(data));
   } catch (error) {
     yield put(cartAction.listCartFailure(error));
   }
