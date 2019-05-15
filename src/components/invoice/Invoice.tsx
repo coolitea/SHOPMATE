@@ -119,7 +119,7 @@ const Invoice: React.SFC<Props> = ({
           show={show}
           onClose={onShow}
           children={
-            <Payment currentorder={currentorder} charge={charge} user={user}/>
+            <Payment currentorder={currentorder} charge={charge} user={user} total={total}/>
           }
         />
       </div>

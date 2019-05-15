@@ -9,15 +9,16 @@ interface Props {
   currentorder: order;
   charge: typeof stripeAction.postChargeRequest;
   user: customer;
+  total: string;
 }
 
-const Payment: React.SFC<Props> = ({ currentorder, charge, user }) => {
+const Payment: React.SFC<Props> = ({ currentorder, charge, user, total }) => {
   return (
     <>
       <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}>
         <Elements>
           <div className="payment_container">
-            <Form currentorder={currentorder} charge={charge} user={user}/>
+            <Form currentorder={currentorder} charge={charge} user={user} total={total}/>
           </div>
         </Elements>
       </StripeProvider>

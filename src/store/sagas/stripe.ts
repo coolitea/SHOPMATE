@@ -11,7 +11,7 @@ function* fetchCharge({ payload }: any) {
     yield toast.success("success payments", { autoClose: 1000 });
     yield (location.href = "/");
   } catch (error) {
-    yield put(stripeAction.postChargeFailure(error));
+    yield put(stripeAction.postChargeFailure(error.response.data.error));
   }
 }
 function* watchCharge() {

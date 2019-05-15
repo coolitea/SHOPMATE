@@ -13,20 +13,28 @@ interface Props extends ReactStripeElements.InjectedStripeProps {
   currentorder: order;
   charge: typeof stripeAction.postChargeRequest;
   user: customer;
+  total: string;
 }
 
-const Form: React.SFC<Props> = ({ currentorder, charge, user, stripe }) => {
+const Form: React.SFC<Props> = ({
+  currentorder,
+  charge,
+  user,
+  stripe,
+  total
+}) => {
   const onSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       let token = stripe && (await stripe.createToken({ name: "shopmate" }));
-      token && token.token ?
-        charge({
-          stripeToken: token.token.id,
-          order_id: currentorder.order_id,
-          description: "",
-          amount: parseInt(currentorder.total_amount)
-        }) : '';
+      token && token.token
+        ? charge({
+            stripeToken: token.token,
+            order_id: currentorder.order_id,
+            description: "shopmate checkout",
+            amount: parseInt(total) * 100
+          })
+        : "";
     } catch (e) {
       throw e;
     }
